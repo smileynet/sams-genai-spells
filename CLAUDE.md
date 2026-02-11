@@ -59,6 +59,18 @@ Templates use conditional blocks for platform-specific content:
 
 Plus meta commands: `help` and `teach`.
 
+## How It Works
+
+Each spell is a markdown template in `core/templates/commands/`. The sync script (`dev/sync-commands.sh`) generates platform-specific versions for Claude Code, OpenCode, and Kiro — handling namespace differences, conditional blocks, and frontmatter.
+
+```
+core/templates/commands/       → Single source of truth
+  ↓ dev/sync-commands.sh
+plugins/claude-code/commands/  → /spell:command
+plugins/opencode/commands/     → /spell-command
+plugins/kiro/prompts/          → @spell-command
+```
+
 ## Voice and Tone
 
 - **Tutorials and README**: Humorous, self-deprecating. Sam didn't invent these techniques, he just packaged them.

@@ -6,9 +6,9 @@
     "name": "smileynet",
     "url": "https://github.com/smileynet"
   },
-  "repository": "https://github.com/smileynet/sams-spells",
+  "repository": "https://github.com/smileynet/sams-genai-spells",
   "license": "MIT",
-  "homepage": "https://github.com/smileynet/sams-spells",
+  "homepage": "https://github.com/smileynet/sams-genai-spells",
   "keywords": [
     "claude-code",
     "prompt-engineering",

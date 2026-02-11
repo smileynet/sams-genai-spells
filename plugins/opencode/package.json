@@ -1,5 +1,5 @@
 {
-  "name": "@sams-spells/opencode-plugin",
+  "name": "@sams-genai-spells/opencode-plugin",
   "version": "0.2.0",
   "description": "Prompt engineering techniques packaged as reusable AI commands - idiomatic, socratic, best-practices, progressive-disclosure, diataxis, task-graph",
   "files": [
@@ -23,9 +23,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/smileynet/sams-spells.git"
+    "url": "https://github.com/smileynet/sams-genai-spells.git"
   },
-  "homepage": "https://github.com/smileynet/sams-spells",
+  "homepage": "https://github.com/smileynet/sams-genai-spells",
   "keywords": [
     "opencode",
     "opencode-plugin",

@@ -6,11 +6,11 @@
 
 > Prompt engineering techniques packaged as reusable multi-platform AI commands.
 
-I'm not a prompt engineering genius. I just keep stumbling into smart things other people figured out — idiomatic code, the Socratic method, Diataxis documentation — and have the good sense to write them down. These "spells" are well-known techniques that I packaged into buttons because I got tired of re-explaining them every session.
+As they say, all good prompts are *ahem* borrowed. As I stumble into clever things other people have figured out (idiomatic code, the Socratic method, Diataxis documentation), I do my best to capture them. These "spells" are well-known techniques. I packaged them into buttons because I got tired of re-explaining them every session.
 
 ## What It Looks Like
 
-**Modifier** — invoke once, changes the session:
+**Modifier** -- you invoke it once, and it changes the whole session:
 
 ```
 > /spell:idiomatic Python 3.12
@@ -37,7 +37,7 @@ AVOID (deprecated or non-idiomatic):
 These constraints are active for the rest of this session.
 ```
 
-**Workflow** — runs research, produces structured output:
+**Workflow** -- does research and gives you something concrete:
 
 ```
 > /spell:best-practices Git commit messages
@@ -63,28 +63,28 @@ DON'T ✗
 
 ## The Spells
 
-**Modifiers** change how the AI behaves for the rest of the session. Invoke once, then keep working — the constraints stick.
+**Modifiers** change how the AI behaves for the rest of the session. You invoke one, then keep working. The constraints stick.
 
 | Spell | What it does |
 |-------|-------------|
-| **idiomatic** | "Don't make stuff up — use canonical patterns." Sets session constraints for a tool or language based on real docs, not hallucinated APIs. |
-| **socratic** | "Teach through questions, not answers." Flips the AI from answer-mode to question-mode for actual learning. |
+| **idiomatic** | "Don't make stuff up. Use canonical patterns." Sets constraints for a tool or language based on real docs, not hallucinated APIs. |
+| **socratic** | "Teach through questions, not answers." Flips the AI into question-mode so you actually learn something. |
 
-**Workflows** run research and produce structured artifacts. They ask clarifying questions, do the work, and output results.
+**Workflows** do research and produce actual output. They'll ask you questions first, then go do the work.
 
 | Spell | What it does |
 |-------|-------------|
-| **best-practices** | Researches a topic and produces a structured do's-and-don'ts guide with sources. |
-| **progressive-disclosure** | Breaks docs into linked files at progressive detail levels, sized for AI context windows. |
-| **diataxis** | Generates, restructures, or audits documentation using Daniele Procida's four-quadrant framework. |
-| **task-graph** | Maps task dependencies into execution order, or diagrams process workflows. Uses DAGs, topological sort, and critical path analysis. |
+| **best-practices** | Researches a topic, gives you a do's-and-don'ts guide with sources. |
+| **progressive-disclosure** | Breaks docs into linked files at progressive detail levels. Sized for AI context windows. |
+| **diataxis** | Audits, restructures, or generates docs using Daniele Procida's four-quadrant framework. |
+| **task-graph** | Maps task dependencies into execution order. Or diagrams a process workflow. DAGs, topological sort, critical path. |
 
 ### Meta
 
 | Command | What it does |
 |---------|-------------|
 | **help** | Lists all spells with descriptions and usage tips. |
-| **teach** | Explains the technique behind any spell — who invented it, why it works, how to use it beyond this plugin. |
+| **teach** | Explains the technique behind a spell. Who invented it, why it works, how to use it without this plugin. |
 
 ### When to Use Which
 
@@ -155,27 +155,27 @@ Copy the `plugins/kiro/prompts/` directory to your Kiro project. Commands are pr
 
 ## Learn the Techniques
 
-These spells aren't magic — they're packaging. If you want to understand why they work (and use the techniques beyond this plugin), the [tutorials](docs/) go deep:
+These spells aren't magic. They're packaging. If you want to understand why they work (and use the techniques without this plugin), the [tutorials](docs/) go deep:
 
-- **[Idiomatic Code](docs/tutorials/idiomatic.md)** — Why "the community's way" beats "your way," and why AI especially needs guardrails
-- **[The Socratic Method](docs/tutorials/socratic.md)** — From 400 BC Athens to AI tutoring: teaching through questions
-- **[Best Practices](docs/tutorials/best-practices.md)** — The art of writing down what works (and what doesn't) so nobody has to learn it twice
-- **[Progressive Disclosure](docs/tutorials/progressive-disclosure.md)** — J.M. Keller's insight: show the simple thing first, reveal complexity on demand
-- **[Diataxis](docs/tutorials/diataxis.md)** — Daniele Procida's framework that makes you feel foolish for not thinking of it yourself
-- **[Task Graphs](docs/tutorials/task-graph.md)** — DAGs, critical paths, and the 1957 DuPont method that shaved months off construction schedules
+- **[Idiomatic Code](docs/tutorials/idiomatic.md)** -- why "the community's way" beats "your way," and why AI especially needs the guardrails
+- **[The Socratic Method](docs/tutorials/socratic.md)** -- 2,400 years of teaching through questions. Still works.
+- **[Best Practices](docs/tutorials/best-practices.md)** -- writing down what works so nobody has to learn it twice
+- **[Progressive Disclosure](docs/tutorials/progressive-disclosure.md)** -- show the simple thing first, reveal complexity when they ask for it
+- **[Diataxis](docs/tutorials/diataxis.md)** -- Daniele Procida's framework. It'll make you feel foolish for not thinking of it yourself.
+- **[Task Graphs](docs/tutorials/task-graph.md)** -- the 1957 DuPont method that shaved months off construction schedules. DAGs and critical paths.
 
 Or just run `/spell:teach <spell-name>` and let the AI explain it.
 
 ## Credits
 
-I didn't invent any of these techniques. Credit goes to:
-- The concept of **idiomatic code** — every programming language community ever
-- **Socratic method** — Socrates (~400 BC), refined by educators for millennia
-- **Best practices documentation** — the entire field of technical writing
-- **Progressive disclosure** — J.M. Keller (1983), popularized by Nielsen Norman Group
-- **Diataxis** — Daniele Procida ([diataxis.fr](https://diataxis.fr/))
-- **Critical Path Method** — James Kelley & Morgan Walker (1957, DuPont)
-- **Topological sorting** — Arthur Kahn (1962)
+I didn't invent any of these techniques. Credit where it's due:
+- **Idiomatic code**: every programming language community ever
+- **Socratic method**: Socrates, ~400 BC. Refined by educators for millennia.
+- **Best practices documentation**: the entire field of technical writing
+- **Progressive disclosure**: J.M. Keller (1983), popularized by Nielsen Norman Group
+- **Diataxis**: Daniele Procida ([diataxis.fr](https://diataxis.fr/))
+- **Critical Path Method**: James Kelley & Morgan Walker (1957, DuPont)
+- **Topological sorting**: Arthur Kahn (1962)
 
 I just put them in buttons.
 

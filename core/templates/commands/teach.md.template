@@ -63,6 +63,15 @@ docs into four quadrants: tutorials, how-to guides, reference, explanation.
 Why it matters for AI: AI struggles with docs that mix "how" and "why."
 Diataxis separation makes each piece more useful as AI context.
 
+TASK GRAPH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Origin: Critical Path Method (Kelley & Walker, 1957), PERT (U.S. Navy,
+1958), Kahn's topological sort (1962). Three techniques from operations
+research and graph theory, combined.
+Why it matters for AI: AI can hold entire dependency graphs in memory,
+compute topological sorts accurately, and generate Mermaid diagrams
+natively. Structured output prevents vague "just do these in order" answers.
+
 For deeper dives: /@NAMESPACE@teach <spell-name>
 ```
 
@@ -79,6 +88,7 @@ Use **WebSearch** to find authoritative sources about the technique:
 - For "best-practices": search for technical writing best practices and structured documentation
 - For "progressive-disclosure": search for progressive disclosure in UX/instructional design
 - For "diataxis": search for "diataxis framework" site:diataxis.fr
+- For "task-graph": search for "critical path method" CPM, "Kahn's topological sort", DAG task scheduling
 
 Use **WebFetch** on the most authoritative 1-2 results.
 @ENDIF_CLAUDECODE@
@@ -137,6 +147,7 @@ SOURCES
 | best-practices | Structured technical writing | IEEE/ACM engineering standards |
 | progressive-disclosure | Progressive disclosure (UX) | J.M. Keller, 1983; Nielsen Norman Group |
 | diataxis | Diataxis documentation framework | Daniele Procida, diataxis.fr |
+| task-graph | DAGs + Critical Path Method + topological sort | Kelley & Walker 1957; Kahn 1962 |
 
 ---
 

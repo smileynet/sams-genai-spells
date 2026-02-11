@@ -1,7 +1,7 @@
 {
   "name": "spell",
-  "description": "Prompt engineering techniques packaged as reusable AI commands - idiomatic, socratic, best-practices, progressive-disclosure, diataxis",
-  "version": "0.1.0",
+  "description": "Prompt engineering techniques packaged as reusable AI commands - idiomatic, socratic, best-practices, progressive-disclosure, diataxis, task-graph",
+  "version": "0.2.0",
   "author": {
     "name": "smileynet",
     "url": "https://github.com/smileynet"

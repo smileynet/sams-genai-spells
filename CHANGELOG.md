@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0] - 2026-02-10
+
+### Added
+- **task-graph** spell — maps task dependencies (DAG + topological sort + critical path) or diagrams process workflows (Mermaid flowcharts)
+- Skill reference docs in `docs/skills/` — reusable AI knowledge for DAG analysis, topological sorting, and Mermaid flowcharts
+- Tutorial for task-graph technique (`docs/tutorials/task-graph.md`)
+
 ## [0.1.0] - 2026-02-10
 
 First release. Sam finally stopped re-typing the same prompting tricks and made them into buttons.

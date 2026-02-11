@@ -36,6 +36,7 @@ WORKFLOWS (produce artifacts)
 @spell-best-practices <topic>           Structured do's and don'ts
 @spell-progressive-disclosure <topic>   Break docs into linked AI-friendly files
 @spell-diataxis <topic>                 Four-quadrant documentation
+@spell-task-graph <tasks or process>    Map dependencies or diagram a workflow
 
 META
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -91,7 +92,7 @@ Spell not found: <argument>
 
 Available spells:
   Modifiers: idiomatic, socratic
-  Workflows: best-practices, progressive-disclosure, diataxis
+  Workflows: best-practices, progressive-disclosure, diataxis, task-graph
   Meta: teach, help
 
 Run @spell-help for overview.
@@ -108,6 +109,7 @@ Run @spell-help for overview.
 | `@spell-best-practices` | Workflow | Research and produce a structured best-practices document for a topic |
 | `@spell-progressive-disclosure` | Workflow | Break documentation into linked, AI-friendly files at progressive detail levels |
 | `@spell-diataxis` | Workflow | Generate or audit documentation using the four-quadrant Diataxis framework |
+| `@spell-task-graph` | Workflow | Map task dependencies or diagram a workflow using DAGs and critical path analysis |
 | `@spell-teach` | Meta | Explain the technique behind any spell — credit the originators, show why it works |
 | `@spell-help` | Meta | Show this listing, or detailed help for a specific spell |
 

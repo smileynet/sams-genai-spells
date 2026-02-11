@@ -20,6 +20,7 @@ Sam is not a prompt engineering genius. Sam just keeps stumbling into smart thin
 | **best-practices** | Researches a topic and produces a structured do's-and-don'ts guide with sources. |
 | **progressive-disclosure** | Breaks docs into linked files at progressive detail levels, sized for AI context windows. |
 | **diataxis** | Generates, restructures, or audits documentation using Daniele Procida's four-quadrant framework. |
+| **task-graph** | Maps task dependencies into execution order, or diagrams process workflows. Uses DAGs, topological sort, and critical path analysis. |
 
 ### Meta
 
@@ -57,6 +58,8 @@ Copy the `plugins/kiro/prompts/` directory to your Kiro project. Commands are pr
 /spell:best-practices TypeScript      # Get a structured best-practices guide
 /spell:progressive-disclosure src/    # Break docs into linked files
 /spell:diataxis audit docs/           # Audit docs against Diataxis framework
+/spell:task-graph design, implement, test, deploy  # Map task dependencies
+/spell:task-graph process for code review          # Diagram a workflow
 /spell:teach diataxis                 # Learn about the Diataxis technique
 ```
 
@@ -81,6 +84,7 @@ These spells aren't magic — they're packaging. If you want to understand why t
 - `docs/tutorials/best-practices.md` — Structured technical writing
 - `docs/tutorials/progressive-disclosure.md` — J.M. Keller's progressive disclosure in docs
 - `docs/tutorials/diataxis.md` — Daniele Procida's documentation framework
+- `docs/tutorials/task-graph.md` — DAGs, CPM, and topological sorting for task planning
 
 Or just run `/spell:teach <spell-name>` and let the AI explain it.
 
@@ -92,6 +96,8 @@ Sam didn't invent any of these techniques. Credit goes to:
 - **Best practices documentation** — the entire field of technical writing
 - **Progressive disclosure** — J.M. Keller (1983), popularized by Nielsen Norman Group
 - **Diataxis** — Daniele Procida ([diataxis.fr](https://diataxis.fr/))
+- **Critical Path Method** — James Kelley & Morgan Walker (1957, DuPont)
+- **Topological sorting** — Arthur Kahn (1962)
 
 Sam just put them in buttons.
 

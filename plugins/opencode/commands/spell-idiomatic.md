@@ -1,0 +1,111 @@
+---
+description: Set idiomatic constraints for a tool or language — use canonical patterns, not hallucinated APIs
+---
+
+## Summary
+
+**Set session constraints to use canonical, documented patterns.** This modifier tells the AI to prefer real, documented APIs and idiomatic patterns over hallucinated or outdated ones. It researches the tool/language and establishes ground rules for the rest of the session.
+
+**Arguments:** `$ARGUMENTS` (required) - Tool, language, or framework name (e.g., "Python", "React 19", "Tailwind CSS v4")
+
+**Type:** Modifier (sets session behavior, no file output)
+
+---
+
+## Process
+
+### Step 1: Parse Arguments
+
+**If `$ARGUMENTS` is empty:**
+Ask the user: "What tool or language should I be idiomatic about?"
+
+**Otherwise:**
+- Extract the tool/language/framework from `$ARGUMENTS`
+- If a version is specified (e.g., "React 19", "Python 3.12"), note it for version-specific constraints
+- Continue to Step 2
+
+### Step 2: Research Current Idioms
+
+Gather canonical patterns for the specified tool:
+
+**Web research (if available):**
+Search the web for official documentation, idiomatic patterns, and current APIs for the specified tool.
+
+**Codebase analysis:**
+- Detect current usage of the tool in the codebase
+- Note the version in use (from package.json, pyproject.toml, go.mod, etc.)
+- Identify patterns already in use
+
+**Graceful degradation:** If web search is unavailable, rely on built-in knowledge. State clearly: "Using training knowledge — verify against current docs for <tool>."
+
+### Step 3: Establish Session Constraints
+
+Output a clear set of constraints that will govern the rest of the session:
+
+```
+IDIOMATIC MODE: <TOOL/LANGUAGE>
+══════════════════════════════════════════════════════════════
+
+Version: <detected or specified version>
+Source: <official docs URL | built-in knowledge>
+
+SESSION CONSTRAINTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+USE (canonical patterns):
+• <Pattern 1> — <brief rationale>
+• <Pattern 2> — <brief rationale>
+• <Pattern 3> — <brief rationale>
+[...5-8 key patterns]
+
+AVOID (deprecated or non-idiomatic):
+• <Anti-pattern 1> → Use <replacement> instead
+• <Anti-pattern 2> → Use <replacement> instead
+• <Anti-pattern 3> → Use <replacement> instead
+[...3-5 items]
+
+KEY APIS & IMPORTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<List the correct import paths, API names, and signatures
+ that are most commonly hallucinated or confused>
+
+CODEBASE NOTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<Notes about how this tool is already used in the current codebase,
+ if applicable. "Not detected in codebase" if not found.>
+
+These constraints are active for the rest of this session.
+If I suggest something that violates these constraints, call it out.
+```
+
+### Step 4: Confirm Activation
+
+After outputting constraints, confirm the modifier is active:
+
+```
+Idiomatic mode active for <tool>. I'll follow these constraints
+for the rest of this session. If you see me drift, say "be idiomatic"
+and I'll self-correct.
+```
+
+---
+
+## Guidelines
+
+- **Specificity matters:** "Use `pathlib.Path` instead of `os.path`" is better than "use modern Python"
+- **Version-aware:** If a version is specified or detected, constrain to that version's APIs
+- **Import paths are key:** Many hallucinations involve wrong import paths — list the correct ones
+- **Don't over-constrain:** 5-8 key patterns is enough; don't list every API in the language
+- **Acknowledge the codebase:** If the codebase uses a pattern that contradicts best practice, note it and suggest a migration path rather than ignoring it
+
+---
+
+## Example Usage
+
+```
+/spell-idiomatic Python 3.12
+/spell-idiomatic React 19
+/spell-idiomatic Tailwind CSS v4
+/spell-idiomatic Go
+/spell-idiomatic Rust
+```

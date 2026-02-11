@@ -1,0 +1,137 @@
+## Summary
+
+**Break documentation into a directory of linked files, organized from simple to complex.** Each file is sized for AI context windows (200-500 lines) and links to the next level of detail. Readers (human or AI) start with the overview and drill down as needed.
+
+**Arguments:** `$ARGUMENTS` (required) - Topic, documentation path, or codebase area to document
+
+**Output:** Directory of 4-7 linked markdown files
+
+---
+
+## Process
+
+### Step 1: Parse Arguments
+
+**If `$ARGUMENTS` is empty:**
+Ask the user what to create progressive-disclosure documentation for: a topic, existing docs, or a codebase area.
+
+**Otherwise:**
+- If `$ARGUMENTS` is a file/directory path, read the existing content
+- If `$ARGUMENTS` is a topic, plan to research and generate
+- Continue to Step 2
+
+### Step 2: Determine Content Scope
+
+**For existing docs/code:**
+Scan the target and identify:
+- Total content volume
+- Key concepts that need coverage
+- Natural boundaries between concepts
+- Current structure (if any)
+
+**For topics:**
+Research the topic breadth: official documentation scope, common subtopics, prerequisite knowledge.
+
+### Step 3: Design the File Structure
+
+Plan 4-7 files following the progressive disclosure pattern:
+
+```
+Level 1: OVERVIEW (always first)
+  → What is this? Who is it for? Quick-start.
+  → Target: ~100-200 lines
+  → Links to all other files
+
+Level 2: GETTING STARTED
+  → Minimum viable usage. Hands-on, no theory.
+  → Target: ~200-300 lines
+  → Links back to overview, forward to guides
+
+Level 3: GUIDES (1-3 files)
+  → How-to guides for common tasks
+  → Target: ~200-500 lines each
+  → Links back to getting-started, forward to reference
+
+Level 4: REFERENCE
+  → Complete API/configuration reference
+  → Target: ~300-500 lines
+  → Links back to guides
+
+Level 5: DEEP DIVES (optional)
+  → Architecture, design decisions, advanced topics
+  → Target: ~200-400 lines
+  → Links back to reference
+```
+
+Show the planned structure to the user and ask for confirmation before generating.
+
+### Step 4: Generate the Files
+
+For each file:
+
+1. **Write the content** at the appropriate detail level
+2. **Add navigation links** at the top and bottom:
+   ```markdown
+   > **Navigation:** [Overview](./00-overview.md) | [Getting Started](./01-getting-started.md) | **This Guide** | [Reference](./03-reference.md)
+   ```
+3. **Cross-reference related files** inline where relevant
+4. **Keep within target line count** (200-500 lines per file)
+
+**File naming convention:**
+```
+docs/<topic>/
+├── 00-overview.md
+├── 01-getting-started.md
+├── 02-guide-<name>.md
+├── 03-guide-<name>.md
+├── 04-reference.md
+└── 05-deep-dive-<name>.md
+```
+
+### Step 5: Output Summary
+
+```
+PROGRESSIVE DISCLOSURE: <TOPIC>
+══════════════════════════════════════════════════════════════
+
+Created <N> files in docs/<topic>/
+
+FILES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+00-overview.md          (<lines> lines) — <one-line description>
+01-getting-started.md   (<lines> lines) — <one-line description>
+02-guide-<name>.md      (<lines> lines) — <one-line description>
+...
+
+NAVIGATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Start here: docs/<topic>/00-overview.md
+Each file links to the next level of detail.
+
+AI USAGE TIP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Point your AI assistant at 00-overview.md first.
+It will follow links to load more detail only when needed.
+```
+
+---
+
+## Guidelines
+
+- **Cap at 7 files:** More than 7 files breaks the progressive model — merge or reorganize
+- **200-500 lines each:** Sized for AI context windows; longer files should be split
+- **Every file stands alone:** Each file should make sense without reading the others, even though they link together
+- **Overview is the index:** The overview file should give a complete (if shallow) picture and point to everything else
+- **Don't repeat content:** Link to it instead. "For details, see [Reference](./04-reference.md)"
+- **Number the files:** `00-`, `01-`, etc. ensures consistent ordering across tools
+
+---
+
+## Example Usage
+
+```
+@spell-progressive-disclosure "our authentication system"
+@spell-progressive-disclosure docs/api/
+@spell-progressive-disclosure Kubernetes networking
+@spell-progressive-disclosure src/auth/
+```

@@ -1,0 +1,122 @@
+## Summary
+
+**Show available spells with descriptions and usage examples.** Helps users discover and understand Sam's Spells.
+
+**Arguments:** `$ARGUMENTS` (optional) - Spell name for detailed help
+
+---
+
+## Process
+
+### Step 1: Check for Detailed Help Request
+
+**If `$ARGUMENTS` provided:**
+- Show detailed help for that specific spell
+- Skip to Step 3
+
+**Otherwise:**
+- Show the full spell listing
+
+### Step 2: Output Spell Listing
+
+Output the help display:
+
+```
+╔════════════════════════════════════════════════════════════╗
+║  SAM'S SPELLS - Quick Reference                            ║
+╚════════════════════════════════════════════════════════════╝
+
+MODIFIERS (change how the AI behaves)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+@spell-idiomatic <tool>  Don't make stuff up — use canonical patterns
+@spell-socratic [topic]  Teach through questions, not answers
+
+WORKFLOWS (produce artifacts)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+@spell-best-practices <topic>           Structured do's and don'ts
+@spell-progressive-disclosure <topic>   Break docs into linked AI-friendly files
+@spell-diataxis <topic>                 Four-quadrant documentation
+
+META
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+@spell-teach [spell]    Explain the technique behind any spell
+@spell-help [spell]     You are here
+
+TIPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Modifiers set session behavior — invoke once and keep working
+• Workflows produce files — they'll ask questions, research, then output
+• Use @spell-teach <spell> to learn why a technique works
+• Most spells accept arguments, or ask interactively if you skip them
+
+For detailed help: @spell-help <spell>
+```
+
+### Step 3: Output Detailed Help (If Spell Specified)
+
+**If `$ARGUMENTS` is a spell name:**
+
+Read the command file to get its summary and process.
+
+Output format for detailed help:
+
+```
+╔════════════════════════════════════════════════════════════╗
+║  @spell-<spell> - <description>                       ║
+╚════════════════════════════════════════════════════════════╝
+
+WHAT IT DOES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<Summary section from spell file>
+
+USAGE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+@spell-<spell> <arguments>
+
+EXAMPLES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<Example invocations>
+
+LEARN MORE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+@spell-teach <spell>  — Learn the underlying technique
+
+Back to overview: @spell-help
+```
+
+**Spell not found:**
+
+```
+Spell not found: <argument>
+
+Available spells:
+  Modifiers: idiomatic, socratic
+  Workflows: best-practices, progressive-disclosure, diataxis
+  Meta: teach, help
+
+Run @spell-help for overview.
+```
+
+---
+
+## Spell Descriptions
+
+| Spell | Type | Description |
+|-------|------|-------------|
+| `@spell-idiomatic` | Modifier | Set session constraints to use canonical, documented patterns for a tool or language |
+| `@spell-socratic` | Modifier | Shift the AI into Socratic teaching mode — questions instead of answers |
+| `@spell-best-practices` | Workflow | Research and produce a structured best-practices document for a topic |
+| `@spell-progressive-disclosure` | Workflow | Break documentation into linked, AI-friendly files at progressive detail levels |
+| `@spell-diataxis` | Workflow | Generate or audit documentation using the four-quadrant Diataxis framework |
+| `@spell-teach` | Meta | Explain the technique behind any spell — credit the originators, show why it works |
+| `@spell-help` | Meta | Show this listing, or detailed help for a specific spell |
+
+---
+
+## Example Usage
+
+```
+@spell-help                    # Show all spells
+@spell-help idiomatic          # Detailed help for idiomatic spell
+@spell-help best-practices     # Detailed help for best-practices spell
+```

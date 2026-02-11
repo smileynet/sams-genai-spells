@@ -1,0 +1,40 @@
+{
+  "name": "@sams-spells/opencode-plugin",
+  "version": "0.1.0",
+  "description": "Prompt engineering techniques packaged as reusable AI commands - idiomatic, socratic, best-practices, progressive-disclosure, diataxis",
+  "files": [
+    "commands"
+  ],
+  "opencode": {
+    "name": "spell",
+    "version": "0.1.0",
+    "description": "Prompt engineering techniques packaged as reusable AI commands",
+    "commands": [
+      "spell-help",
+      "spell-idiomatic",
+      "spell-socratic",
+      "spell-best-practices",
+      "spell-progressive-disclosure",
+      "spell-diataxis",
+      "spell-teach"
+    ]
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smileynet/sams-spells.git"
+  },
+  "homepage": "https://github.com/smileynet/sams-spells",
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "prompt-engineering",
+    "documentation",
+    "best-practices",
+    "productivity"
+  ],
+  "author": {
+    "name": "smileynet",
+    "url": "https://github.com/smileynet"
+  }
+}

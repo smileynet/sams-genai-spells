@@ -6,7 +6,7 @@
 
 > Prompt engineering techniques packaged as reusable multi-platform AI commands.
 
-Sam is not a prompt engineering genius. Sam just keeps stumbling into smart things other people figured out — idiomatic code, the Socratic method, Diataxis documentation — and has the good sense to write them down. These "spells" are well-known techniques that Sam packaged into buttons because he got tired of re-explaining them every session.
+I'm not a prompt engineering genius. I just keep stumbling into smart things other people figured out — idiomatic code, the Socratic method, Diataxis documentation — and have the good sense to write them down. These "spells" are well-known techniques that I packaged into buttons because I got tired of re-explaining them every session.
 
 ## What It Looks Like
 
@@ -168,7 +168,7 @@ Or just run `/spell:teach <spell-name>` and let the AI explain it.
 
 ## Credits
 
-Sam didn't invent any of these techniques. Credit goes to:
+I didn't invent any of these techniques. Credit goes to:
 - The concept of **idiomatic code** — every programming language community ever
 - **Socratic method** — Socrates (~400 BC), refined by educators for millennia
 - **Best practices documentation** — the entire field of technical writing
@@ -177,7 +177,7 @@ Sam didn't invent any of these techniques. Credit goes to:
 - **Critical Path Method** — James Kelley & Morgan Walker (1957, DuPont)
 - **Topological sorting** — Arthur Kahn (1962)
 
-Sam just put them in buttons.
+I just put them in buttons.
 
 ## Contributing
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0] - 2026-02-11
+
+### Added
+- **debug** spell — systematic root cause analysis using 5 Whys, fault tree analysis, and hypothesis-driven debugging
+- Skill reference docs for root cause analysis and debugging antipatterns (`docs/skills/`)
+- Tutorial for debug concept (`docs/tutorials/debug.md`)
+
 ## [0.3.0] - 2026-02-11
 
 ### Changed

@@ -2,11 +2,11 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Platforms](https://img.shields.io/badge/platforms-Claude%20Code%20%7C%20OpenCode%20%7C%20Kiro-blue.svg)](#installation)
-[![Spells](https://img.shields.io/badge/spells-6-purple.svg)](#the-spells)
+[![Spells](https://img.shields.io/badge/spells-7-purple.svg)](#the-spells)
 
 > Real-world concepts from programming, education, and design — packaged as AI commands.
 
-These aren't prompt engineering techniques I invented. They're established concepts from real fields — idiomatic code (programming), the Socratic method (education), progressive disclosure (UX design), Diataxis (documentation theory), task graphs (operations research). I just got tired of re-explaining them every session and made commands to use them.
+These aren't prompt engineering techniques I invented. They're established concepts from real fields — idiomatic code (programming), the Socratic method (education), progressive disclosure (UX design), Diataxis (documentation theory), task graphs (operations research), systematic debugging (reliability engineering). I just got tired of re-explaining them every session and made commands to use them.
 
 ## What It Looks Like
 
@@ -85,6 +85,7 @@ ANTIPATTERNS ⚠
 | **progressive-disclosure** | Docs too big for AI context, or too disorganized for anyone? Breaks them into linked files at progressive detail levels. |
 | **diataxis** | Docs that try to be everything at once? Audits, restructures, or generates docs using the four-quadrant Diataxis framework. |
 | **task-graph** | Twelve tasks and no idea what to start first? Maps dependencies into execution order with parallel waves and critical path analysis. |
+| **debug** | Bug that keeps coming back no matter what you try? Traces the causal chain to the root cause before suggesting any fix. |
 
 ### Meta
 
@@ -106,6 +107,8 @@ ANTIPATTERNS ⚠
 | Existing docs are a mess and need restructuring | **diataxis** |
 | Planning a project with lots of moving parts | **task-graph** |
 | Need to figure out what to parallelize | **task-graph** |
+| Bug that keeps coming back after you "fix" it | **debug** |
+| Need to understand why something fails, not just suppress the error | **debug** |
 | "What does this spell even do?" | **teach** |
 
 ## Installation
@@ -157,6 +160,7 @@ Copy the `plugins/kiro/prompts/` directory to your Kiro project. Commands are pr
 /spell:diataxis audit docs/           # Audit docs against Diataxis framework
 /spell:task-graph design, implement, test, deploy  # Map task dependencies
 /spell:task-graph process for code review          # Diagram a workflow
+/spell:debug TypeError: Cannot read properties of undefined
 /spell:teach diataxis                 # Learn the concept behind Diataxis
 ```
 
@@ -170,6 +174,7 @@ These spells aren't magic. They're packaging. Each one applies an established co
 - **[Progressive Disclosure](docs/tutorials/progressive-disclosure.md)** -- Docs too big for AI context, or too disorganized for anyone? Layered files let readers (and AI) load only what they need.
 - **[The Diataxis Framework](docs/tutorials/diataxis.md)** -- Docs that try to be everything at once and serve nobody? Four quadrants separate tutorials, how-tos, reference, and explanation.
 - **[Task Graphs, Critical Paths, and Topological Sort](docs/tutorials/task-graph.md)** -- Twelve tasks and no idea what to start first? DAGs and critical paths turn chaos into execution order.
+- **[Systematic Debugging & Root Cause Analysis](docs/tutorials/debug.md)** -- Bug keeps coming back after you "fix" it? Hypothesis-driven debugging traces the causal chain to the real problem.
 
 Or just run `/spell:teach <spell-name>` and let the AI explain it.
 
@@ -184,6 +189,9 @@ I didn't invent any of these techniques. Credit where it's due:
 - **Diataxis**: Daniele Procida ([diataxis.fr](https://diataxis.fr/))
 - **Critical Path Method**: James Kelley & Morgan Walker (1957, DuPont)
 - **Topological sorting**: Arthur Kahn (1962)
+- **5 Whys**: Taiichi Ohno, Toyota Production System (1950s)
+- **Systematic debugging**: Andreas Zeller, *Why Programs Fail* (2009)
+- **Fault tree analysis**: Bell Labs (1961)
 
 I just made commands to use them.
 

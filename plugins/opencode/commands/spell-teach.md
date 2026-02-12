@@ -89,6 +89,18 @@ Where you see it: Build systems (Make, Bazel), package managers
 The spell: Maps task dependencies into execution order with
 parallel waves, critical path, and Mermaid diagrams.
 
+DEBUG
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The concept: Bugs have root causes, not just symptoms. Fixing
+the symptom (add a null check, wrap in try/catch) hides the
+real problem. Hypothesis-driven debugging — observe, hypothesize,
+predict, test — finds the actual cause.
+Where you see it: NTSB crash investigations, Toyota's 5 Whys,
+git bisect, post-mortem analysis, reliability engineering.
+The spell: Forces the AI to trace the causal chain before
+suggesting fixes, producing a structured diagnosis instead
+of a quick patch.
+
 For deeper dives: /spell-teach <spell-name>
 ```
 
@@ -158,6 +170,7 @@ SOURCES
 | progressive-disclosure | Progressive disclosure | UX Design | J.M. Keller, 1983; Nielsen Norman Group |
 | diataxis | Diataxis documentation framework | Documentation theory | Daniele Procida, diataxis.fr |
 | task-graph | DAGs + Critical Path Method + topological sort | Operations research | Kelley & Walker 1957; Kahn 1962 |
+| debug | 5 Whys + fault tree analysis + scientific method | Reliability engineering | Ohno 1950s; Zeller 2009; Bell Labs 1961 |
 
 ---
 

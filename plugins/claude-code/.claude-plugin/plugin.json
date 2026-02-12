@@ -1,7 +1,7 @@
 {
   "name": "spell",
-  "description": "Prompt engineering techniques packaged as reusable AI commands - idiomatic, socratic, best-practices, progressive-disclosure, diataxis, task-graph",
-  "version": "0.2.0",
+  "description": "Real-world concepts from programming, education, and design — packaged as AI commands",
+  "version": "0.3.0",
   "author": {
     "name": "smileynet",
     "url": "https://github.com/smileynet"
@@ -14,6 +14,7 @@
     "prompt-engineering",
     "documentation",
     "best-practices",
+    "antipatterns",
     "productivity"
   ]
 }

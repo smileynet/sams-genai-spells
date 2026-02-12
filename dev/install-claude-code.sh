@@ -25,7 +25,7 @@ cat > "$MARKETPLACE_DIR/.claude-plugin/marketplace.json" << EOF
   "name": "sams-spells-marketplace",
   "owner": { "name": "smileynet" },
   "metadata": {
-    "description": "Prompt engineering techniques packaged as reusable AI commands",
+    "description": "Real-world concepts from programming, education, and design — packaged as AI commands",
     "version": "$VERSION",
     "install_type": "local",
     "source_path": "$REPO_DIR"
@@ -34,7 +34,7 @@ cat > "$MARKETPLACE_DIR/.claude-plugin/marketplace.json" << EOF
     {
       "name": "spell",
       "source": "./spell",
-      "description": "Prompt engineering spells - idiomatic, socratic, best-practices, progressive-disclosure, diataxis",
+      "description": "Sam's Spells - idiomatic, socratic, bpap, progressive-disclosure, diataxis, task-graph",
       "version": "$VERSION"
     }
   ]

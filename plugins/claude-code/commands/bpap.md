@@ -1,14 +1,15 @@
 ---
-description: Research and produce a structured best-practices document
+description: Research and produce a structured best-practices and antipatterns document
+allowed-tools: Bash, Read, Write, Glob, Grep, Task, AskUserQuestion, WebFetch, WebSearch
 ---
 
 ## Summary
 
-**Research a topic and produce a structured best-practices document.** Combines web research, codebase analysis, and structured output into a practical do's-and-don'ts guide.
+**Research a topic and produce a structured best-practices and antipatterns document.** Combines web research, codebase analysis, and structured output into a practical guide of do's, don'ts, and named antipatterns with trap analysis.
 
-**Arguments:** `$ARGUMENTS` (required) - Topic for best-practices research
+**Arguments:** `$ARGUMENTS` (required) - Topic for best-practices and antipatterns research
 
-**Output:** Structured best-practices document output directly to the conversation
+**Output:** Structured best-practices and antipatterns document output directly to the conversation
 
 ---
 
@@ -17,7 +18,8 @@ description: Research and produce a structured best-practices document
 ### Step 1: Parse Arguments
 
 **If `$ARGUMENTS` is empty:**
-Ask the user: "What topic should I research best practices for?"
+Use **AskUserQuestion** to ask: "What topic should I research best practices and antipatterns for?"
+Provide 3-4 contextual suggestions based on the current codebase (detected languages, frameworks, tools).
 
 **Otherwise:**
 - Extract the topic from `$ARGUMENTS`
@@ -25,10 +27,17 @@ Ask the user: "What topic should I research best practices for?"
 
 ### Step 2: Research the Topic
 
-Gather best practices from multiple sources:
+Gather best practices and antipatterns from multiple sources:
 
 **Web research (if available):**
-Search the web for current best practices, common mistakes, and style guides for the topic.
+Use **WebSearch** to find current best practices and antipatterns. Search for:
+- `"<topic> best practices" site:official-docs OR recent`
+- `"<topic> common mistakes to avoid"`
+- `"<topic> style guide" OR "coding standards"`
+- `"<topic> antipatterns" OR "common pitfalls"`
+- `"<topic> code smells" OR "named antipatterns"`
+
+Use **WebFetch** to read the most authoritative 2-3 results.
 
 **Codebase analysis (if relevant):**
 - Search for existing usage patterns of the topic in the current codebase
@@ -41,7 +50,7 @@ Search the web for current best practices, common mistakes, and style guides for
 Organize findings into the following structure:
 
 ```
-BEST PRACTICES: <TOPIC>
+BEST PRACTICES & ANTIPATTERNS: <TOPIC>
 ══════════════════════════════════════════════════════════════
 
 Source: <web research | built-in knowledge | codebase analysis>
@@ -58,13 +67,27 @@ DO ✓
 
 DON'T ✗
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. <Anti-pattern> — <Why it's bad>
+1. <Bad practice> — <Why it's bad>
    Instead: <What to do>
 
-2. <Anti-pattern> — <Why it's bad>
+2. <Bad practice> — <Why it's bad>
    Instead: <What to do>
 
-[...up to 5-7 items]
+[...up to 3-5 items]
+
+ANTIPATTERNS ⚠
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. <NAME> — <One-line description>
+   Why it's tempting: <What makes this seem reasonable>
+   Consequences: <What goes wrong>
+   Instead: <The refactored solution>
+
+2. <NAME> — <One-line description>
+   Why it's tempting: <What makes this seem reasonable>
+   Consequences: <What goes wrong>
+   Instead: <The refactored solution>
+
+[...up to 3-5 named antipatterns]
 
 CONTEXT MATTERS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -86,6 +109,9 @@ Output the structured document directly in the conversation.
 - Examples are concrete, not abstract
 - Advice is current (not deprecated patterns)
 - "Context matters" section prevents cargo-culting
+- Each antipattern has a recognizable name
+- "Why it's tempting" explains the trap
+- DON'T items and ANTIPATTERNS don't duplicate each other
 
 ---
 
@@ -96,14 +122,16 @@ Output the structured document directly in the conversation.
 - **Avoid truisms:** Skip obvious advice like "write clean code" or "use version control"
 - **Acknowledge trade-offs:** Best practices have contexts where they don't apply — say so
 - **Prioritize:** Put the highest-impact practices first
+- **Name antipatterns:** Use established names when they exist (God Object, Golden Hammer). Coin descriptive names for domain-specific ones.
+- **Explain the trap:** "Why it's tempting" is what distinguishes an antipattern from a don't.
 
 ---
 
 ## Example Usage
 
 ```
-/spell-best-practices TypeScript error handling
-/spell-best-practices React component testing
-/spell-best-practices Git commit messages
-/spell-best-practices REST API design
+/spell:bpap TypeScript error handling
+/spell:bpap React component testing
+/spell:bpap Git commit messages
+/spell:bpap REST API design
 ```

@@ -40,21 +40,21 @@ MODIFIERS (change how the AI behaves)
 
 WORKFLOWS (produce artifacts)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-/@NAMESPACE@best-practices <topic>           Structured do's and don'ts
+/@NAMESPACE@bpap <topic>                     Structured do's, don'ts, and named antipatterns
 /@NAMESPACE@progressive-disclosure <topic>   Break docs into linked AI-friendly files
 /@NAMESPACE@diataxis <topic>                 Four-quadrant documentation
 /@NAMESPACE@task-graph <tasks or process>    Map dependencies or diagram a workflow
 
 META
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-/@NAMESPACE@teach [spell]    Explain the technique behind any spell
+/@NAMESPACE@teach [spell]    Learn the concept behind any spell
 /@NAMESPACE@help [spell]     You are here
 
 TIPS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 • Modifiers set session behavior — invoke once and keep working
 • Workflows produce files — they'll ask questions, research, then output
-• Use /@NAMESPACE@teach <spell> to learn why a technique works
+• Use /@NAMESPACE@teach <spell> to learn the concept behind a spell
 • Most spells accept arguments, or ask interactively if you skip them
 
 For detailed help: /@NAMESPACE@help <spell>
@@ -99,7 +99,7 @@ EXAMPLES
 
 LEARN MORE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-/@NAMESPACE@teach <spell>  — Learn the underlying technique
+/@NAMESPACE@teach <spell>  — Learn the concept behind this spell
 
 Back to overview: /@NAMESPACE@help
 ```
@@ -111,7 +111,7 @@ Spell not found: <argument>
 
 Available spells:
   Modifiers: idiomatic, socratic
-  Workflows: best-practices, progressive-disclosure, diataxis, task-graph
+  Workflows: bpap, progressive-disclosure, diataxis, task-graph
   Meta: teach, help
 
 Run /@NAMESPACE@help for overview.
@@ -125,11 +125,11 @@ Run /@NAMESPACE@help for overview.
 |-------|------|-------------|
 | `/@NAMESPACE@idiomatic` | Modifier | Set session constraints to use canonical, documented patterns for a tool or language |
 | `/@NAMESPACE@socratic` | Modifier | Shift the AI into Socratic teaching mode — questions instead of answers |
-| `/@NAMESPACE@best-practices` | Workflow | Research and produce a structured best-practices document for a topic |
+| `/@NAMESPACE@bpap` | Workflow | Research and produce a structured best-practices and antipatterns document for a topic |
 | `/@NAMESPACE@progressive-disclosure` | Workflow | Break documentation into linked, AI-friendly files at progressive detail levels |
 | `/@NAMESPACE@diataxis` | Workflow | Generate or audit documentation using the four-quadrant Diataxis framework |
 | `/@NAMESPACE@task-graph` | Workflow | Map task dependencies or diagram a workflow using DAGs and critical path analysis |
-| `/@NAMESPACE@teach` | Meta | Explain the technique behind any spell — credit the originators, show why it works |
+| `/@NAMESPACE@teach` | Meta | Learn the real-world concept behind any spell — where it comes from, where you see it, how the spell applies it |
 | `/@NAMESPACE@help` | Meta | Show this listing, or detailed help for a specific spell |
 
 ---
@@ -139,5 +139,5 @@ Run /@NAMESPACE@help for overview.
 ```
 /@NAMESPACE@help                    # Show all spells
 /@NAMESPACE@help idiomatic          # Detailed help for idiomatic spell
-/@NAMESPACE@help best-practices     # Detailed help for best-practices spell
+/@NAMESPACE@help bpap                # Detailed help for bpap spell
 ```

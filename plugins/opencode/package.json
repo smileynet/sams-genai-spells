@@ -1,19 +1,19 @@
 {
   "name": "@sams-genai-spells/opencode-plugin",
-  "version": "0.2.0",
-  "description": "Prompt engineering techniques packaged as reusable AI commands - idiomatic, socratic, best-practices, progressive-disclosure, diataxis, task-graph",
+  "version": "0.3.0",
+  "description": "Real-world concepts from programming, education, and design — packaged as AI commands",
   "files": [
     "commands"
   ],
   "opencode": {
     "name": "spell",
-    "version": "0.2.0",
-    "description": "Prompt engineering techniques packaged as reusable AI commands",
+    "version": "0.3.0",
+    "description": "Real-world concepts from programming, education, and design — packaged as AI commands",
     "commands": [
       "spell-help",
       "spell-idiomatic",
       "spell-socratic",
-      "spell-best-practices",
+      "spell-bpap",
       "spell-progressive-disclosure",
       "spell-diataxis",
       "spell-task-graph",
@@ -32,6 +32,7 @@
     "prompt-engineering",
     "documentation",
     "best-practices",
+    "antipatterns",
     "productivity"
   ],
   "author": {

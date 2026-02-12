@@ -2,7 +2,7 @@
 
 ## Repository Overview
 
-This is **Sam's Spells** — a multi-platform AI command plugin providing prompt engineering techniques as reusable slash commands. Supports Claude Code, OpenCode, and Kiro.
+This is **Sam's Spells** — a multi-platform AI command plugin packaging established concepts from programming, education, and design as reusable slash commands. Supports Claude Code, OpenCode, and Kiro.
 
 ## Project Structure
 
@@ -16,7 +16,7 @@ sams_spells/
 ├── dev/
 │   ├── sync-commands.sh        # Template → platform sync
 │   └── install-claude-code.sh  # Local Claude Code install
-├── docs/tutorials/             # Human-readable technique guides
+├── docs/tutorials/             # Concept tutorials for each spell
 └── docs/skills/                # AI skill references (loaded by spells)
 ```
 
@@ -52,7 +52,7 @@ Templates use conditional blocks for platform-specific content:
 |-------|------|-------------|
 | idiomatic | Modifier | Session constraints for canonical tool/language patterns |
 | socratic | Modifier | Shifts AI to Socratic questioning mode |
-| best-practices | Workflow | Researched do's-and-don'ts document |
+| bpap | Workflow | Structured do's, don'ts, and named antipatterns guide |
 | progressive-disclosure | Workflow | Linked files at progressive detail levels |
 | diataxis | Workflow | Four-quadrant documentation (audit/restructure/generate) |
 | task-graph | Workflow | Map task dependencies or diagram a workflow using DAGs and critical path analysis |
@@ -73,6 +73,6 @@ plugins/kiro/prompts/          → @spell-command
 
 ## Voice and Tone
 
-- **Tutorials and README**: Humorous, self-deprecating. Sam didn't invent these techniques, he just packaged them.
+- **Tutorials and README**: Humorous, self-deprecating. Sam didn't invent these concepts, he just packaged them as commands.
 - **Command templates**: Clear, direct instructions. No humor in process steps.
 - **CLAUDE.md and manifests**: Technical, professional.

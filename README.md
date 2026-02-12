@@ -4,9 +4,9 @@
 [![Platforms](https://img.shields.io/badge/platforms-Claude%20Code%20%7C%20OpenCode%20%7C%20Kiro-blue.svg)](#installation)
 [![Spells](https://img.shields.io/badge/spells-6-purple.svg)](#the-spells)
 
-> Prompt engineering techniques packaged as reusable multi-platform AI commands.
+> Real-world concepts from programming, education, and design — packaged as AI commands.
 
-As they say, all good prompts are *ahem* borrowed. As I stumble into clever things other people have figured out (idiomatic code, the Socratic method, Diataxis documentation), I do my best to capture them. These "spells" are well-known techniques. I packaged them into buttons because I got tired of re-explaining them every session.
+These aren't prompt engineering techniques I invented. They're established concepts from real fields — idiomatic code (programming), the Socratic method (education), progressive disclosure (UX design), Diataxis (documentation theory), task graphs (operations research). I just got tired of re-explaining them every session and made commands to use them.
 
 ## What It Looks Like
 
@@ -40,9 +40,9 @@ These constraints are active for the rest of this session.
 **Workflow** -- does research and gives you something concrete:
 
 ```
-> /spell:best-practices Git commit messages
+> /spell:bpap Git commit messages
 
-BEST PRACTICES: GIT COMMIT MESSAGES
+BEST PRACTICES & ANTIPATTERNS: GIT COMMIT MESSAGES
 ══════════════════════════════════════════════════════════════
 
 Source: Built-in knowledge + https://cbea.ms/git-commit/
@@ -59,6 +59,13 @@ DON'T ✗
 1. Don't end subject with period — it's a title, not a sentence
 2. Don't use "fix bug" or "update code" — say what and why
 3. Don't put everything in the subject — use the body for detail
+
+ANTIPATTERNS ⚠
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. THE KITCHEN SINK — Unrelated changes lumped into one commit
+   Why it's tempting: You're "almost done" and don't want to split work
+   Consequences: Impossible to revert one change without losing others
+   Instead: One logical change per commit, use interactive staging
 ```
 
 ## The Spells
@@ -67,24 +74,24 @@ DON'T ✗
 
 | Spell | What it does |
 |-------|-------------|
-| **idiomatic** | "Don't make stuff up. Use canonical patterns." Sets constraints for a tool or language based on real docs, not hallucinated APIs. |
-| **socratic** | "Teach through questions, not answers." Flips the AI into question-mode so you actually learn something. |
+| **idiomatic** | AI keeps hallucinating APIs that don't exist? Sets session constraints based on real docs and canonical patterns, not guesswork. |
+| **socratic** | Want to actually learn, not just get an answer? Flips the AI into question-mode so you reason through problems yourself. |
 
 **Workflows** do research and produce actual output. They'll ask you questions first, then go do the work.
 
 | Spell | What it does |
 |-------|-------------|
-| **best-practices** | Researches a topic, gives you a do's-and-don'ts guide with sources. |
-| **progressive-disclosure** | Breaks docs into linked files at progressive detail levels. Sized for AI context windows. |
-| **diataxis** | Audits, restructures, or generates docs using Daniele Procida's four-quadrant framework. |
-| **task-graph** | Maps task dependencies into execution order. Or diagrams a process workflow. DAGs, topological sort, critical path. |
+| **bpap** | Need a quick reference for what to do and not do? Researches a topic and produces structured do's, don'ts, and named antipatterns with trap analysis. |
+| **progressive-disclosure** | Docs too big for AI context, or too disorganized for anyone? Breaks them into linked files at progressive detail levels. |
+| **diataxis** | Docs that try to be everything at once? Audits, restructures, or generates docs using the four-quadrant Diataxis framework. |
+| **task-graph** | Twelve tasks and no idea what to start first? Maps dependencies into execution order with parallel waves and critical path analysis. |
 
 ### Meta
 
 | Command | What it does |
 |---------|-------------|
 | **help** | Lists all spells with descriptions and usage tips. |
-| **teach** | Explains the technique behind a spell. Who invented it, why it works, how to use it without this plugin. |
+| **teach** | Learn the real-world concept behind any spell — where it comes from, where you already see it, how the spell applies it. |
 
 ### When to Use Which
 
@@ -94,7 +101,7 @@ DON'T ✗
 | AI keeps hallucinating APIs that don't exist | **idiomatic** |
 | Want to actually learn something, not just get an answer | **socratic** |
 | Onboarding someone (including yourself) to a new topic | **socratic** |
-| Need a quick reference for what to do and not do | **best-practices** |
+| Need a quick reference for what to do and not do | **bpap** |
 | Writing docs for a codebase that has none | **progressive-disclosure** or **diataxis** |
 | Existing docs are a mess and need restructuring | **diataxis** |
 | Planning a project with lots of moving parts | **task-graph** |
@@ -145,24 +152,24 @@ Copy the `plugins/kiro/prompts/` directory to your Kiro project. Commands are pr
 /spell:help                           # See all spells
 /spell:idiomatic Python 3.12          # Set idiomatic Python constraints
 /spell:socratic React hooks           # Learn React hooks through questions
-/spell:best-practices TypeScript      # Get a structured best-practices guide
+/spell:bpap TypeScript                # Get a structured best-practices and antipatterns guide
 /spell:progressive-disclosure src/    # Break docs into linked files
 /spell:diataxis audit docs/           # Audit docs against Diataxis framework
 /spell:task-graph design, implement, test, deploy  # Map task dependencies
 /spell:task-graph process for code review          # Diagram a workflow
-/spell:teach diataxis                 # Learn about the Diataxis technique
+/spell:teach diataxis                 # Learn the concept behind Diataxis
 ```
 
-## Learn the Techniques
+## Learn the Concepts
 
-These spells aren't magic. They're packaging. If you want to understand why they work (and use the techniques without this plugin), the [tutorials](docs/) go deep:
+These spells aren't magic. They're packaging. Each one applies an established concept from a real field — and the concepts are worth knowing whether you use this plugin or not. The [tutorials](docs/) go deep:
 
-- **[Idiomatic Code](docs/tutorials/idiomatic.md)** -- why "the community's way" beats "your way," and why AI especially needs the guardrails
-- **[The Socratic Method](docs/tutorials/socratic.md)** -- 2,400 years of teaching through questions. Still works.
-- **[Best Practices](docs/tutorials/best-practices.md)** -- writing down what works so nobody has to learn it twice
-- **[Progressive Disclosure](docs/tutorials/progressive-disclosure.md)** -- show the simple thing first, reveal complexity when they ask for it
-- **[Diataxis](docs/tutorials/diataxis.md)** -- Daniele Procida's framework. It'll make you feel foolish for not thinking of it yourself.
-- **[Task Graphs](docs/tutorials/task-graph.md)** -- the 1957 DuPont method that shaved months off construction schedules. DAGs and critical paths.
+- **[Idiomatic Code](docs/tutorials/idiomatic.md)** -- AI hallucinating APIs? Code that compiles but fails review? Constraining to documented patterns fixes both.
+- **[The Socratic Method](docs/tutorials/socratic.md)** -- Keep asking the AI the same question because you never learned the answer? Guided questions build understanding that sticks.
+- **[Best Practices & Antipatterns](docs/tutorials/bpap.md)** -- Team knowledge trapped in Slack threads and tribal memory? The do/don't format plus named antipatterns make it scannable, durable, and transferable.
+- **[Progressive Disclosure](docs/tutorials/progressive-disclosure.md)** -- Docs too big for AI context, or too disorganized for anyone? Layered files let readers (and AI) load only what they need.
+- **[The Diataxis Framework](docs/tutorials/diataxis.md)** -- Docs that try to be everything at once and serve nobody? Four quadrants separate tutorials, how-tos, reference, and explanation.
+- **[Task Graphs, Critical Paths, and Topological Sort](docs/tutorials/task-graph.md)** -- Twelve tasks and no idea what to start first? DAGs and critical paths turn chaos into execution order.
 
 Or just run `/spell:teach <spell-name>` and let the AI explain it.
 
@@ -172,12 +179,13 @@ I didn't invent any of these techniques. Credit where it's due:
 - **Idiomatic code**: every programming language community ever
 - **Socratic method**: Socrates, ~400 BC. Refined by educators for millennia.
 - **Best practices documentation**: the entire field of technical writing
+- **Antipatterns**: Brown, Malveau, McCormick & Mowbray, *AntiPatterns* (1998)
 - **Progressive disclosure**: J.M. Keller (1983), popularized by Nielsen Norman Group
 - **Diataxis**: Daniele Procida ([diataxis.fr](https://diataxis.fr/))
 - **Critical Path Method**: James Kelley & Morgan Walker (1957, DuPont)
 - **Topological sorting**: Arthur Kahn (1962)
 
-I just put them in buttons.
+I just made commands to use them.
 
 ## Contributing
 

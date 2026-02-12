@@ -46,7 +46,7 @@ Templates use conditional blocks for platform-specific content:
 - `@IF_OPENCODE@` / `@ENDIF_OPENCODE@` → OpenCode-only content
 - `@IF_KIRO@` / `@ENDIF_KIRO@` → Kiro-only content
 
-## The Seven Spells
+## The Eight Spells
 
 | Spell | Type | Description |
 |-------|------|-------------|
@@ -57,6 +57,7 @@ Templates use conditional blocks for platform-specific content:
 | diataxis | Workflow | Four-quadrant documentation (audit/restructure/generate) |
 | task-graph | Workflow | Map task dependencies or diagram a workflow using DAGs and critical path analysis |
 | debug | Workflow | Systematic root cause analysis using 5 Whys and hypothesis-driven debugging |
+| deep-dive | Workflow | Explore and map how a codebase or subsystem works |
 
 Plus meta commands: `help` and `teach`.
 

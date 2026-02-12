@@ -2,11 +2,11 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Platforms](https://img.shields.io/badge/platforms-Claude%20Code%20%7C%20OpenCode%20%7C%20Kiro-blue.svg)](#installation)
-[![Spells](https://img.shields.io/badge/spells-7-purple.svg)](#the-spells)
+[![Spells](https://img.shields.io/badge/spells-8-purple.svg)](#the-spells)
 
 > Real-world concepts from programming, education, and design — packaged as AI commands.
 
-These aren't prompt engineering techniques I invented. They're established concepts from real fields — idiomatic code (programming), the Socratic method (education), progressive disclosure (UX design), Diataxis (documentation theory), task graphs (operations research), systematic debugging (reliability engineering). I just got tired of re-explaining them every session and made commands to use them.
+These aren't prompt engineering techniques I invented. They're established concepts from real fields — idiomatic code (programming), the Socratic method (education), progressive disclosure (UX design), Diataxis (documentation theory), task graphs (operations research), systematic debugging (reliability engineering), program comprehension (software engineering). I just got tired of re-explaining them every session and made commands to use them.
 
 ## What It Looks Like
 
@@ -86,6 +86,7 @@ ANTIPATTERNS ⚠
 | **diataxis** | Docs that try to be everything at once? Audits, restructures, or generates docs using the four-quadrant Diataxis framework. |
 | **task-graph** | Twelve tasks and no idea what to start first? Maps dependencies into execution order with parallel waves and critical path analysis. |
 | **debug** | Bug that keeps coming back no matter what you try? Traces the causal chain to the root cause before suggesting any fix. |
+| **deep-dive** | New to a codebase with no docs and no one to ask? Systematically explores and maps the architecture, data flow, and key abstractions. |
 
 ### Meta
 
@@ -109,6 +110,8 @@ ANTIPATTERNS ⚠
 | Need to figure out what to parallelize | **task-graph** |
 | Bug that keeps coming back after you "fix" it | **debug** |
 | Need to understand why something fails, not just suppress the error | **debug** |
+| New to a codebase and need to understand how it works | **deep-dive** |
+| Exploring an unfamiliar module before making changes | **deep-dive** |
 | "What does this spell even do?" | **teach** |
 
 ## Installation
@@ -161,6 +164,8 @@ Copy the `plugins/kiro/prompts/` directory to your Kiro project. Commands are pr
 /spell:task-graph design, implement, test, deploy  # Map task dependencies
 /spell:task-graph process for code review          # Diagram a workflow
 /spell:debug TypeError: Cannot read properties of undefined
+/spell:deep-dive src/api/             # Explore and map the API module
+/spell:deep-dive how does auth work?  # Trace how authentication is implemented
 /spell:teach diataxis                 # Learn the concept behind Diataxis
 ```
 
@@ -175,6 +180,7 @@ These spells aren't magic. They're packaging. Each one applies an established co
 - **[The Diataxis Framework](docs/tutorials/diataxis.md)** -- Docs that try to be everything at once and serve nobody? Four quadrants separate tutorials, how-tos, reference, and explanation.
 - **[Task Graphs, Critical Paths, and Topological Sort](docs/tutorials/task-graph.md)** -- Twelve tasks and no idea what to start first? DAGs and critical paths turn chaos into execution order.
 - **[Systematic Debugging & Root Cause Analysis](docs/tutorials/debug.md)** -- Bug keeps coming back after you "fix" it? Hypothesis-driven debugging traces the causal chain to the real problem.
+- **[Codebase Exploration & Program Comprehension](docs/tutorials/deep-dive.md)** -- New to a codebase with 200 files and no docs? Top-down reading strategy produces an architecture map, not just familiarity.
 
 Or just run `/spell:teach <spell-name>` and let the AI explain it.
 
@@ -192,6 +198,9 @@ I didn't invent any of these techniques. Credit where it's due:
 - **5 Whys**: Taiichi Ohno, Toyota Production System (1950s)
 - **Systematic debugging**: Andreas Zeller, *Why Programs Fail* (2009)
 - **Fault tree analysis**: Bell Labs (1961)
+- **Program comprehension**: von Mayrhauser & Vans (1995), Rajlich, Ko et al.
+- **Architecture recovery**: Gail Murphy, reflexion models (1995)
+- **Information hiding**: David Parnas (1972)
 
 I just made commands to use them.
 

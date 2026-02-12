@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0] - 2026-02-11
+
+### Added
+- **deep-dive** spell — codebase exploration and program comprehension using top-down reading strategy, architecture mapping, and structured reporting
+- Skill reference docs for program comprehension and architecture patterns (`docs/skills/`)
+- Tutorial for deep-dive concept (`docs/tutorials/deep-dive.md`)
+
 ## [0.4.0] - 2026-02-11
 
 ### Added

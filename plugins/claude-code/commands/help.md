@@ -43,6 +43,7 @@ WORKFLOWS (produce artifacts)
 /spell:diataxis <topic>                 Four-quadrant documentation
 /spell:task-graph <tasks or process>    Map dependencies or diagram a workflow
 /spell:debug <symptom>                 Systematic root cause analysis
+/spell:deep-dive <path or question>   Explore and map how code works
 
 META
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -105,7 +106,7 @@ Spell not found: <argument>
 
 Available spells:
   Modifiers: idiomatic, socratic
-  Workflows: bpap, progressive-disclosure, diataxis, task-graph, debug
+  Workflows: bpap, progressive-disclosure, diataxis, task-graph, debug, deep-dive
   Meta: teach, help
 
 Run /spell:help for overview.
@@ -124,6 +125,7 @@ Run /spell:help for overview.
 | `/spell:diataxis` | Workflow | Generate or audit documentation using the four-quadrant Diataxis framework |
 | `/spell:task-graph` | Workflow | Map task dependencies or diagram a workflow using DAGs and critical path analysis |
 | `/spell:debug` | Workflow | Systematic root cause analysis — find the real bug before attempting fixes |
+| `/spell:deep-dive` | Workflow | Explore and map how a codebase or subsystem works — architecture, data flow, and key abstractions |
 | `/spell:teach` | Meta | Learn the real-world concept behind any spell — where it comes from, where you see it, how the spell applies it |
 | `/spell:help` | Meta | Show this listing, or detailed help for a specific spell |
 

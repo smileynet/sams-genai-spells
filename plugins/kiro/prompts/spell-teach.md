@@ -97,6 +97,18 @@ The spell: Forces the AI to trace the causal chain before
 suggesting fixes, producing a structured diagnosis instead
 of a quick patch.
 
+DEEP DIVE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The concept: Developers spend most of their time reading code,
+not writing it. Expert developers read systematically — starting
+at entry points, tracing data flow, identifying key abstractions
+— while novices read line by line and get lost.
+Where you see it: Onboarding at new jobs, open source contribution,
+code review, legacy system archaeology, architecture recovery.
+The spell: Applies top-down reading strategy to systematically
+explore a codebase and produce a structured architecture map
+with diagrams, data flow, and design decisions.
+
 For deeper dives: @spell-teach <spell-name>
 ```
 
@@ -167,6 +179,7 @@ SOURCES
 | diataxis | Diataxis documentation framework | Documentation theory | Daniele Procida, diataxis.fr |
 | task-graph | DAGs + Critical Path Method + topological sort | Operations research | Kelley & Walker 1957; Kahn 1962 |
 | debug | 5 Whys + fault tree analysis + scientific method | Reliability engineering | Ohno 1950s; Zeller 2009; Bell Labs 1961 |
+| deep-dive | Program comprehension + architecture recovery | Software engineering | Rajlich, LaToza, Ko; Murphy 1995; Parnas 1972 |
 
 ---
 

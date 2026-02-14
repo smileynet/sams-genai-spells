@@ -1,13 +1,13 @@
 {
   "name": "@sams-genai-spells/opencode-plugin",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Real-world concepts from programming, education, and design — packaged as AI commands",
   "files": [
     "commands"
   ],
   "opencode": {
     "name": "spell",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "description": "Real-world concepts from programming, education, and design — packaged as AI commands",
     "commands": [
       "spell-help",

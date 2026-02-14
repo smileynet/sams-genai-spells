@@ -1,7 +1,7 @@
 {
   "name": "spell",
   "description": "Real-world concepts from programming, education, and design — packaged as AI commands",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "author": {
     "name": "smileynet",
     "url": "https://github.com/smileynet"

@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.5.1] - 2026-02-14
+
+### Fixed
+- **OpenCode & Kiro reliability** — debug, deep-dive, and task-graph spells now load skill files by explicit path instead of vague directory hints, fixing failures on non-Claude-Code platforms
+- **Help descriptions** — progressive-disclosure and diataxis one-liners now clearly distinguish the two spells
+- **Help command** — replaced fragile bash script for command lookup with plain English instructions
+
+### Changed
+- **bpap** — documented that output can be saved to a file on request
+- **Install script** — uses official Claude Code CLI for marketplace registration and plugin install
+
 ## [0.5.0] - 2026-02-11
 
 ### Added

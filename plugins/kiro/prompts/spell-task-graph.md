@@ -12,7 +12,10 @@
 
 Before proceeding, load the relevant skill documents for reference:
 
-Check the repository's `docs/skills/` directory for DAG analysis, topological sort, and Mermaid flowchart references.
+Read the following files from the repository's `docs/skills/` directory:
+- `docs/skills/dag-analysis.md`
+- `docs/skills/topological-sort.md`
+- `docs/skills/mermaid-flowcharts.md`
 
 ---
 

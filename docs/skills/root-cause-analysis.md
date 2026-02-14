@@ -105,6 +105,8 @@ For each hypothesis during root cause tracing:
 
 ## Reporting Template
 
+> **Note:** The spell template (`debug.md.template`) is the canonical source for output format. This template is a simplified reference; defer to the spell if they differ.
+
 Use this format when reporting root cause analysis results:
 
 ```

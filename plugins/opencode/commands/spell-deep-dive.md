@@ -16,7 +16,9 @@ description: Explore and map how a codebase or subsystem works
 
 Before proceeding, load the relevant skill documents for reference:
 
-Check the repository's `docs/skills/` directory for program comprehension and architecture pattern references.
+Read the following files from the repository's `docs/skills/` directory:
+- `docs/skills/program-comprehension.md`
+- `docs/skills/architecture-patterns.md`
 
 ---
 

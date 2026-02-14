@@ -103,6 +103,8 @@ In priority order:
 
 ## Reporting Template
 
+> **Note:** The spell template (`deep-dive.md.template`) is the canonical source for output format. This template is a simplified reference; defer to the spell if they differ.
+
 Use this structure for exploration results:
 
 ```

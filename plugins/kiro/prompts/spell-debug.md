@@ -12,7 +12,9 @@
 
 Before proceeding, load the relevant skill documents for reference:
 
-Check the repository's `docs/skills/` directory for root cause analysis and debugging antipattern references.
+Read the following files from the repository's `docs/skills/` directory:
+- `docs/skills/root-cause-analysis.md`
+- `docs/skills/debugging-antipatterns.md`
 
 ---
 

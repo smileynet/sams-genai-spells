@@ -41,8 +41,8 @@ MODIFIERS (change how the AI behaves)
 WORKFLOWS (produce artifacts)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /@NAMESPACE@bpap <topic>                     Structured do's, don'ts, and named antipatterns
-/@NAMESPACE@progressive-disclosure <topic>   Break docs into linked AI-friendly files
-/@NAMESPACE@diataxis <topic>                 Four-quadrant documentation
+/@NAMESPACE@progressive-disclosure <topic>   Break docs into linked files (by detail level)
+/@NAMESPACE@diataxis <topic>                 Four-quadrant documentation (by purpose)
 /@NAMESPACE@task-graph <tasks or process>    Map dependencies or diagram a workflow
 /@NAMESPACE@debug <symptom>                 Systematic root cause analysis
 /@NAMESPACE@deep-dive <path or question>   Explore and map how code works
@@ -67,14 +67,7 @@ For detailed help: /@NAMESPACE@help <spell>
 **If `$ARGUMENTS` is a spell name:**
 
 @IF_CLAUDECODE@
-Read the command file to get its summary and process:
-
-```bash
-COMMAND_FILE="commands/${ARGUMENTS}.md"
-if [ ! -f "$COMMAND_FILE" ]; then
-  COMMAND_FILE="commands/${ARGUMENTS#spell:}.md"
-fi
-```
+Read the command file matching the spell name from the `commands/` directory (e.g., `commands/idiomatic.md`). If the user included the namespace prefix, strip it first.
 @ENDIF_CLAUDECODE@
 @IF_OPENCODE@
 Read the command file to get its summary and process.

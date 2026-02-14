@@ -100,6 +100,8 @@ Collapse a cluster of related tasks into a single summary node, with a separate 
 
 ## Reporting Template
 
+> **Note:** The spell template (`task-graph.md.template`) is the canonical source for output format. This template is a simplified reference; defer to the spell if they differ.
+
 Use this format when reporting DAG analysis results:
 
 ```

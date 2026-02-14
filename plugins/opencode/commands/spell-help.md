@@ -38,8 +38,8 @@ MODIFIERS (change how the AI behaves)
 WORKFLOWS (produce artifacts)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /spell-bpap <topic>                     Structured do's, don'ts, and named antipatterns
-/spell-progressive-disclosure <topic>   Break docs into linked AI-friendly files
-/spell-diataxis <topic>                 Four-quadrant documentation
+/spell-progressive-disclosure <topic>   Break docs into linked files (by detail level)
+/spell-diataxis <topic>                 Four-quadrant documentation (by purpose)
 /spell-task-graph <tasks or process>    Map dependencies or diagram a workflow
 /spell-debug <symptom>                 Systematic root cause analysis
 /spell-deep-dive <path or question>   Explore and map how code works

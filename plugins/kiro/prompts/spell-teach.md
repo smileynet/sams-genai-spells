@@ -17,6 +17,11 @@ Output a concept overview for all spells:
 SAM'S SPELLS — THE CONCEPTS
 ══════════════════════════════════════════════════════════════
 
+<!-- SYNC NOTE: The capsules below must stay in sync with the
+     spell summaries in each template and the help listing.
+     When adding, renaming, or modifying a spell, update all three:
+     this file, help.md.template, and the spell template itself. -->
+
 Each spell applies a concept from a real field — programming,
 education, UX design, documentation theory, or operations
 research. These ideas are worth knowing whether you use this

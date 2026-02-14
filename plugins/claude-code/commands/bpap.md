@@ -9,7 +9,7 @@ allowed-tools: Bash, Read, Write, Glob, Grep, Task, AskUserQuestion, WebFetch, W
 
 **Arguments:** `$ARGUMENTS` (required) - Topic for best-practices and antipatterns research
 
-**Output:** Structured best-practices and antipatterns document output directly to the conversation
+**Output:** Structured best-practices and antipatterns document output directly to the conversation (Write is available if the user requests the output be saved to a file)
 
 ---
 

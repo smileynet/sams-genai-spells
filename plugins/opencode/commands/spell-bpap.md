@@ -8,7 +8,7 @@ description: Research and produce a structured best-practices and antipatterns d
 
 **Arguments:** `$ARGUMENTS` (required) - Topic for best-practices and antipatterns research
 
-**Output:** Structured best-practices and antipatterns document output directly to the conversation
+**Output:** Structured best-practices and antipatterns document output directly to the conversation (Write is available if the user requests the output be saved to a file)
 
 ---
 

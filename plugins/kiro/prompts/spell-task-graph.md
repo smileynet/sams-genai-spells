@@ -12,7 +12,7 @@
 
 Before proceeding, load the relevant skill documents for reference:
 
-Read the following files from the repository's `docs/skills/` directory:
+Read the following files from the repository root:
 - `docs/skills/dag-analysis.md`
 - `docs/skills/topological-sort.md`
 - `docs/skills/mermaid-flowcharts.md`

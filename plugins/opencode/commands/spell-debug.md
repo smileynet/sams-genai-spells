@@ -16,7 +16,7 @@ description: Systematic root cause analysis — find the real bug before attempt
 
 Before proceeding, load the relevant skill documents for reference:
 
-Read the following files from the repository's `docs/skills/` directory:
+Read the following files from the repository root:
 - `docs/skills/root-cause-analysis.md`
 - `docs/skills/debugging-antipatterns.md`
 

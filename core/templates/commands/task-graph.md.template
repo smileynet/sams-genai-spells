@@ -27,7 +27,7 @@ Before proceeding, load the relevant skill documents for reference:
 Use **Read** to load these files from the repository root.
 @ENDIF_CLAUDECODE@
 @IF_OPENCODE@
-Read the following files from the repository's `docs/skills/` directory:
+Read the following files from the repository root:
 - `docs/skills/dag-analysis.md`
 - `docs/skills/topological-sort.md`
 - `docs/skills/mermaid-flowcharts.md`

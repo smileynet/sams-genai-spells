@@ -13,6 +13,8 @@ Real-world concepts from programming, education, and design — packaged as AI c
 | `@spell-progressive-disclosure` | Break docs into linked AI-friendly files |
 | `@spell-diataxis` | Four-quadrant documentation (audit/restructure/generate) |
 | `@spell-task-graph` | Map task dependencies or diagram a workflow |
+| `@spell-debug` | Systematic root cause analysis |
+| `@spell-deep-dive` | Explore and map how a codebase or subsystem works |
 | `@spell-teach` | Learn the concept behind any spell |
 
 ## Installation

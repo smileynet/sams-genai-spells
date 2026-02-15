@@ -56,4 +56,4 @@ First release. Sam finally stopped re-typing the same prompting tricks and made 
 - Multi-platform support: Claude Code (`/spell:command`), OpenCode (`/spell-command`), Kiro (`@spell-command`)
 - Template sync pipeline (`dev/sync-commands.sh`)
 - Local Claude Code install script (`dev/install-claude-code.sh`)
-- Tutorial docs for all six concepts (`docs/tutorials/`)
+- Tutorial docs for all five concepts (`docs/tutorials/`)

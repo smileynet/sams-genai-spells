@@ -6,6 +6,11 @@
 
 set -e
 
+if ! command -v claude &>/dev/null; then
+  printf "Error: 'claude' CLI not found. Install Claude Code first.\n" >&2
+  exit 1
+fi
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(dirname "$SCRIPT_DIR")"
 MARKETPLACE_DIR="$HOME/.claude/plugins/marketplaces/sams-spells-marketplace"
@@ -16,9 +21,9 @@ VERSION=$(grep '"version"' "$REPO_DIR/plugins/claude-code/.claude-plugin/plugin.
 printf "Installing sams-spells plugin v%s for Claude Code...\n\n" "$VERSION"
 
 # Step 1: Create marketplace directory structure
-mkdir -p "$MARKETPLACE_DIR/.claude-plugin"
-mkdir -p "$MARKETPLACE_DIR/spell/.claude-plugin"
-mkdir -p "$MARKETPLACE_DIR/spell/commands"
+mkdir -p "$MARKETPLACE_DIR/.claude-plugin" \
+         "$MARKETPLACE_DIR/spell/.claude-plugin" \
+         "$MARKETPLACE_DIR/spell/commands"
 
 # Write marketplace manifest
 cat > "$MARKETPLACE_DIR/.claude-plugin/marketplace.json" << EOF

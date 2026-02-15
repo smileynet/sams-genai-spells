@@ -23,7 +23,7 @@ Output the help display:
 
 ```
 ╔════════════════════════════════════════════════════════════╗
-║  SAM'S SPELLS - Quick Reference                            ║
+║  SAM'S SPELLS - Quick Reference                           ║
 ╚════════════════════════════════════════════════════════════╝
 
 MODIFIERS (change how the AI behaves)

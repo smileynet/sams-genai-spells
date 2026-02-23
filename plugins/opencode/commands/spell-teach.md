@@ -118,6 +118,17 @@ The spell: Applies top-down reading strategy to systematically
 explore a codebase and produce a structured architecture map
 with diagrams, data flow, and design decisions.
 
+PRIOR ART
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The concept: Before building something, systematically check what
+already exists. Prior art search, literature review, and technology
+evaluation are all forms of the same discipline — surveying the
+landscape before committing to a path.
+Where you see it: Patent applications, academic literature reviews,
+technology radar assessments, build-vs-buy decisions, ADRs.
+The spell: Surveys existing solutions with structured evaluation
+criteria, compares them fairly, and recommends adopt, adapt, or build.
+
 For deeper dives: /spell-teach <spell-name>
 ```
 
@@ -189,6 +200,7 @@ SOURCES
 | task-graph | DAGs + Critical Path Method + topological sort | Operations research | Kelley & Walker 1957; Kahn 1962 |
 | debug | 5 Whys + fault tree analysis + scientific method | Reliability engineering | Ohno 1950s; Zeller 2009; Bell Labs 1961 |
 | deep-dive | Program comprehension + architecture recovery | Software engineering | Rajlich, LaToza, Ko; Murphy 1995; Parnas 1972 |
+| prior-art | Prior art search + technology evaluation + literature review | Patent law / software engineering | US Patent Act 1790; ThoughtWorks Technology Radar 2010; CHAOSS 2017 |
 
 ---
 

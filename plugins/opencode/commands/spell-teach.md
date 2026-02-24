@@ -129,6 +129,18 @@ technology radar assessments, build-vs-buy decisions, ADRs.
 The spell: Surveys existing solutions with structured evaluation
 criteria, compares them fairly, and recommends adopt, adapt, or build.
 
+HANDOFF
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The concept: When context lives only in someone's head, transitions
+are dangerous. High-reliability fields — medicine, aviation, military
+— solved this with structured handoff protocols that force complete
+context transfer at every shift change.
+Where you see it: SBAR in hospitals, watch turnover in the Navy,
+ATC sector handoffs, ADRs, PR descriptions, onboarding docs.
+The spell: Captures decisions, dead ends, current state, and next
+steps in a structured document before the session ends or work
+transfers — so the next person (or AI) starts with full context.
+
 For deeper dives: /spell-teach <spell-name>
 ```
 
@@ -201,6 +213,7 @@ SOURCES
 | debug | 5 Whys + fault tree analysis + scientific method | Reliability engineering | Ohno 1950s; Zeller 2009; Bell Labs 1961 |
 | deep-dive | Program comprehension + architecture recovery | Software engineering | Rajlich, LaToza, Ko; Murphy 1995; Parnas 1972 |
 | prior-art | Prior art search + technology evaluation + literature review | Patent law / software engineering | US Patent Act 1790; ThoughtWorks Technology Radar 2010; CHAOSS 2017 |
+| handoff | Shift handoff protocols + structured context transfer | Medicine / aviation / military | SBAR (Kaiser Permanente 1990s); Joint Commission 2006; ICAO ATC protocols |
 
 ---
 

@@ -46,7 +46,7 @@ Templates use conditional blocks for platform-specific content:
 - `@IF_OPENCODE@` / `@ENDIF_OPENCODE@` → OpenCode-only content
 - `@IF_KIRO@` / `@ENDIF_KIRO@` → Kiro-only content
 
-## The Nine Spells
+## The Ten Spells
 
 | Spell | Type | Description |
 |-------|------|-------------|
@@ -59,6 +59,7 @@ Templates use conditional blocks for platform-specific content:
 | debug | Workflow | Systematic root cause analysis using 5 Whys and hypothesis-driven debugging |
 | deep-dive | Workflow | Explore and map how a codebase or subsystem works |
 | prior-art | Workflow | Survey existing solutions before building — libraries, tools, frameworks, and patterns |
+| handoff | Workflow | Write a structured handoff document — decisions, dead ends, state, and next steps |
 
 Plus meta commands: `help` and `teach`.
 

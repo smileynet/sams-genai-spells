@@ -44,6 +44,7 @@ WORKFLOWS (produce artifacts)
 /spell-debug <symptom>                 Systematic root cause analysis
 /spell-deep-dive <path or question>   Explore and map how code works
 /spell-prior-art <need>               Survey existing solutions before building
+/spell-handoff [task or context]      Write a structured handoff for the next session
 
 META
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -99,7 +100,7 @@ Spell not found: <argument>
 
 Available spells:
   Modifiers: idiomatic, socratic
-  Workflows: bpap, progressive-disclosure, diataxis, task-graph, debug, deep-dive, prior-art
+  Workflows: bpap, progressive-disclosure, diataxis, task-graph, debug, deep-dive, prior-art, handoff
   Meta: teach, help
 
 Run /spell-help for overview.
@@ -120,6 +121,7 @@ Run /spell-help for overview.
 | `/spell-debug` | Workflow | Systematic root cause analysis — find the real bug before attempting fixes |
 | `/spell-deep-dive` | Workflow | Explore and map how a codebase or subsystem works — architecture, data flow, and key abstractions |
 | `/spell-prior-art` | Workflow | Survey existing solutions before building — libraries, tools, frameworks, and patterns |
+| `/spell-handoff` | Workflow | Write a structured handoff document — decisions, dead ends, state, and next steps for the next session |
 | `/spell-teach` | Meta | Learn the real-world concept behind any spell — where it comes from, where you see it, how the spell applies it |
 | `/spell-help` | Meta | Show this listing, or detailed help for a specific spell |
 

@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Platforms](https://img.shields.io/badge/platforms-Claude%20Code%20%7C%20OpenCode%20%7C%20Kiro-blue.svg)](#installation)
-[![Spells](https://img.shields.io/badge/spells-9-purple.svg)](#the-spells)
+[![Spells](https://img.shields.io/badge/spells-10-purple.svg)](#the-spells)
 
 > Real-world concepts from programming, education, and design — packaged as AI commands.
 
@@ -88,6 +88,7 @@ ANTIPATTERNS ⚠
 | **debug** | Bug that keeps coming back no matter what you try? Traces the causal chain to the root cause before suggesting any fix. |
 | **deep-dive** | New to a codebase with no docs and no one to ask? Systematically explores and maps the architecture, data flow, and key abstractions. |
 | **prior-art** | About to build something from scratch? Surveys what already exists — libraries, tools, frameworks — so you don't reinvent the wheel. |
+| **handoff** | Session ending with half-finished work? Captures decisions, dead ends, current state, and next steps so the next session (or developer) starts with full context. |
 
 ### Meta
 
@@ -115,6 +116,8 @@ ANTIPATTERNS ⚠
 | Exploring an unfamiliar module before making changes | **deep-dive** |
 | About to build something — not sure if a library already does it | **prior-art** |
 | Evaluating which tool or framework to adopt | **prior-art** |
+| Ending a session and need to capture context | **handoff** |
+| Handing off work to a colleague or another AI session | **handoff** |
 | "What does this spell even do?" | **teach** |
 
 ## Installation
@@ -170,6 +173,7 @@ Copy the `plugins/kiro/prompts/` directory to your Kiro project. Commands are pr
 /spell:deep-dive src/api/             # Explore and map the API module
 /spell:deep-dive how does auth work?  # Trace how authentication is implemented
 /spell:prior-art markdown parsing     # Survey existing solutions before building
+/spell:handoff                        # Capture session context before ending
 /spell:teach diataxis                 # Learn the concept behind Diataxis
 ```
 
@@ -186,6 +190,7 @@ These spells aren't magic. They're packaging. Each one applies an established co
 - **[Systematic Debugging & Root Cause Analysis](docs/tutorials/debug.md)** -- Bug keeps coming back after you "fix" it? Hypothesis-driven debugging traces the causal chain to the real problem.
 - **[Codebase Exploration & Program Comprehension](docs/tutorials/deep-dive.md)** -- New to a codebase with 200 files and no docs? Top-down reading strategy produces an architecture map, not just familiarity.
 - **[Prior Art Search & Technology Evaluation](docs/tutorials/prior-art.md)** -- About to build something from scratch? Systematic survey of what already exists so you adopt, adapt, or build with full knowledge of the landscape.
+- **[Shift Handoff Protocols & Context Transfer](docs/tutorials/handoff.md)** -- Session ending with decisions still in your head? Structured handoff protocols from medicine, aviation, and military — adapted for software and AI sessions.
 
 Or just run `/spell:teach <spell-name>` and let the AI explain it.
 
@@ -206,6 +211,8 @@ I didn't invent any of these techniques. Credit where it's due:
 - **Program comprehension**: von Mayrhauser & Vans (1995), Rajlich, Ko et al.
 - **Architecture recovery**: Gail Murphy, reflexion models (1995)
 - **Information hiding**: David Parnas (1972)
+- **SBAR handoff protocol**: Kaiser Permanente (1990s), mandated by Joint Commission (2006)
+- **Shift handoff protocols**: US Navy watch turnover, ICAO ATC handoff standards
 - **Prior art search**: US Patent Act (1790), codified by patent offices worldwide
 - **Systematic review**: Cochrane Collaboration (1993), PRISMA guidelines
 - **Technology Radar**: ThoughtWorks (2010)

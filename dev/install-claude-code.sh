@@ -40,7 +40,7 @@ cat > "$MARKETPLACE_DIR/.claude-plugin/marketplace.json" << EOF
     {
       "name": "spell",
       "source": "./spell",
-      "description": "Sam's Spells - idiomatic, socratic, bpap, progressive-disclosure, diataxis, task-graph, debug, deep-dive, prior-art",
+      "description": "Sam's Spells - idiomatic, socratic, bpap, progressive-disclosure, diataxis, task-graph, debug, deep-dive, prior-art, handoff",
       "version": "$VERSION"
     }
   ]

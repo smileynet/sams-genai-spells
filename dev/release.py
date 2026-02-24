@@ -2,7 +2,7 @@
 """
 release.py - Automate mechanical steps of releasing a new sams-spells version.
 
-Handles version sync, CHANGELOG transformation, and commit creation.
+Handles version sync, CHANGELOG transformation, validation, and commit creation.
 Preserves human judgment for content quality - the script only handles mechanics.
 
 Usage:
@@ -16,8 +16,9 @@ Exit codes:
     1: Pre-flight check failed
     2: Version update failed
     3: CHANGELOG update failed
-    4: Commit failed
-    5: Push failed
+    4: Validation failed
+    5: Commit failed
+    6: Push failed
 """
 
 import argparse
@@ -229,6 +230,28 @@ def update_json_file(file_path: Path, updates: dict[str, str], dry_run: bool = F
         return False
 
 
+def update_kiro_version(file_path: Path, version: str, dry_run: bool = False) -> bool:
+    """Update VERSION constant in Kiro install.py."""
+    try:
+        content = file_path.read_text()
+        new_content = re.sub(
+            r'^VERSION = "[\d.]+"',
+            f'VERSION = "{version}"',
+            content,
+            count=1,
+            flags=re.MULTILINE,
+        )
+        if new_content == content:
+            print(f"  {color('✗', Colors.RED)} Could not find VERSION constant in {file_path}")
+            return False
+        if not dry_run:
+            file_path.write_text(new_content)
+        return True
+    except FileNotFoundError:
+        print(f"  {color('✗', Colors.RED)} {file_path} not found")
+        return False
+
+
 def update_versions(config: ReleaseConfig) -> bool:
     """Update version in all required files."""
     success = True
@@ -247,6 +270,13 @@ def update_versions(config: ReleaseConfig) -> bool:
         "opencode.version": config.version
     }, config.dry_run):
         print(f"  {color('✓', Colors.GREEN)} plugins/opencode/package.json (2 locations)")
+    else:
+        success = False
+
+    # Update Kiro install.py VERSION constant
+    kiro_path = config.repo_root / "plugins" / "kiro" / "install.py"
+    if update_kiro_version(kiro_path, config.version, config.dry_run):
+        print(f"  {color('✓', Colors.GREEN)} plugins/kiro/install.py")
     else:
         success = False
 
@@ -327,16 +357,57 @@ def update_changelog(config: ReleaseConfig) -> bool:
         return False
 
 
+def run_validation_scripts(config: ReleaseConfig) -> bool:
+    """Run validation scripts and report results."""
+    scripts = [
+        ("check-plugin-health.py", ["--skip-changelog"]),  # Skip changelog since we just updated it
+        ("check-platform-parity.py", []),
+    ]
+
+    all_passed = True
+
+    for script_name, args in scripts:
+        script_path = config.repo_root / "dev" / script_name
+        if not script_path.exists():
+            print(f"  {color('⚠', Colors.YELLOW)} {script_name} not found (skipped)")
+            continue
+
+        result = subprocess.run(
+            [sys.executable, str(script_path)] + args,
+            capture_output=True,
+            text=True,
+            cwd=config.repo_root
+        )
+
+        if result.returncode == 0:
+            # Check for warnings in output
+            if "warning" in result.stdout.lower():
+                print(f"  {color('✓', Colors.GREEN)} {script_name} passed (with warnings)")
+            else:
+                print(f"  {color('✓', Colors.GREEN)} {script_name} passed")
+        else:
+            print(f"  {color('✗', Colors.RED)} {script_name} failed")
+            # Show first few lines of error output
+            error_lines = result.stdout.split("\n")[:5]
+            for line in error_lines:
+                if line.strip():
+                    print(f"      {line}")
+            all_passed = False
+
+    return all_passed
+
+
 def create_commit(config: ReleaseConfig) -> bool:
     """Create release commit."""
     if config.dry_run:
         print(f"  {color('○', Colors.BLUE)} Would create commit: \"chore(release): v{config.version}\"")
         return True
 
-    # Stage changes — only the 3 files we modify
+    # Stage changes — the 4 files we modify
     files_to_stage = [
         "plugins/claude-code/.claude-plugin/plugin.json",
         "plugins/opencode/package.json",
+        "plugins/kiro/install.py",
         "CHANGELOG.md",
     ]
 
@@ -459,6 +530,12 @@ def run_check_only(repo_root: Path) -> int:
     else:
         print(f"  {color('✗', Colors.RED)} [Unreleased] section is empty")
         errors.append("[Unreleased] section is empty")
+
+    # Run validation scripts
+    print()
+    print("Validation scripts:")
+    config = ReleaseConfig(version="0.0.0", repo_root=repo_root)
+    run_validation_scripts(config)
 
     # Summary
     print()
@@ -600,13 +677,20 @@ def main():
         print(color("CHANGELOG update failed.", Colors.RED))
         return rollback(3)
 
+    # Run validation
+    print()
+    print("Validation:")
+    if not run_validation_scripts(config):
+        print(color("Validation failed.", Colors.RED))
+        return rollback(4)
+
     # Create commit
     print()
     print("Commit:")
     if not create_commit(config):
         print(color("Commit failed.", Colors.RED))
         print(f"  {color('hint', Colors.YELLOW)} Files were modified. Run: git checkout HEAD -- .")
-        return 4
+        return 5
 
     # Push if requested
     if config.push:
@@ -614,7 +698,7 @@ def main():
         print("Push:")
         if not push_to_remote(config):
             print(color("Push failed.", Colors.RED))
-            return 5
+            return 6
 
     # Success summary
     print()

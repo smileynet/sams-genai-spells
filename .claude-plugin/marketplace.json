@@ -1,0 +1,13 @@
+{
+  "name": "sams-genai-spells",
+  "description": "Real-world concepts from programming, education, and design — packaged as AI commands",
+  "owner": { "name": "smileynet" },
+  "plugins": [
+    {
+      "name": "spell",
+      "source": "./plugins/claude-code/",
+      "description": "Sam's Spells — idiomatic, socratic, bpap, progressive-disclosure, diataxis, task-graph, debug, deep-dive, prior-art, handoff",
+      "category": "productivity"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/**'
+      - 'core/**'
+      - 'CHANGELOG.md'
+      - 'dev/check-*.py'
+      - '.github/workflows/validate.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'plugins/**'
+      - 'core/**'
+      - 'CHANGELOG.md'
+      - 'dev/check-*.py'
+      - '.github/workflows/validate.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Plugin health check
+        run: python dev/check-plugin-health.py
+
+      - name: Platform parity check
+        run: python dev/check-platform-parity.py

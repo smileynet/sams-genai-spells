@@ -60,40 +60,45 @@ jobs:
       - name: Create release
         if: steps.check.outputs.exists == 'false'
         run: |
-          TAG="${{ steps.version.outputs.tag }}"
-          REPO="${{ github.repository }}"
-          REPO_NAME="${{ github.event.repository.name }}"
+          cat > /tmp/release-notes.md <<RELEASE_DELIM_7f3a
+          ## Sam's Spells ${VERSION_TAG}
 
-          cat > /tmp/release-notes.md <<RELEASE_NOTES_DELIM_7f3a
-## Sam's Spells ${TAG}
+          ${CHANGELOG_BODY}
 
-${CHANGELOG_CONTENT}
+          ## Installation
 
-## Installation
+          **First-time install:**
+          \`\`\`bash
+          /plugin marketplace add ${REPO}
+          /plugin install spell@sams-genai-spells
+          \`\`\`
 
-**From the Claude Code marketplace:**
-\`\`\`bash
-/install-plugin ${REPO}
-\`\`\`
+          **Update existing:**
+          \`\`\`bash
+          /plugin update spell
+          \`\`\`
 
-**Or clone locally:**
-\`\`\`bash
-git clone https://github.com/${REPO}.git
-cd ${REPO_NAME}
-./dev/install-claude-code.sh
-\`\`\`
+          **Or clone locally:**
+          \`\`\`bash
+          git clone https://github.com/${REPO}.git
+          cd ${REPO_NAME}
+          ./dev/install-claude-code.sh
+          \`\`\`
 
-**After installing:** Run \`/spell:help\` to see all available spells.
+          **After installing:** Run \`/spell:help\` to see all available spells.
 
-## Documentation
+          ## Documentation
 
-- **[README](https://github.com/${REPO}#readme)** — Full documentation and spell list
-- **New to Sam's Spells?** Run \`/spell:help\` for an overview, \`/spell:teach <spell>\` to learn any concept
-RELEASE_NOTES_DELIM_7f3a
+          - **[README](https://github.com/${REPO}#readme)** — Full documentation and spell list
+          - **New to Sam's Spells?** Run \`/spell:help\` for an overview, \`/spell:teach <spell>\` to learn any concept
+          RELEASE_DELIM_7f3a
 
-          gh release create "$TAG" \
-            --title "$TAG" \
+          gh release create "$VERSION_TAG" \
+            --title "$VERSION_TAG" \
             --notes-file /tmp/release-notes.md
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CHANGELOG_CONTENT: ${{ steps.changelog.outputs.changelog }}
+          VERSION_TAG: ${{ steps.version.outputs.tag }}
+          CHANGELOG_BODY: ${{ steps.changelog.outputs.changelog }}
+          REPO: ${{ github.repository }}
+          REPO_NAME: ${{ github.event.repository.name }}

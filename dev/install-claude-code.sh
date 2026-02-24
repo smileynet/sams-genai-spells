@@ -1,8 +1,10 @@
 #!/bin/bash
-# Install/update sams-spells plugin for Claude Code
+# Install/update sams-spells plugin for Claude Code (LOCAL)
 #
-# Uses the official Claude Code CLI to register the marketplace and install
-# the plugin. To update, re-run this script.
+# This creates a LOCAL installation. To update, re-run this script.
+# For remote installation (auto-updates via GitHub), use:
+#   /plugin marketplace add smileynet/sams-genai-spells
+#   /plugin install spell@sams-genai-spells
 
 set -e
 
@@ -66,7 +68,12 @@ for f in "$MARKETPLACE_DIR/spell/commands/"*.md; do
   printf "  /spell:%s\n" "$(basename "$f" .md)"
 done
 
-printf "\nInstallation complete! v%s\n" "$VERSION"
-printf "Start a new Claude Code session (/clear) for changes to take effect.\n"
-printf "\nTo update:\n"
-printf "  cd %s && ./dev/sync-commands.sh && ./dev/install-claude-code.sh\n" "$REPO_DIR"
+printf "\nInstallation complete! (LOCAL) v%s\n" "$VERSION"
+printf "IMPORTANT: Start a new Claude Code session (/clear) for changes to take effect.\n"
+printf "           Claude Code caches commands per version — new commands require version bump.\n"
+printf "\nTo update this local installation:\n"
+printf "  cd %s && git pull && ./dev/sync-commands.sh && ./dev/install-claude-code.sh\n" "$REPO_DIR"
+printf "\nFor remote installation (auto-updates):\n"
+printf "  /plugin uninstall spell\n"
+printf "  /plugin marketplace add smileynet/sams-genai-spells\n"
+printf "  /plugin install spell@sams-genai-spells\n"

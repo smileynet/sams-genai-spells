@@ -1,5 +1,7 @@
 # Changelog
 
+## [Unreleased]
+
 ## [0.5.1] - 2026-02-14
 
 ### Fixed
@@ -57,3 +59,11 @@ First release. Sam finally stopped re-typing the same prompting tricks and made 
 - Template sync pipeline (`dev/sync-commands.sh`)
 - Local Claude Code install script (`dev/install-claude-code.sh`)
 - Tutorial docs for all five concepts (`docs/tutorials/`)
+
+[Unreleased]: https://github.com/smileynet/sams-genai-spells/compare/v0.5.1...HEAD
+[0.5.1]: https://github.com/smileynet/sams-genai-spells/compare/v0.5.0...v0.5.1
+[0.5.0]: https://github.com/smileynet/sams-genai-spells/compare/v0.4.0...v0.5.0
+[0.4.0]: https://github.com/smileynet/sams-genai-spells/compare/v0.3.0...v0.4.0
+[0.3.0]: https://github.com/smileynet/sams-genai-spells/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/smileynet/sams-genai-spells/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/smileynet/sams-genai-spells/releases/tag/v0.1.0

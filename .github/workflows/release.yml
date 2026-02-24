@@ -1,0 +1,99 @@
+name: Create Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/claude-code/.claude-plugin/plugin.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get version from plugin.json
+        id: version
+        run: |
+          VERSION=$(jq -r '.version' plugins/claude-code/.claude-plugin/plugin.json)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "tag=v$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Check if release exists
+        id: check
+        run: |
+          if gh release view "v${{ steps.version.outputs.version }}" &>/dev/null; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract changelog
+        if: steps.check.outputs.exists == 'false'
+        id: changelog
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          # Extract section for this version from CHANGELOG.md
+          # Uses awk variable to avoid regex injection issues with version string
+          CHANGES=$(awk -v ver="$VERSION" 'BEGIN{pat="^## \\[" ver "\\] -"} $0 ~ pat {flag=1; next} /^## \[/{flag=0} flag' CHANGELOG.md)
+
+          if [ -z "$CHANGES" ]; then
+            CHANGES="See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for details."
+          fi
+
+          {
+            echo "changelog<<CHANGELOG_DELIM_7f3a"
+            echo "$CHANGES"
+            echo "CHANGELOG_DELIM_7f3a"
+          } >> $GITHUB_OUTPUT
+
+      - name: Create release
+        if: steps.check.outputs.exists == 'false'
+        run: |
+          TAG="${{ steps.version.outputs.tag }}"
+          REPO="${{ github.repository }}"
+          REPO_NAME="${{ github.event.repository.name }}"
+
+          cat > /tmp/release-notes.md <<RELEASE_NOTES_DELIM_7f3a
+## Sam's Spells ${TAG}
+
+${CHANGELOG_CONTENT}
+
+## Installation
+
+**From the Claude Code marketplace:**
+\`\`\`bash
+/install-plugin ${REPO}
+\`\`\`
+
+**Or clone locally:**
+\`\`\`bash
+git clone https://github.com/${REPO}.git
+cd ${REPO_NAME}
+./dev/install-claude-code.sh
+\`\`\`
+
+**After installing:** Run \`/spell:help\` to see all available spells.
+
+## Documentation
+
+- **[README](https://github.com/${REPO}#readme)** — Full documentation and spell list
+- **New to Sam's Spells?** Run \`/spell:help\` for an overview, \`/spell:teach <spell>\` to learn any concept
+RELEASE_NOTES_DELIM_7f3a
+
+          gh release create "$TAG" \
+            --title "$TAG" \
+            --notes-file /tmp/release-notes.md
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CHANGELOG_CONTENT: ${{ steps.changelog.outputs.changelog }}

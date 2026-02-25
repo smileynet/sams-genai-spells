@@ -45,37 +45,32 @@ CORE_COMMANDS = {
 
 
 def discover_claude_code_commands(repo_root: Path) -> set[str]:
-    """Discover commands from Claude Code plugin."""
-    commands = set()
+    """Discover commands from Claude Code plugin.
+
+    Unlike OpenCode (spell-*.md) and Kiro (spell-*.md), Claude Code commands
+    have no filename prefix. Filter against CORE_COMMANDS to avoid counting
+    non-command .md files (e.g. README.md).
+    """
     commands_dir = repo_root / "plugins" / "claude-code" / "commands"
-    if commands_dir.exists():
-        for cmd_file in commands_dir.glob("*.md"):
-            commands.add(cmd_file.stem)
-    return commands
+    if not commands_dir.exists():
+        return set()
+    return {f.stem for f in commands_dir.glob("*.md") if f.stem in CORE_COMMANDS}
 
 
 def discover_opencode_commands(repo_root: Path) -> set[str]:
     """Discover commands from OpenCode plugin."""
-    commands = set()
     commands_dir = repo_root / "plugins" / "opencode" / "commands"
-    if commands_dir.exists():
-        for cmd_file in commands_dir.glob("spell-*.md"):
-            # Strip "spell-" prefix to normalize
-            cmd_name = cmd_file.stem.replace("spell-", "")
-            commands.add(cmd_name)
-    return commands
+    if not commands_dir.exists():
+        return set()
+    return {f.stem.replace("spell-", "") for f in commands_dir.glob("spell-*.md")}
 
 
 def discover_kiro_commands(repo_root: Path) -> set[str]:
     """Discover commands from Kiro plugin."""
-    commands = set()
     prompts_dir = repo_root / "plugins" / "kiro" / "prompts"
-    if prompts_dir.exists():
-        for prompt_file in prompts_dir.glob("spell-*.md"):
-            # Strip "spell-" prefix to normalize
-            cmd_name = prompt_file.stem.replace("spell-", "")
-            commands.add(cmd_name)
-    return commands
+    if not prompts_dir.exists():
+        return set()
+    return {f.stem.replace("spell-", "") for f in prompts_dir.glob("spell-*.md")}
 
 
 def check_opencode_manifest(repo_root: Path, actual_commands: set[str]) -> ParityResult:
@@ -89,10 +84,10 @@ def check_opencode_manifest(repo_root: Path, actual_commands: set[str]) -> Parit
 
     try:
         data = json.loads(package_path.read_text())
-        manifest_commands = set()
-        for cmd in data.get("opencode", {}).get("commands", []):
-            # Strip "spell-" prefix to normalize
-            manifest_commands.add(cmd.replace("spell-", ""))
+        manifest_commands = {
+            cmd.replace("spell-", "")
+            for cmd in data.get("opencode", {}).get("commands", [])
+        }
 
         missing_from_manifest = actual_commands - manifest_commands
         extra_in_manifest = manifest_commands - actual_commands
@@ -133,15 +128,10 @@ def check_command_parity(
             result.errors.append(f"Kiro missing core command: {cmd}")
 
     # Check for unexpected commands (not in CORE_COMMANDS)
-    for cmd in claude_code:
-        if cmd not in CORE_COMMANDS:
-            result.info.append(f"Claude Code has additional command: {cmd}")
-    for cmd in opencode:
-        if cmd not in CORE_COMMANDS:
-            result.info.append(f"OpenCode has additional command: {cmd}")
-    for cmd in kiro:
-        if cmd not in CORE_COMMANDS:
-            result.info.append(f"Kiro has additional command: {cmd}")
+    platforms = {"Claude Code": claude_code, "OpenCode": opencode, "Kiro": kiro}
+    for platform_name, commands in platforms.items():
+        for cmd in commands - CORE_COMMANDS:
+            result.info.append(f"{platform_name} has additional command: {cmd}")
 
     result.info.append(f"Claude Code commands: {sorted(claude_code)}")
     result.info.append(f"OpenCode commands: {sorted(opencode)}")
@@ -188,8 +178,8 @@ def format_human_report(
 
         if result.info:
             lines.append("### Info")
-            for info in result.info:
-                lines.append(f"  - {info}")
+            for msg in result.info:
+                lines.append(f"  - {msg}")
             lines.append("")
 
     lines.append("## Summary")

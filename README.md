@@ -124,19 +124,29 @@ ANTIPATTERNS ⚠
 
 ### Claude Code
 
+**From GitHub (recommended):**
+
+Run these two commands inside Claude Code:
+
+```
+/plugin marketplace add smileynet/sams-genai-spells
+/plugin install spell@sams-genai-spells
+```
+
+Start a new session (`/clear`) and run `/spell:help` to verify.
+
+**Local install (for development):**
+
 ```bash
-# Clone the repo
 git clone https://github.com/smileynet/sams-genai-spells.git
 cd sams-genai-spells
-
-# Sync templates and install
 ./dev/sync-commands.sh
 ./dev/install-claude-code.sh
 ```
 
 Start a new Claude Code session and run `/spell:help` to see all commands.
 
-To update later:
+To update a local install:
 
 ```bash
 cd sams-genai-spells && git pull && ./dev/sync-commands.sh && ./dev/install-claude-code.sh

@@ -116,6 +116,42 @@ def extract_changelog_version(repo_root: Path) -> Optional[str]:
     return matches[0] if matches else None
 
 
+def check_marketplace(repo_root: Path) -> HealthResult:
+    """Check that .claude-plugin/marketplace.json exists and is valid."""
+    result = HealthResult()
+    marketplace_path = repo_root / ".claude-plugin" / "marketplace.json"
+
+    if not marketplace_path.exists():
+        result.errors.append("marketplace.json not found at .claude-plugin/marketplace.json")
+        return result
+
+    try:
+        data = json.loads(marketplace_path.read_text())
+    except json.JSONDecodeError as e:
+        result.errors.append(f"marketplace.json is not valid JSON: {e}")
+        return result
+
+    plugins = data.get("plugins")
+    if not isinstance(plugins, list) or not plugins:
+        result.errors.append("marketplace.json has no plugins entries")
+        return result
+
+    first_plugin = plugins[0]
+    if not isinstance(first_plugin, dict):
+        result.errors.append("marketplace.json plugins[0] is not an object")
+        return result
+
+    plugin_name = first_plugin.get("name")
+    if plugin_name != "spell":
+        result.errors.append(
+            f"marketplace.json plugins[0].name is '{plugin_name}', expected 'spell'"
+        )
+        return result
+
+    result.info.append(f"marketplace.json valid: plugins[0].name='{plugin_name}'")
+    return result
+
+
 def count_commands(repo_root: Path) -> dict[str, int]:
     """Count commands on each platform."""
     platform_dirs = {
@@ -239,6 +275,7 @@ def format_human_report(
     version_result: Optional[HealthResult],
     metadata_result: Optional[HealthResult],
     command_result: Optional[HealthResult],
+    marketplace_result: Optional[HealthResult] = None,
 ) -> str:
     """Format results as human-readable report."""
     lines = ["# Plugin Health Report", ""]
@@ -250,6 +287,7 @@ def format_human_report(
         ("Versions", version_result),
         ("Metadata", metadata_result),
         ("Commands", command_result),
+        ("Marketplace", marketplace_result),
     ]
 
     for section_name, result in sections:
@@ -295,12 +333,14 @@ def format_json_report(
     version_result: Optional[HealthResult],
     metadata_result: Optional[HealthResult],
     command_result: Optional[HealthResult],
+    marketplace_result: Optional[HealthResult] = None,
 ) -> str:
     """Format results as JSON."""
     report = {
         "versions": None,
         "metadata": None,
         "commands": None,
+        "marketplace": None,
         "summary": {
             "errors": 0,
             "warnings": 0,
@@ -312,6 +352,7 @@ def format_json_report(
         ("versions", version_result),
         ("metadata", metadata_result),
         ("commands", command_result),
+        ("marketplace", marketplace_result),
     ]
 
     for key, result in sections:
@@ -342,7 +383,7 @@ def main():
         help="Skip CHANGELOG version check"
     )
     parser.add_argument(
-        "--check", choices=["version", "metadata", "commands"],
+        "--check", choices=["version", "metadata", "commands", "marketplace"],
         help="Only check specific category"
     )
     parser.add_argument(
@@ -387,6 +428,7 @@ def main():
     version_result = None
     metadata_result = None
     command_result = None
+    marketplace_result = None
 
     if args.check is None or args.check == "version":
         version_result = check_version_parity(versions, args.skip_changelog)
@@ -397,15 +439,18 @@ def main():
     if args.check is None or args.check == "commands":
         command_result = check_command_counts(command_counts)
 
+    if args.check is None or args.check == "marketplace":
+        marketplace_result = check_marketplace(repo_root)
+
     # Format output
     if args.json:
-        print(format_json_report(version_result, metadata_result, command_result))
+        print(format_json_report(version_result, metadata_result, command_result, marketplace_result))
     else:
-        print(format_human_report(version_result, metadata_result, command_result))
+        print(format_human_report(version_result, metadata_result, command_result, marketplace_result))
 
     # Determine exit code
     total_errors = 0
-    for result in [version_result, metadata_result, command_result]:
+    for result in [version_result, metadata_result, command_result, marketplace_result]:
         if result:
             total_errors += len(result.errors)
 

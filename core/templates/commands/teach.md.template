@@ -141,8 +141,8 @@ context transfer at every shift change.
 Where you see it: SBAR in hospitals, watch turnover in the Navy,
 ATC sector handoffs, ADRs, PR descriptions, onboarding docs.
 The spell: Captures decisions, dead ends, current state, and next
-steps in a structured document before the session ends or work
-transfers — so the next person (or AI) starts with full context.
+steps in a structured document — and can resume from one, restoring
+context and proposing an action plan for the new session.
 
 For deeper dives: /@NAMESPACE@teach <spell-name>
 ```

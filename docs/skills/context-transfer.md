@@ -92,3 +92,39 @@ If any of these eight criteria aren't met, the handoff has a gap.
 - Missing dead-ends section (looks like nothing was tried)
 - Decisions without rationale ("Using PostgreSQL" — but why?)
 - Assumes reader context ("as we discussed" — discussed where?)
+
+## When to Write a Handoff
+
+### Proactive Timing
+
+Don't wait for the crisis point. Write the handoff:
+
+- **At ~70% context capacity** — when conversation is getting long but you can still reason clearly about the full session. At 100%, you're summarizing under pressure and losing detail.
+- **Before the session ends** — the obvious case. Context evaporates when the session closes.
+- **Before switching branches or tasks** — branch switches discard your mental model of the current work. Capture it first.
+- **Before handing work to another person or agent** — the handoff is the interface between two independent contexts.
+- **After a significant debugging session** — dead ends are freshest immediately after discovery. Even if work continues, capture them now. You won't remember the details later.
+
+The general principle: write the handoff when context is **richest**, not when it's **most urgent**. Urgency and richness are inversely correlated.
+
+## Consuming a Handoff
+
+Writing and consuming are symmetric operations. The completeness criteria apply in both directions — the consumer should verify each of the eight criteria is addressed in the handoff they're reading.
+
+### Verification Protocol
+
+Before acting on a consumed handoff, check:
+
+1. **Branch match** — is the current branch the one described in the handoff?
+2. **Commit recency** — have new commits landed since the handoff date?
+3. **File existence** — do the key files listed still exist at those paths?
+4. **State consistency** — does the described "current state" match what git shows?
+
+Any mismatch is a signal that the handoff may be partially stale. Flag discrepancies — don't silently resolve them.
+
+### Consumption Output
+
+The output of consuming a handoff should be an **action plan**, not a reformatted copy. Transform the handoff into:
+- Prioritized actions (in-progress first, then next steps, then open questions)
+- Constraints (dead ends as "do not attempt," gotchas as warnings)
+- Verification results (what matched, what didn't)

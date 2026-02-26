@@ -88,7 +88,7 @@ ANTIPATTERNS ⚠
 | **debug** | Bug that keeps coming back no matter what you try? Traces the causal chain to the root cause before suggesting any fix. |
 | **deep-dive** | New to a codebase with no docs and no one to ask? Systematically explores and maps the architecture, data flow, and key abstractions. |
 | **prior-art** | About to build something from scratch? Surveys what already exists — libraries, tools, frameworks — so you don't reinvent the wheel. |
-| **handoff** | Session ending with half-finished work? Captures decisions, dead ends, current state, and next steps so the next session (or developer) starts with full context. |
+| **handoff** | Session ending with half-finished work? Captures decisions, dead ends, current state, and next steps — or resumes from a previous handoff with verified context and a prioritized action plan. |
 
 ### Meta
 
@@ -118,6 +118,7 @@ ANTIPATTERNS ⚠
 | Evaluating which tool or framework to adopt | **prior-art** |
 | Ending a session and need to capture context | **handoff** |
 | Handing off work to a colleague or another AI session | **handoff** |
+| Starting a new session with a handoff file waiting | **handoff** resume |
 | "What does this spell even do?" | **teach** |
 
 ## Installation
@@ -184,6 +185,7 @@ Copy the `plugins/kiro/prompts/` directory to your Kiro project. Commands are pr
 /spell:deep-dive how does auth work?  # Trace how authentication is implemented
 /spell:prior-art markdown parsing     # Survey existing solutions before building
 /spell:handoff                        # Capture session context before ending
+/spell:handoff resume HANDOFF.md      # Resume from a handoff file
 /spell:teach diataxis                 # Learn the concept behind Diataxis
 ```
 

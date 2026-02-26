@@ -48,6 +48,7 @@ WORKFLOWS (produce artifacts)
 /@NAMESPACE@deep-dive <path or question>   Explore and map how code works
 /@NAMESPACE@prior-art <need>               Survey existing solutions before building
 /@NAMESPACE@handoff [task or context]      Write a structured handoff for the next session
+/@NAMESPACE@handoff resume [path]          Resume from a handoff — load context, plan actions
 
 META
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -129,7 +130,7 @@ Run /@NAMESPACE@help for overview.
 | `/@NAMESPACE@debug` | Workflow | Systematic root cause analysis — find the real bug before attempting fixes |
 | `/@NAMESPACE@deep-dive` | Workflow | Explore and map how a codebase or subsystem works — architecture, data flow, and key abstractions |
 | `/@NAMESPACE@prior-art` | Workflow | Survey existing solutions before building — libraries, tools, frameworks, and patterns |
-| `/@NAMESPACE@handoff` | Workflow | Write a structured handoff document — decisions, dead ends, state, and next steps for the next session |
+| `/@NAMESPACE@handoff` | Workflow | Write or resume from a structured handoff document — decisions, dead ends, state, and next steps |
 | `/@NAMESPACE@teach` | Meta | Learn the real-world concept behind any spell — where it comes from, where you see it, how the spell applies it |
 | `/@NAMESPACE@help` | Meta | Show this listing, or detailed help for a specific spell |
 

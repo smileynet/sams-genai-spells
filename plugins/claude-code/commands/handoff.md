@@ -1,15 +1,20 @@
 ---
-description: Write a structured handoff document for the next session or developer
+description: Write or resume from a structured handoff document
 allowed-tools: Bash, Read, Write, Glob, Grep, Task, AskUserQuestion
 ---
 
 ## Summary
 
-**Write a structured handoff document capturing session context before it evaporates.** Gathers decisions made, dead ends tried, current state, and next steps — everything the next session (or developer) needs to continue without losing ground.
+**Write a structured handoff document, or resume from one.** Two modes:
 
-**Arguments:** `$ARGUMENTS` (optional) - Task, feature, or context to focus the handoff on. If empty, auto-detects from git state and session context.
+- **Generate** (default): Capture decisions, dead ends, current state, and next steps — everything the next session (or developer) needs to continue without losing ground.
+- **Resume**: Consume a handoff file — verify its claims against current state, build a prioritized action plan, and delete the file by default.
 
-**Output:** Structured handoff document output directly to the conversation (Write is available if the user requests the output be saved to a file)
+**Arguments:** `$ARGUMENTS` (optional)
+- Empty or task/feature description → Generate mode
+- `resume [path] [--keep]` → Resume mode
+
+**Output:** Structured handoff document (generate) or action plan (resume)
 
 ---
 
@@ -18,7 +23,7 @@ allowed-tools: Bash, Read, Write, Glob, Grep, Task, AskUserQuestion
 Before proceeding, load the relevant skill documents for reference:
 
 - `docs/skills/context-transfer.md` — Shift handoff protocols (SBAR, watch turnover, ATC), context transfer in software, completeness criteria
-- `docs/skills/session-continuity.md` — Session continuity for AI agents, what to capture, git state as evidence, anti-patterns
+- `docs/skills/session-continuity.md` — Session continuity for AI agents, what to capture, git state as evidence, anti-patterns, consuming a handoff (resume), context failure modes
 
 Use **Read** to load these files from the repository root.
 
@@ -26,9 +31,23 @@ Use **Read** to load these files from the repository root.
 
 ## Process
 
-### Step 1: Determine Scope
+### Step 1: Determine Mode
 
-**If `$ARGUMENTS` is provided:**
+Parse `$ARGUMENTS` to determine which mode to operate in:
+
+| Input | Mode |
+|-------|------|
+| `resume` or `resume <path>` or `resume --keep` | **Resume** |
+| Any other value | **Generate** |
+| Empty | **Generate** (auto-detect scope) |
+
+---
+
+## Mode A: Generate
+
+### A1: Determine Scope
+
+**If `$ARGUMENTS` is provided (and not `resume`):**
 - Use the arguments to focus the handoff scope (specific feature, task, or area of work)
 
 **If `$ARGUMENTS` is empty:**
@@ -57,7 +76,7 @@ Branch:  <current branch>
 Status:  <in progress | blocked | ready for review | paused>
 ```
 
-### Step 2: Gather Context
+### A2: Gather Context
 
 Collect information from multiple sources:
 
@@ -84,7 +103,7 @@ Use **Read** to check for relevant context in:
 - Any design docs or ADRs in the project
 - PR descriptions if working on a branch
 
-### Step 3: Assess Completeness
+### A3: Assess Completeness
 
 Before writing the handoff, verify you have material for each required section:
 
@@ -107,7 +126,7 @@ Use **AskUserQuestion** to fill them:
 
 If a section is genuinely empty (e.g., no dead ends were encountered), note "None identified" — don't omit the section. A missing section looks like an oversight; an empty one shows you checked.
 
-### Step 4: Write the Handoff
+### A4: Write the Handoff
 
 Output the structured handoff document:
 
@@ -171,7 +190,7 @@ OPEN QUESTIONS
    ...
 ```
 
-### Step 5: Offer Next Actions
+### A5: Offer Next Actions
 
 Use **AskUserQuestion** to ask what to do with the handoff:
 - **Save to file** — Write to a file (suggest `HANDOFF.md` or a path based on the project's conventions)
@@ -181,7 +200,154 @@ Use **AskUserQuestion** to ask what to do with the handoff:
 
 ---
 
+## Mode B: Resume
+
+### B1: Locate the Handoff File
+
+Parse `$ARGUMENTS` for a path after `resume`:
+- If a path is provided (e.g., `resume HANDOFF.md` or `resume docs/handoff-auth.md`), use it directly.
+- If no path is provided, auto-detect:
+
+Use **Glob** to search in order:
+1. `HANDOFF.md` in the repository root
+2. `*.handoff.md` in the repository root
+3. `HANDOFF.md` in common locations: `docs/`, `.github/`, the current working directory
+
+If multiple candidates are found, use **AskUserQuestion** to ask which one to consume.
+
+If no handoff file is found, inform the user and exit.
+
+Check for the `--keep` flag in `$ARGUMENTS`. If present, the file will be preserved after consumption.
+
+### B2: Consume the Handoff
+
+Use **Read** to load the handoff file.
+
+Parse all sections. The handoff may use the standard eight-section format or a non-standard layout. Extract what's available:
+- Status / summary
+- Decisions (with rationale)
+- Dead ends (with reasons)
+- Current state (completed / in progress / not started)
+- Next steps
+- Key files
+- Gotchas
+- Open questions
+
+Note any sections that are missing — a gap in the handoff is information the resume should flag.
+
+### B3: Verify Against Current State
+
+Use **Bash** to run:
+- `git branch --show-current` — does it match the handoff's branch?
+- `git log --oneline -10` — any commits since the handoff date?
+- `git status` — uncommitted changes not mentioned in the handoff?
+- `git diff --stat` — current modifications
+
+Check for discrepancies (context clash prevention):
+- **Branch mismatch** — handoff describes a different branch than the current one
+- **New commits** — work has happened since the handoff was written
+- **Uncommitted changes** — modifications exist that the handoff doesn't mention
+- **Missing files** — key files listed in the handoff no longer exist at those paths
+
+Use **Glob** to verify that key files listed in the handoff still exist.
+
+Flag every discrepancy explicitly. Do not silently resolve conflicts between the handoff and current state.
+
+### B4: Build the Action Plan
+
+Prioritize the consumed content:
+
+**P1 — In-progress work:** Items the handoff marks as "in progress." These are the immediate priority — continue what was already started.
+
+**P2 — Next steps:** The outgoing session's recommended actions, in the order given.
+
+**P3 — Open questions:** Unresolved decisions that may need to be addressed before proceeding.
+
+Layer the remaining sections as constraints:
+- **Dead ends** → "do not attempt" list. Never re-try a documented dead end unless the constraint that caused it has changed.
+- **Gotchas** → warnings to keep in mind during execution.
+- **Decisions** → context to preserve. Do not reverse without understanding the original rationale and confirming the constraint no longer applies.
+
+Use **Glob** and **Read** to verify that key files still exist and haven't changed in ways that invalidate the action plan.
+
+### B5: Output the Resume
+
+Output the structured resume:
+
+```
+RESUMING: <SUBJECT>
+══════════════════════════════════════════════════════════════
+
+STATUS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Summary:   <one-sentence description of the work being resumed>
+Branch:    <current branch> <✓ matches handoff | ⚠ differs from handoff>
+Handoff:   <handoff date> → today (<N days/hours ago>)
+New commits since handoff: <count, or "none">
+
+CONTEXT LOADED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- <N> decisions loaded
+- <N> dead ends loaded (DO NOT REVISIT)
+- <N> key files verified (<M> still exist, <K> missing)
+- <N> gotchas noted
+- <N> open questions pending
+
+ACTION PLAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+P1 — Continue in-progress:
+1. [item with file path and current status]
+
+P2 — Next steps:
+1. [item with file path and context]
+2. [item]
+
+P3 — Resolve open questions:
+1. [question — who/what can answer it]
+
+DEAD ENDS — DO NOT REVISIT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Tried: [approach] — Abandoned because: [reason]
+   ...
+
+ACTIVE CONSTRAINTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Gotchas:
+- [constraint or trap]
+
+Decisions in effect:
+- [decision] — Reason: [rationale]
+
+⚠ DISCREPANCIES (if any)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- [what the handoff claimed vs. what current state shows]
+
+Source: <path> | Status: <consumed and deleted | kept (--keep)>
+```
+
+### B6: Delete or Keep
+
+**Default behavior:** Delete the handoff file after consumption.
+
+Use **Bash** to check if the file is tracked by git:
+- If tracked: `git rm <path>` (stages the deletion)
+- If untracked: delete the file directly
+
+If `--keep` was specified in `$ARGUMENTS`, skip deletion and note "kept (--keep)" in the output.
+
+### B7: Offer to Begin
+
+Use **AskUserQuestion** to ask how to proceed:
+- **Start Priority 1** — Begin working on the top in-progress item immediately
+- **Review the plan** — Walk through the action plan in detail before starting
+- **Load key files** — Read the key files into context before deciding
+- **Resolve open questions first** — Address open questions before starting work
+
+---
+
 ## Guidelines
+
+### Generate (Mode A)
 
 - **Dead ends are the highest-value section.** Without them, the next session will waste time re-trying approaches that already failed. Document the approach, why it was tried, and specifically why it was abandoned.
 - **Decisions need rationale, not just the choice.** "Used PostgreSQL" is useless. "Used PostgreSQL over SQLite — Reason: need concurrent writes from multiple workers, SQLite locks on write" lets the next person understand whether the decision still applies.
@@ -190,6 +356,17 @@ Use **AskUserQuestion** to ask what to do with the handoff:
 - **Git state is evidence, not decoration.** The branch name, commit history, diff, and stash list are objective facts about the state of the work. Use them to ground the handoff in reality.
 - **Don't omit empty sections.** A section marked "None identified" proves you checked. A missing section looks like you forgot.
 - **Prefer specificity over brevity.** A longer handoff that prevents two hours of rework is worth more than a terse one that looks clean. Include file paths, function names, error messages, and URLs.
+
+### Resume (Mode B)
+
+- **Resume consumes context, not just text.** Understand the handoff's intent and build an action plan — don't just reformat the content.
+- **Dead ends are sacred on resume.** Never suggest a documented dead end as an approach. If the handoff says "Tried X, abandoned because Y," X is off the table unless Y has demonstrably changed.
+- **Verify before assuming.** The handoff may be stale. Check every claim against current git state before building on it.
+- **Delete is the right default.** Stale handoffs are worse than no handoff — they look authoritative while being out of date. Consume and delete unless the user explicitly requests `--keep`.
+- **Watch for context poisoning.** If a handoff claim doesn't match git evidence, flag the discrepancy. Don't silently trust the handoff over observable reality.
+
+### Both Modes
+
 - **Credit:** This spell applies shift handoff protocols from high-reliability fields — SBAR (medicine, 1990s), watch turnover (military), and ATC handoffs (aviation) — adapted for software engineering and AI session continuity.
 
 ---
@@ -201,4 +378,7 @@ Use **AskUserQuestion** to ask what to do with the handoff:
 /spell:handoff authentication refactor
 /spell:handoff the billing integration work on feature/stripe-v3
 /spell:handoff — session ending, capture everything
+/spell:handoff resume
+/spell:handoff resume HANDOFF.md
+/spell:handoff resume docs/auth-handoff.md --keep
 ```

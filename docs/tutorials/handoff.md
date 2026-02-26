@@ -57,6 +57,16 @@ The `/spell:handoff` command applies shift handoff protocols by:
 
 The spell is entirely introspective — it uses git state and session context rather than web research. Arguments are optional by design: the AI already has the session context, and git state provides evidence. This makes it the fastest spell to invoke — just run it at the end of a session.
 
+## Resuming from a Handoff
+
+Writing a handoff captures context. Resuming from one restores and activates it.
+
+The `/spell:handoff resume` command completes the context transfer loop. It reads a handoff file, verifies its claims against the current git state, builds a prioritized action plan, and deletes the file by default. The deletion is deliberate — a consumed handoff has served its purpose, and leaving it around creates context rot risk. Stale handoff files are worse than no handoff at all, because they look authoritative while being out of date.
+
+The verify-before-act step is what separates a good resume from a naive one. A handoff is a snapshot from the past. The branch may have changed, new commits may have landed, files may have moved. The resume checks for these discrepancies before trusting the handoff's claims — the same way an air traffic controller accepting a handoff confirms the aircraft's position and altitude rather than trusting the previous controller's last report blindly.
+
+Use `--keep` when the handoff is still needed — pausing work rather than completing a transfer, or when multiple sessions will consume the same handoff.
+
 ## Background
 
 The concept of structured handoffs originates in high-reliability organizations — fields where the cost of communication failure is measured in lives, not just lost time.

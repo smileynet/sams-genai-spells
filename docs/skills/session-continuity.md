@@ -123,3 +123,80 @@ When one AI session hands off to another:
 3. **No inferring from absence** — if a section is missing, the receiving session can't distinguish "checked and found nothing" from "forgot to check."
 4. **Context window is precious** — the handoff document will consume part of the receiving session's context window. Be comprehensive but not verbose. Every sentence should earn its space.
 5. **Structure aids parsing** — consistent section headers, bullet formats, and labeling help the receiving AI quickly locate specific information rather than reading the entire document linearly.
+
+## Consuming a Handoff (Resume)
+
+Writing a handoff is only half the lifecycle. The receiving session must **consume** the handoff actively — not just read it, but verify it, prioritize it, and act on it.
+
+### Verify Before Trusting
+
+A handoff is a snapshot from the past. Before trusting its claims:
+- **Check the branch** — is the current branch the one the handoff describes? If not, the context may not apply.
+- **Check recent commits** — have new commits landed since the handoff was written? If so, some claims about "current state" may be stale.
+- **Check file existence** — do the key files listed still exist at those paths? Files move, get renamed, get deleted.
+- **Check uncommitted changes** — are there changes the handoff doesn't mention? Someone (or another session) may have worked on this since.
+
+Any discrepancy between the handoff and reality is a **context clash** — flag it explicitly rather than silently resolving it.
+
+### Parse and Prioritize
+
+Don't consume a handoff linearly. Prioritize by actionability:
+1. **In-progress work** (P1) — continue what's already started
+2. **Next steps** (P2) — the outgoing session's recommended actions
+3. **Open questions** (P3) — unresolved decisions that may block progress
+
+Layer the remaining sections as constraints:
+- **Dead ends** → "do not attempt" list
+- **Gotchas** → warnings to keep in mind
+- **Decisions** → context to preserve (not reverse without cause)
+
+### Dead Ends Are Sacred
+
+Dead ends documented in a handoff should never be re-attempted without new evidence that the constraint has changed. "Tried X, failed because Y" means X is off the table unless Y is no longer true. This is the single highest-value property of a good handoff.
+
+### Decisions Carry Forward
+
+Decisions in the handoff carry forward unless explicitly reconsidered. Reversing a documented decision requires:
+1. Understanding the original rationale
+2. Identifying what has changed to invalidate it
+3. Stating the new rationale explicitly
+
+Silent reversal — changing a decision without acknowledging or understanding the original constraint — is one of the most common failure modes in AI-to-AI handoffs.
+
+### Delete After Consumption
+
+By default, a consumed handoff file should be deleted. Stale handoff files left in the repository become **context rot** — a future session may read them, trust outdated claims, and make decisions based on obsolete state. If the handoff is still needed (e.g., work is being paused, not completed), keep it but be aware of the risk.
+
+## Context Failure Modes
+
+These failure modes are specific to context transfer across session boundaries. They're especially dangerous in AI-to-AI handoffs because the receiving agent has no independent memory to cross-reference against.
+
+### Context Poisoning
+- **Pattern:** An error or hallucination in the handoff (wrong file path, incorrect claim about behavior, misremembered decision) gets loaded into the new session and treated as ground truth.
+- **Why it's dangerous:** The receiving agent has no reason to doubt structured input. One bad claim can cascade through an entire action plan.
+- **Mitigation:** Verify handoff claims against git state and actual file contents. Trust evidence over assertions.
+
+### Context Rot
+- **Pattern:** An old handoff file sits in the repo. A future session reads it and acts on stale information — file paths that moved, decisions that were reversed, state that changed.
+- **Why it's dangerous:** The handoff *looks* authoritative. Nothing in the document signals that it's out of date.
+- **Mitigation:** Consume and delete handoffs by default. If keeping one, always compare the handoff date against recent commit history before trusting it.
+
+### Context Clash
+- **Pattern:** The handoff says one thing, but the current state says another. Branch name doesn't match, files have changed, new commits exist that contradict the handoff's claims.
+- **Why it's dangerous:** The receiving agent may silently resolve the contradiction — trusting the handoff over reality or vice versa — without flagging it.
+- **Mitigation:** Explicitly flag every discrepancy between the handoff and current git state. Don't silently resolve conflicts.
+
+### Assumption Cascading
+- **Pattern:** One unverified claim from the handoff ("the auth module uses JWT") gets used as the basis for an action plan. If the claim is wrong, every downstream action built on it is also wrong.
+- **Why it's dangerous:** The error compounds. By the time it surfaces, multiple files may have been modified based on a false premise.
+- **Mitigation:** Ground every handoff claim in evidence before building on it. Check the actual code, not just the handoff's description of it.
+
+### Stale Consumption
+- **Pattern:** A handoff written days or weeks ago is consumed without checking whether it's still current. Work may have continued, branches may have merged, decisions may have changed.
+- **Why it's dangerous:** The handoff represents a point in time. The longer the gap, the more likely it's diverged from reality.
+- **Mitigation:** Compare the handoff date to the most recent commits. If significant work has happened since, treat the handoff as partial context, not complete truth.
+
+### Decision Reversal Without Audit
+- **Pattern:** The new session overrides a decision from the handoff without understanding why it was made. "Using PostgreSQL" gets changed to "using SQLite" because it seems simpler — without realizing the decision was made for concurrent write support.
+- **Why it's dangerous:** The original constraint still exists. The reversal reintroduces the problem the decision was designed to solve.
+- **Mitigation:** Never reverse a documented decision without first reading its rationale and confirming the constraint no longer applies.

@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+### Added
+- **prior-art** spell — survey existing solutions before building (libraries, tools, frameworks, and patterns)
+- **handoff** spell — write structured handoff documents for session and developer transitions
+- Handoff resume mode — consume, verify, and act on existing handoff files
+- Remote install instructions in README for one-liner setup
+
+### Fixed
+- Help command box-drawing alignment across all platforms
+- Missing debug and deep-dive rows in Kiro README
+
 ## [0.5.1] - 2026-02-14
 
 ### Fixed

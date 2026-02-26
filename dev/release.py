@@ -221,8 +221,8 @@ def update_json_file(file_path: Path, updates: dict[str, str], dry_run: bool = F
             obj[keys[-1]] = value
 
         if not dry_run:
-            # Preserve formatting with 2-space indent
-            file_path.write_text(json.dumps(data, indent=2) + "\n")
+            # Preserve formatting with 2-space indent and literal Unicode
+            file_path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
 
         return True
     except (json.JSONDecodeError, KeyError, FileNotFoundError) as e:

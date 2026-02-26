@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-02-25
 ### Added
 - **prior-art** spell — survey existing solutions before building (libraries, tools, frameworks, and patterns)
 - **handoff** spell — write structured handoff documents for session and developer transitions
@@ -70,7 +71,8 @@ First release. Sam finally stopped re-typing the same prompting tricks and made 
 - Local Claude Code install script (`dev/install-claude-code.sh`)
 - Tutorial docs for all five concepts (`docs/tutorials/`)
 
-[Unreleased]: https://github.com/smileynet/sams-genai-spells/compare/v0.5.1...HEAD
+[Unreleased]: https://github.com/smileynet/sams-genai-spells/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/smileynet/sams-genai-spells/compare/v0.5.1...v0.6.0
 [0.5.1]: https://github.com/smileynet/sams-genai-spells/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/smileynet/sams-genai-spells/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/smileynet/sams-genai-spells/compare/v0.3.0...v0.4.0

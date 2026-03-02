@@ -240,6 +240,10 @@ Instead: Use `git add -p` to stage related hunks. One logical change per commit.
 - **BP-1** — Automated commits (changelogs, version bumps) often use past tense by convention
 - **BP-2** — Monorepo scope prefixes (`packages/auth: `) may push past 50 chars; 72 is the hard limit
 
+## Cross-References
+
+None — standalone guide.
+
 ## Sources
 
 - [How to Write a Git Commit Message](https://cbea.ms/git-commit/) — Chris Beams' canonical guide
@@ -282,6 +286,10 @@ Instead: Extract when a component has more than one reason to change — that's 
 ## When to Break These Rules
 
 - **BP-1.1** — One level of prop passing is fine; composition overhead isn't worth it for parent→child
+
+## Cross-References
+
+- [Testing best practices (BP-3)](./bpap-testing.md) — component testability patterns
 
 ## Sources
 

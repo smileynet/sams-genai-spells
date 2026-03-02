@@ -66,7 +66,7 @@ The output adapts to the topic. A narrow topic like "Git commit messages" gets a
 
 Every item gets a stable ID (BP-1.2, AP-3.1) that other bpap documents can reference. This matters once you have a library of bpap files — you can say "see BP-2.1 in bpap-error-handling.md" instead of vaguely gesturing at "the error handling doc." The IDs use max two levels of hierarchy, matching what every mature standard (OWASP, NIST, ISO) has converged on.
 
-The output is standard markdown — no unicode box-drawing characters, no custom formatting. This isn't an aesthetic choice: AI models reproduce standard markdown with near-100% fidelity, while rare unicode characters get tokenized into fragments the model barely saw in training. Twenty real outputs proved this — zero followed the old unicode format, all produced clean markdown.
+The output is standard markdown — no Unicode box-drawing characters, no custom formatting. This isn't an aesthetic choice: AI models reproduce standard markdown with near-100% fidelity, while rare Unicode characters get tokenized into fragments the model barely saw in training. Twenty real outputs proved this — zero followed the old Unicode format, all produced clean markdown.
 
 ## Cross-Referencing
 

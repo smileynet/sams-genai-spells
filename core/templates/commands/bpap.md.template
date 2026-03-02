@@ -100,7 +100,7 @@ Fix any issues before presenting the output.
 
 ## Output Format
 
-Use standard markdown only. Do not use unicode box-drawing characters (═, ━, ┌, ─, etc.). Do not add explanatory text outside the structured sections. Do not use headers or sections not specified in this format.
+Use standard markdown only. Do not use Unicode box-drawing characters (═, ━, ┌, ─, etc.). Do not add explanatory text outside the structured sections. Only use headers and sections specified in this format.
 
 ### Flat structure (narrow topics)
 

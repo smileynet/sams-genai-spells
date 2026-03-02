@@ -7,17 +7,19 @@ allowed-tools: Bash, Read, Write, Glob, Grep, Task, AskUserQuestion, WebFetch, W
 
 ## Summary
 
-**Research a topic and produce a structured best-practices and antipatterns document.** Combines web research, codebase analysis, and structured output into a practical guide of do's, don'ts, and named antipatterns with trap analysis.
+**Research a topic and produce a structured best-practices and antipatterns document.** Combines web research, codebase analysis, and structured output into a practical guide with numbered best practices (BP) and named antipatterns (AP).
 
 **Arguments:** `$ARGUMENTS` (required) - Topic for best-practices and antipatterns research
 
-**Output:** Structured best-practices and antipatterns document output directly to the conversation (Write is available if the user requests the output be saved to a file)
+**Output:** Structured best-practices and antipatterns document output directly to the conversation. If the user wants a file, suggest saving to `docs/bpap-<topic-slug>.md`.
 
 ---
 
 ## Process
 
-### Step 1: Parse Arguments
+### Phase 1: Extract
+
+**Step 1: Parse Arguments**
 
 **If `$ARGUMENTS` is empty:**
 @IF_CLAUDECODE@
@@ -30,9 +32,9 @@ Ask the user: "What topic should I research best practices and antipatterns for?
 
 **Otherwise:**
 - Extract the topic from `$ARGUMENTS`
-- Continue to Step 2
+- Determine scope: **narrow** (1-3 concerns) or **broad** (3+ distinct subtopics)
 
-### Step 2: Research the Topic
+**Step 2: Research**
 
 Gather best practices and antipatterns from multiple sources:
 
@@ -41,7 +43,6 @@ Gather best practices and antipatterns from multiple sources:
 Use **WebSearch** to find current best practices and antipatterns. Search for:
 - `"<topic> best practices" site:official-docs OR recent`
 - `"<topic> common mistakes to avoid"`
-- `"<topic> style guide" OR "coding standards"`
 - `"<topic> antipatterns" OR "common pitfalls"`
 - `"<topic> code smells" OR "named antipatterns"`
 
@@ -55,75 +56,237 @@ Search the web for current best practices, antipatterns, common mistakes, and st
 - Search for existing usage patterns of the topic in the current codebase
 - Note what the codebase already does well vs. where it deviates from best practices
 
+**Scan for existing bpap files:**
+- Search `docs/` for `bpap-*.md` or `*bpap*.md` files — note related topics for the Cross-References section
+
 **Graceful degradation:** If web search is unavailable, rely on built-in knowledge and codebase analysis. Note at the top that results are based on training knowledge, not live research.
 
-### Step 3: Organize into Structure
+### Phase 2: Compose
 
-Organize findings into the following structure:
+**Step 3: Choose Structure**
 
+Pick one of two structures based on scope:
+
+- **Flat** (narrow topic, 1-3 concerns): Single `## Best Practices` section followed by `## Antipatterns`. Items numbered `BP-1`, `BP-2`... and `AP-1`, `AP-2`...
+- **Sectioned** (broad topic, 3+ subtopics): Multiple `## N. Section Title` headings, each with `### Best Practices` and `### Antipatterns` subsections. Items numbered `BP-N.1`, `BP-N.2`... and `AP-N.1`, `AP-N.2`...
+
+**Decision rule:** If the topic has 3+ distinct subtopics that each warrant their own best practices, use sectioned. Otherwise use flat.
+
+**Step 4: Compose the Document**
+
+Apply the output format below. For each item:
+- **Best Practice:** Imperative title + what to do and why + rationale with evidence or source
+- **Antipattern:** Named pattern + what it looks like + why it's tempting + consequences + what to do instead
+
+**Decision rule for antipatterns vs. best practices:** An antipattern has a name, a temptation, and consequences. If you can't fill all three fields, fold it into a best practice as a "don't" with rationale.
+
+### Phase 3: Verify
+
+**Step 5: Self-Check**
+
+Before presenting the document, verify against this quality rubric:
+
+- [ ] Every BP has a rationale with evidence or source
+- [ ] Every AP has a name + trap analysis ("why it's tempting")
+- [ ] BPs and APs don't duplicate each other
+- [ ] Cross-refs use BP-X.Y/AP-X.Y IDs when referencing other bpap docs
+- [ ] "When to Break These Rules" has 2-3 specific items (not blanket disclaimers)
+- [ ] Sources section exists (even if "Based on training knowledge")
+- [ ] Advice is specific, not truistic ("use `const`" not "use appropriate declarations")
+
+Fix any issues before presenting the output.
+
+---
+
+## Output Format
+
+Use standard markdown only. Do not use unicode box-drawing characters (═, ━, ┌, ─, etc.). Do not add explanatory text outside the structured sections. Do not use headers or sections not specified in this format.
+
+### Flat structure (narrow topics)
+
+```markdown
+# Best Practices and Antipatterns: <Topic>
+
+<1-2 sentence scope statement. Note whether based on web research or training knowledge, and date.>
+
+---
+
+## Best Practices
+
+**BP-1: <Imperative title>.** <What to do and why.>
+
+**Rationale:** <Evidence or reasoning.>
+
+**BP-2: <Imperative title>.** <What to do and why.>
+
+**Rationale:** <Evidence or reasoning.>
+
+## Antipatterns
+
+**AP-1: <Named pattern>.** <What it looks like.>
+
+Why it's tempting: <What makes this seem reasonable.>
+Consequences: <What goes wrong.>
+Instead: <The better approach.>
+
+---
+
+## When to Break These Rules
+
+- **BP-1** — <Specific condition when breaking it is correct>
+- **AP-1** — <Specific context where this pattern is actually appropriate>
+
+## Cross-References
+
+- [Related doc title (BP-X.Y)](./bpap-related.md) — <relevance>
+
+## Sources
+
+- [Title](URL) — <what this source contributed>
 ```
-BEST PRACTICES & ANTIPATTERNS: <TOPIC>
-══════════════════════════════════════════════════════════════
 
-Source: <web research | built-in knowledge | codebase analysis>
+### Sectioned structure (broad topics)
 
-DO ✓
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. <Practice> — <Why>
-   Example: <code or description>
+```markdown
+# Best Practices and Antipatterns: <Topic>
 
-2. <Practice> — <Why>
-   Example: <code or description>
+<1-2 sentence scope statement. Note whether based on web research or training knowledge, and date.>
 
-[...up to 7-10 items]
+---
 
-DON'T ✗
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. <Bad practice> — <Why it's bad>
-   Instead: <What to do>
+## 1. <Section Title>
 
-2. <Bad practice> — <Why it's bad>
-   Instead: <What to do>
+<2-3 sentence context paragraph framing the core tension.>
 
-[...up to 3-5 items]
+### Best Practices
 
-ANTIPATTERNS ⚠
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. <NAME> — <One-line description>
-   Why it's tempting: <What makes this seem reasonable>
-   Consequences: <What goes wrong>
-   Instead: <The refactored solution>
+**BP-1.1: <Imperative title>.** <What to do and why.>
 
-2. <NAME> — <One-line description>
-   Why it's tempting: <What makes this seem reasonable>
-   Consequences: <What goes wrong>
-   Instead: <The refactored solution>
+**Rationale:** <Evidence or reasoning.>
 
-[...up to 3-5 named antipatterns]
+### Antipatterns
 
-CONTEXT MATTERS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-<2-3 items that are situational — "do this IF <condition>">
+**AP-1.1: <Named pattern>.** <What it looks like.>
 
-SOURCES
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-- <Source 1 with URL if from web research>
-- <Source 2>
-- <Source 3>
+Why it's tempting: <What makes this seem reasonable.>
+Consequences: <What goes wrong.>
+Instead: <The better approach.>
+
+## 2. <Section Title>
+
+...same pattern...
+
+---
+
+## When to Break These Rules
+
+- **BP-1.1** — <Specific condition when breaking it is correct>
+- **AP-2.1** — <Specific context where this pattern is actually appropriate>
+
+## Cross-References
+
+- [Related doc title (BP-X.Y)](./bpap-related.md) — <relevance>
+
+## Sources
+
+- [Title](URL) — <what this source contributed>
 ```
 
-### Step 4: Output the Document
+---
 
-Output the structured document directly in the conversation.
+## Examples
 
-**Quality checks before output:**
-- Each "do" and "don't" has a clear rationale (the "why")
-- Examples are concrete, not abstract
-- Advice is current (not deprecated patterns)
-- "Context matters" section prevents cargo-culting
-- Each antipattern has a recognizable name
-- "Why it's tempting" explains the trap
-- DON'T items and ANTIPATTERNS don't duplicate each other
+### Flat example: Git Commit Messages
+
+```markdown
+# Best Practices and Antipatterns: Git Commit Messages
+
+Conventions for writing useful commit messages. Based on web research and established style guides (March 2025).
+
+---
+
+## Best Practices
+
+**BP-1: Use imperative mood in the subject line.** Write "Add feature" not "Added feature" or "Adds feature." The imperative matches git's own generated messages (`Merge branch`, `Revert`).
+
+**Rationale:** The Git project itself uses imperative mood. A commit message completes the sentence "If applied, this commit will _____."
+
+**BP-2: Limit the subject line to 50 characters.** Short subjects display fully in `git log --oneline`, GitHub PR lists, and notification emails without truncation.
+
+**Rationale:** GitHub truncates at 72. The 50-char guideline keeps subjects scannable in dense logs.
+
+**BP-3: Separate subject from body with a blank line.** Tools like `git log --oneline`, `git shortlog`, and email-based review depend on this separation.
+
+**Rationale:** Git's own documentation specifies this format. Omitting the blank line causes the body to merge into the subject in many tools.
+
+## Antipatterns
+
+**AP-1: The Novel.** Commit messages that tell the full story of how you arrived at the change, including dead ends and debugging steps.
+
+Why it's tempting: You just spent two hours debugging and want to document the journey.
+Consequences: Future readers need the *what* and *why*, not the narrative. Long messages get skipped.
+Instead: Put the conclusion in the commit message. Put the journey in a PR description or ADR.
+
+**AP-2: The Shotgun Commit.** One commit touching 15 files across 4 unrelated concerns.
+
+Why it's tempting: You're in flow and don't want to stop to commit.
+Consequences: Can't revert one change without reverting all. Blame becomes useless. Review is painful.
+Instead: Use `git add -p` to stage related hunks. One logical change per commit.
+
+---
+
+## When to Break These Rules
+
+- **BP-1** — Automated commits (changelogs, version bumps) often use past tense by convention
+- **BP-2** — Monorepo scope prefixes (`packages/auth: `) may push past 50 chars; 72 is the hard limit
+
+## Sources
+
+- [How to Write a Git Commit Message](https://cbea.ms/git-commit/) — Chris Beams' canonical guide
+- [Git documentation](https://git-scm.com/docs/git-commit) — Official format specification
+```
+
+### Sectioned example (abbreviated): React Component Architecture
+
+```markdown
+# Best Practices and Antipatterns: React Component Architecture
+
+Patterns for structuring React components in production applications. Based on web research and React documentation (March 2025).
+
+---
+
+## 1. Component Composition
+
+Choosing how to split UI into components and how they communicate.
+
+### Best Practices
+
+**BP-1.1: Prefer composition over prop drilling.** Pass components as children or render props instead of threading data through intermediate layers.
+
+**Rationale:** React docs recommend composition as the primary pattern. Prop drilling couples intermediate components to data they don't use.
+
+### Antipatterns
+
+**AP-1.1: The Mega-Component.** A single component file exceeding 500 lines handling layout, data fetching, state management, and rendering.
+
+Why it's tempting: Extracting components feels like premature abstraction when you're building fast.
+Consequences: Impossible to test individual concerns. Every change risks regressions across unrelated behavior.
+Instead: Extract when a component has more than one reason to change — that's the single responsibility signal.
+
+## 2. State Management
+
+...
+
+---
+
+## When to Break These Rules
+
+- **BP-1.1** — One level of prop passing is fine; composition overhead isn't worth it for parent→child
+
+## Sources
+
+- [React documentation: Composition vs Inheritance](https://react.dev/learn/passing-data-deeply-with-context) — Official guidance
+```
 
 ---
 
@@ -132,18 +295,18 @@ Output the structured document directly in the conversation.
 - **Be specific:** "Use `const` for values that don't change" is better than "use appropriate variable declarations"
 - **Credit sources:** Link to official docs, style guides, or authoritative blog posts when available
 - **Avoid truisms:** Skip obvious advice like "write clean code" or "use version control"
-- **Acknowledge trade-offs:** Best practices have contexts where they don't apply — say so
+- **Acknowledge trade-offs:** Best practices have contexts where they don't apply — say so in "When to Break These Rules"
 - **Prioritize:** Put the highest-impact practices first
 - **Name antipatterns:** Use established names when they exist (God Object, Golden Hammer). Coin descriptive names for domain-specific ones.
-- **Explain the trap:** "Why it's tempting" is what distinguishes an antipattern from a don't.
+- **Explain the trap:** "Why it's tempting" is what distinguishes an antipattern from a simple don't. If you can't explain the temptation, it's a don't — fold it into a best practice.
 
 ---
 
 ## Example Usage
 
 ```
-/@NAMESPACE@bpap TypeScript error handling
-/@NAMESPACE@bpap React component testing
 /@NAMESPACE@bpap Git commit messages
+/@NAMESPACE@bpap React component testing
 /@NAMESPACE@bpap REST API design
+/@NAMESPACE@bpap TypeScript error handling
 ```

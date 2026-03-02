@@ -12,12 +12,12 @@ AI makes the gap more visible. Ask an AI to generate best practices for your cod
 
 A best-practices and antipatterns document does four things:
 
-1. **Tells you what to do** — with specific, actionable advice (not "write clean code")
-2. **Tells you what NOT to do** — with explanations of why the bad practice is harmful
-3. **Names the traps** — antipatterns that look reasonable until they blow up, with analysis of why people fall into them
-4. **Acknowledges context** — because "best practice" often means "best for most situations, but check your situation"
+1. **Tells you what to do** — numbered best practices with specific, actionable advice and rationale (not "write clean code")
+2. **Names the traps** — antipatterns that look reasonable until they blow up, with analysis of why people fall into them
+3. **Says when to break the rules** — because "best practice" means "best for most situations," and specific exceptions beat blanket disclaimers
+4. **Links related guides** — cross-references to other bpap documents by stable BP/AP IDs, so your knowledge base connects instead of siloing
 
-The structure matters as much as the content. A wall of text doesn't work. The do/don't/antipattern format is scannable — you can find what you need in seconds, not minutes.
+The structure matters as much as the content. A wall of text doesn't work. The BP/AP format is scannable — you can find what you need in seconds, not minutes.
 
 ## Why It Works
 
@@ -44,6 +44,8 @@ An **antipattern** is a named, recognizable pattern that *looks reasonable* but 
 
 Antipatterns have names because they recur. The names make knowledge transferable — saying "that's a Golden Hammer" in a code review is faster and more precise than explaining the whole dynamic from scratch. The trap analysis ("why it's tempting") is what distinguishes an antipattern from a don't: it acknowledges that smart people make this mistake for understandable reasons, and explains what makes the seemingly-reasonable choice go wrong.
 
+The decision rule is mechanical: an antipattern has a **name**, a **temptation**, and **consequences**. If you can fill all three, it's an antipattern. If you can't — if there's no seductive rationale, just a thing you shouldn't do — fold it into a best practice as a "don't" with rationale. The old template had a separate DON'T section, but in practice the distinction collapsed. Twenty real outputs later, the lesson is clear: two categories (BP and AP) are enough.
+
 ## In Practice
 
 **The OWASP Top 10.** The Open Web Application Security Project maintains a [ranked list](https://owasp.org/www-project-top-ten/) of the ten most critical web security risks — and it's structured as a best-practices document. Each entry names the vulnerability (injection, broken authentication, etc.), explains why it's dangerous with real-world impact data, and provides specific prevention steps. "Do: use parameterized queries. Don't: concatenate user input into SQL strings." The format is so effective that it's become an industry standard — security audits reference it, compliance frameworks require it, and developers actually read it because they can scan for what's relevant to their code.
@@ -54,14 +56,34 @@ Antipatterns have names because they recur. The names make knowledge transferabl
 
 ## The Command
 
-The `/spell:bpap <topic>` command applies this concept by:
+The `/spell:bpap <topic>` command applies this concept in three phases:
 
-1. Researching the topic via web search (with graceful fallback to built-in knowledge)
-2. Scanning the codebase for existing patterns
-3. Organizing findings into do's, don'ts, named antipatterns with trap analysis, and context-dependent advice
-4. Citing sources so you can verify the advice
+1. **Extract** — Research the topic via web search (with graceful fallback to built-in knowledge), scan the codebase for existing patterns, and look for related bpap files to cross-reference
+2. **Compose** — Choose a structure based on topic scope (flat for narrow topics, sectioned for broad ones), apply BP-X.Y/AP-X.Y numbering, and write the document in standard markdown
+3. **Verify** — Self-check the output against a quality rubric before presenting it: does every BP have rationale? Does every AP have trap analysis? Are there specific "when to break" items instead of blanket disclaimers?
 
-The output is a reference document in the conversation — structured enough to be useful, not so heavy that nobody reads it. The antipatterns section adds depth: not just "don't do this" but "here's why smart people keep doing this, and here's what happens when they do."
+The output adapts to the topic. A narrow topic like "Git commit messages" gets a **flat** structure — one Best Practices section, one Antipatterns section, numbered `BP-1`, `AP-1`. A broad topic like "React application architecture" gets a **sectioned** structure — multiple sections with their own BPs and APs, numbered `BP-1.1`, `AP-2.3`. The decision rule is simple: if the topic has 3+ distinct subtopics, use sectioned.
+
+Every item gets a stable ID (BP-1.2, AP-3.1) that other bpap documents can reference. This matters once you have a library of bpap files — you can say "see BP-2.1 in bpap-error-handling.md" instead of vaguely gesturing at "the error handling doc." The IDs use max two levels of hierarchy, matching what every mature standard (OWASP, NIST, ISO) has converged on.
+
+The output is standard markdown — no unicode box-drawing characters, no custom formatting. This isn't an aesthetic choice: AI models reproduce standard markdown with near-100% fidelity, while rare unicode characters get tokenized into fragments the model barely saw in training. Twenty real outputs proved this — zero followed the old unicode format, all produced clean markdown.
+
+## Cross-Referencing
+
+Once you have more than one bpap document, they start referencing each other. "Don't inline SVG without optimization" in a logo design guide points at "Use SVGO before committing" in an SVG guide. The BP-X.Y numbering system gives these references stable anchors.
+
+Cross-references go in a dedicated section at the end of each document, before Sources:
+
+```markdown
+## Cross-References
+
+- [SVG Best Practices (BP-3)](./bpap-svg.md) — optimization pipeline for inline SVGs
+- [Visual QA (AP-2.1)](./bpap-visual-qa.md) — screenshot testing catches logo regressions
+```
+
+The IDs serve as stable anchors because they're tied to section position, not heading text. Auto-generated heading slugs are fragile across renderers — GitHub, VS Code, and Obsidian all generate different slugs for the same heading. `BP-2.3` is unambiguous everywhere.
+
+When retrofitting existing bpap documents, add the Cross-References section at the end (before Sources), and only reference documents that genuinely relate. A cross-reference should help the reader find complementary advice, not serve as an exhaustive index of every bpap file in the repo.
 
 ## Background
 

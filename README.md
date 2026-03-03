@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Platforms](https://img.shields.io/badge/platforms-Claude%20Code%20%7C%20OpenCode%20%7C%20Kiro-blue.svg)](#installation)
-[![Spells](https://img.shields.io/badge/spells-11-purple.svg)](#the-spells)
+[![Spells](https://img.shields.io/badge/spells-12-purple.svg)](#the-spells)
 
 > Real-world concepts from programming, education, and design — packaged as AI commands.
 
@@ -89,6 +89,7 @@ ANTIPATTERNS ⚠
 | **deep-dive** | New to a codebase with no docs and no one to ask? Systematically explores and maps the architecture, data flow, and key abstractions. |
 | **prior-art** | About to build something from scratch? Surveys what already exists — libraries, tools, frameworks — so you don't reinvent the wheel. |
 | **blind-spot** | Planning a migration and worried about what you're missing? Probes from five angles to surface hidden assumptions, failure modes, and perspectives nobody thought to consider. |
+| **zoom-out** | Spent weeks on a direction and not sure it's the right one? Challenges a plan from five strategic lenses — reframing, inversion, opportunity cost, second-order effects, and upstream analysis — then forces a recommendation. |
 | **handoff** | Session ending with half-finished work? Captures decisions, dead ends, current state, and next steps — or resumes from a previous handoff with verified context and a prioritized action plan. |
 
 ### Meta
@@ -119,6 +120,8 @@ ANTIPATTERNS ⚠
 | Evaluating which tool or framework to adopt | **prior-art** |
 | Planning a migration and worried about what you're not seeing | **blind-spot** |
 | Making a big decision and want to stress-test your assumptions | **blind-spot** |
+| Questioning whether you're solving the right problem | **zoom-out** |
+| Invested heavily in a direction and want a strategic gut-check | **zoom-out** |
 | Ending a session and need to capture context | **handoff** |
 | Handing off work to a colleague or another AI session | **handoff** |
 | Starting a new session with a handoff file waiting | **handoff** resume |
@@ -188,6 +191,7 @@ Copy the `plugins/kiro/prompts/` directory to your Kiro project. Commands are pr
 /spell:deep-dive how does auth work?  # Trace how authentication is implemented
 /spell:prior-art markdown parsing     # Survey existing solutions before building
 /spell:blind-spot migrating to DynamoDB  # Find what you don't know you don't know
+/spell:zoom-out rewrite as microservices # Are we solving the right problem?
 /spell:handoff                        # Capture session context before ending
 /spell:handoff resume HANDOFF.md      # Resume from a handoff file
 /spell:teach diataxis                 # Learn the concept behind Diataxis
@@ -206,8 +210,9 @@ These spells aren't magic. They're packaging. Each one applies an established co
 - **[Systematic Debugging & Root Cause Analysis](docs/tutorials/debug.md)** -- Bug keeps coming back after you "fix" it? Hypothesis-driven debugging traces the causal chain to the real problem.
 - **[Codebase Exploration & Program Comprehension](docs/tutorials/deep-dive.md)** -- New to a codebase with 200 files and no docs? Top-down reading strategy produces an architecture map, not just familiarity.
 - **[Prior Art Search & Technology Evaluation](docs/tutorials/prior-art.md)** -- About to build something from scratch? Systematic survey of what already exists so you adopt, adapt, or build with full knowledge of the landscape.
-- **[Shift Handoff Protocols & Context Transfer](docs/tutorials/handoff.md)** -- Session ending with decisions still in your head? Structured handoff protocols from medicine, aviation, and military — adapted for software and AI sessions.
 - **[Blind Spot Detection & Pre-Mortem Analysis](docs/tutorials/blind-spot.md)** -- Planning a migration and worried about what you can't see? Pre-mortem, assumption surfacing, and cross-domain transfer probe systematically for what you don't know you don't know.
+- **[Problem Framing & Strategic Thinking](docs/tutorials/zoom-out.md)** -- Spent weeks on a direction that might be wrong? Problem reframing, inversion, and second-order thinking challenge whether you're solving the right problem.
+- **[Shift Handoff Protocols & Context Transfer](docs/tutorials/handoff.md)** -- Session ending with decisions still in your head? Structured handoff protocols from medicine, aviation, and military — adapted for software and AI sessions.
 
 Or just run `/spell:teach <spell-name>` and let the AI explain it.
 
@@ -241,6 +246,15 @@ I didn't invent any of these techniques. Credit where it's due:
 - **Black Swan theory**: Nassim Nicholas Taleb (2007)
 - **Cynefin framework**: Dave Snowden (2007)
 - **Structure-mapping theory**: Dedre Gentner (1983)
+- **Problem framing**: Donald Schon, *The Reflective Practitioner* (1983)
+- **Frame innovation**: Kees Dorst (2011/2015)
+- **Problem reframing**: Thomas Wedell-Wedellsborg, HBR (2017)
+- **Inversion as thinking tool**: Charlie Munger, via Carl Jacobi
+- **Second-order thinking**: Howard Marks, *The Most Important Thing* (2011)
+- **Ecolacy**: Garrett Hardin, *Filters Against Folly* (1985)
+- **Upstream thinking**: Dan Heath, *Upstream* (2020)
+- **Systems leverage points**: Donella Meadows (1997/2008)
+- **Problem dissolution**: Russell Ackoff (1974)
 
 I just made commands to use them.
 

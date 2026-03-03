@@ -143,6 +143,20 @@ The spell: Applies five probing techniques to systematically surface
 hidden assumptions, failure modes, missing perspectives, and
 cross-domain insights — with honest coverage assessment.
 
+ZOOM OUT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The concept: The most dangerous failure isn't solving a problem
+wrong — it's solving the wrong problem. Problem framing, inversion,
+and second-order thinking are established techniques for stepping
+back from a direction and checking whether it points the right way.
+Where you see it: Strategy consulting, pre-mortem exercises,
+opportunity cost analysis, systems thinking, investment analysis,
+upstream problem-solving.
+The spell: Challenges a plan or direction from five strategic lenses
+— reframing, inversion, opportunity cost, second-order effects, and
+upstream analysis — and forces a recommendation: stay course, adjust,
+pivot, or stop.
+
 HANDOFF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 The concept: When context lives only in someone's head, transitions
@@ -176,6 +190,7 @@ Use **WebSearch** to find authoritative sources about the concept:
 - For "prior-art": search for "prior art search methodology", "technology evaluation framework", "build vs buy decision", "ThoughtWorks Technology Radar"
 - For "handoff": search for "SBAR handoff protocol", "shift handoff communication", "Joint Commission handoff requirements", "context transfer software engineering"
 - For "blind-spot": search for "project premortem Gary Klein", "strategic assumption surfacing SAST", "Johari Window blind spots", "Nemeth authentic dissent devil's advocate", "cross-domain analogical reasoning Gentner"
+- For "zoom-out": search for "problem framing Schon reflective practitioner", "Wedell-Wedellsborg reframing HBR", "inversion Charlie Munger thinking", "second-order thinking Howard Marks", "upstream thinking Dan Heath", "Meadows leverage points systems"
 
 Use **WebFetch** on the most authoritative 1-2 results.
 
@@ -241,8 +256,9 @@ SOURCES
 | debug | 5 Whys + fault tree analysis + scientific method | Reliability engineering | Ohno 1950s; Zeller 2009; Bell Labs 1961 |
 | deep-dive | Program comprehension + architecture recovery | Software engineering | Rajlich, LaToza, Ko; Murphy 1995; Parnas 1972 |
 | prior-art | Prior art search + technology evaluation + literature review | Patent law / software engineering | US Patent Act 1790; ThoughtWorks Technology Radar 2010; CHAOSS 2017 |
-| handoff | Shift handoff protocols + structured context transfer | Medicine / aviation / military | SBAR (Kaiser Permanente 1990s); Joint Commission 2006; ICAO ATC protocols |
 | blind-spot | Pre-mortem + assumption surfacing + cross-domain transfer + negative space analysis | Risk management / cognitive science / strategic foresight | Klein 1998; Mason & Mitroff 1981; Luft & Ingham 1955; Nemeth 2001; Gentner 1983 |
+| zoom-out | Problem framing + inversion + second-order thinking + upstream analysis | Strategic thinking / decision science | Schon 1983; Dorst 2011; Munger; Marks 2011; Heath 2020; Meadows 2008 |
+| handoff | Shift handoff protocols + structured context transfer | Medicine / aviation / military | SBAR (Kaiser Permanente 1990s); Joint Commission 2006; ICAO ATC protocols |
 
 ---
 

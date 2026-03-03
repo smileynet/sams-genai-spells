@@ -46,6 +46,7 @@ WORKFLOWS (produce artifacts)
 /spell:deep-dive <path or question>   Explore and map how code works
 /spell:prior-art <need>               Survey existing solutions before building
 /spell:blind-spot <topic>            Find what you don't know you don't know
+/spell:zoom-out <plan or direction>  Step back — are we solving the right problem?
 /spell:handoff [task or context]      Write a structured handoff for the next session
 /spell:handoff resume [path]          Resume from a handoff — load context, plan actions
 
@@ -103,7 +104,7 @@ Spell not found: <argument>
 
 Available spells:
   Modifiers: idiomatic, socratic
-  Workflows: bpap, progressive-disclosure, diataxis, task-graph, debug, deep-dive, prior-art, blind-spot, handoff
+  Workflows: bpap, progressive-disclosure, diataxis, task-graph, debug, deep-dive, prior-art, blind-spot, zoom-out, handoff
   Meta: teach, help
 
 Run /spell:help for overview.
@@ -125,6 +126,7 @@ Run /spell:help for overview.
 | `/spell:deep-dive` | Workflow | Explore and map how a codebase or subsystem works — architecture, data flow, and key abstractions |
 | `/spell:prior-art` | Workflow | Survey existing solutions before building — libraries, tools, frameworks, and patterns |
 | `/spell:blind-spot` | Workflow | Find what you don't know you don't know — surface hidden assumptions, failure modes, and missing perspectives |
+| `/spell:zoom-out` | Workflow | Step back — are we solving the right problem? Challenge a plan or direction from five strategic lenses |
 | `/spell:handoff` | Workflow | Write or resume from a structured handoff document — decisions, dead ends, state, and next steps |
 | `/spell:teach` | Meta | Learn the real-world concept behind any spell — where it comes from, where you see it, how the spell applies it |
 | `/spell:help` | Meta | Show this listing, or detailed help for a specific spell |

@@ -47,6 +47,7 @@ WORKFLOWS (produce artifacts)
 /@NAMESPACE@debug <symptom>                 Systematic root cause analysis
 /@NAMESPACE@deep-dive <path or question>   Explore and map how code works
 /@NAMESPACE@prior-art <need>               Survey existing solutions before building
+/@NAMESPACE@blind-spot <topic>            Find what you don't know you don't know
 /@NAMESPACE@handoff [task or context]      Write a structured handoff for the next session
 /@NAMESPACE@handoff resume [path]          Resume from a handoff — load context, plan actions
 
@@ -109,7 +110,7 @@ Spell not found: <argument>
 
 Available spells:
   Modifiers: idiomatic, socratic
-  Workflows: bpap, progressive-disclosure, diataxis, task-graph, debug, deep-dive, prior-art, handoff
+  Workflows: bpap, progressive-disclosure, diataxis, task-graph, debug, deep-dive, prior-art, blind-spot, handoff
   Meta: teach, help
 
 Run /@NAMESPACE@help for overview.
@@ -130,6 +131,7 @@ Run /@NAMESPACE@help for overview.
 | `/@NAMESPACE@debug` | Workflow | Systematic root cause analysis — find the real bug before attempting fixes |
 | `/@NAMESPACE@deep-dive` | Workflow | Explore and map how a codebase or subsystem works — architecture, data flow, and key abstractions |
 | `/@NAMESPACE@prior-art` | Workflow | Survey existing solutions before building — libraries, tools, frameworks, and patterns |
+| `/@NAMESPACE@blind-spot` | Workflow | Find what you don't know you don't know — surface hidden assumptions, failure modes, and missing perspectives |
 | `/@NAMESPACE@handoff` | Workflow | Write or resume from a structured handoff document — decisions, dead ends, state, and next steps |
 | `/@NAMESPACE@teach` | Meta | Learn the real-world concept behind any spell — where it comes from, where you see it, how the spell applies it |
 | `/@NAMESPACE@help` | Meta | Show this listing, or detailed help for a specific spell |

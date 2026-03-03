@@ -125,6 +125,19 @@ technology radar assessments, build-vs-buy decisions, ADRs.
 The spell: Surveys existing solutions with structured evaluation
 criteria, compares them fairly, and recommends adopt, adapt, or build.
 
+BLIND SPOT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The concept: The most dangerous gaps in any plan are the ones nobody
+thinks to look for. Pre-mortem analysis, assumption surfacing, and
+cross-domain transfer are established techniques for probing beyond
+the boundaries of what you currently know.
+Where you see it: CIA Red Cell analyses, project pre-mortems, patent
+prior art challenges, intelligence community red teaming, Johari
+Window exercises, government foresight units.
+The spell: Applies five probing techniques to systematically surface
+hidden assumptions, failure modes, missing perspectives, and
+cross-domain insights — with honest coverage assessment.
+
 HANDOFF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 The concept: When context lives only in someone's head, transitions
@@ -210,6 +223,7 @@ SOURCES
 | deep-dive | Program comprehension + architecture recovery | Software engineering | Rajlich, LaToza, Ko; Murphy 1995; Parnas 1972 |
 | prior-art | Prior art search + technology evaluation + literature review | Patent law / software engineering | US Patent Act 1790; ThoughtWorks Technology Radar 2010; CHAOSS 2017 |
 | handoff | Shift handoff protocols + structured context transfer | Medicine / aviation / military | SBAR (Kaiser Permanente 1990s); Joint Commission 2006; ICAO ATC protocols |
+| blind-spot | Pre-mortem + assumption surfacing + cross-domain transfer + negative space analysis | Risk management / cognitive science / strategic foresight | Klein 1998; Mason & Mitroff 1981; Luft & Ingham 1955; Nemeth 2001; Gentner 1983 |
 
 ---
 

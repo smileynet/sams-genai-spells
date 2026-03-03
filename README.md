@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Platforms](https://img.shields.io/badge/platforms-Claude%20Code%20%7C%20OpenCode%20%7C%20Kiro-blue.svg)](#installation)
-[![Spells](https://img.shields.io/badge/spells-10-purple.svg)](#the-spells)
+[![Spells](https://img.shields.io/badge/spells-11-purple.svg)](#the-spells)
 
 > Real-world concepts from programming, education, and design — packaged as AI commands.
 
@@ -88,6 +88,7 @@ ANTIPATTERNS ⚠
 | **debug** | Bug that keeps coming back no matter what you try? Traces the causal chain to the root cause before suggesting any fix. |
 | **deep-dive** | New to a codebase with no docs and no one to ask? Systematically explores and maps the architecture, data flow, and key abstractions. |
 | **prior-art** | About to build something from scratch? Surveys what already exists — libraries, tools, frameworks — so you don't reinvent the wheel. |
+| **blind-spot** | Planning a migration and worried about what you're missing? Probes from five angles to surface hidden assumptions, failure modes, and perspectives nobody thought to consider. |
 | **handoff** | Session ending with half-finished work? Captures decisions, dead ends, current state, and next steps — or resumes from a previous handoff with verified context and a prioritized action plan. |
 
 ### Meta
@@ -116,6 +117,8 @@ ANTIPATTERNS ⚠
 | Exploring an unfamiliar module before making changes | **deep-dive** |
 | About to build something — not sure if a library already does it | **prior-art** |
 | Evaluating which tool or framework to adopt | **prior-art** |
+| Planning a migration and worried about what you're not seeing | **blind-spot** |
+| Making a big decision and want to stress-test your assumptions | **blind-spot** |
 | Ending a session and need to capture context | **handoff** |
 | Handing off work to a colleague or another AI session | **handoff** |
 | Starting a new session with a handoff file waiting | **handoff** resume |
@@ -184,6 +187,7 @@ Copy the `plugins/kiro/prompts/` directory to your Kiro project. Commands are pr
 /spell:deep-dive src/api/             # Explore and map the API module
 /spell:deep-dive how does auth work?  # Trace how authentication is implemented
 /spell:prior-art markdown parsing     # Survey existing solutions before building
+/spell:blind-spot migrating to DynamoDB  # Find what you don't know you don't know
 /spell:handoff                        # Capture session context before ending
 /spell:handoff resume HANDOFF.md      # Resume from a handoff file
 /spell:teach diataxis                 # Learn the concept behind Diataxis
@@ -203,6 +207,7 @@ These spells aren't magic. They're packaging. Each one applies an established co
 - **[Codebase Exploration & Program Comprehension](docs/tutorials/deep-dive.md)** -- New to a codebase with 200 files and no docs? Top-down reading strategy produces an architecture map, not just familiarity.
 - **[Prior Art Search & Technology Evaluation](docs/tutorials/prior-art.md)** -- About to build something from scratch? Systematic survey of what already exists so you adopt, adapt, or build with full knowledge of the landscape.
 - **[Shift Handoff Protocols & Context Transfer](docs/tutorials/handoff.md)** -- Session ending with decisions still in your head? Structured handoff protocols from medicine, aviation, and military — adapted for software and AI sessions.
+- **[Blind Spot Detection & Pre-Mortem Analysis](docs/tutorials/blind-spot.md)** -- Planning a migration and worried about what you can't see? Pre-mortem, assumption surfacing, and cross-domain transfer probe systematically for what you don't know you don't know.
 
 Or just run `/spell:teach <spell-name>` and let the AI explain it.
 
@@ -229,6 +234,13 @@ I didn't invent any of these techniques. Credit where it's due:
 - **Systematic review**: Cochrane Collaboration (1993), PRISMA guidelines
 - **Technology Radar**: ThoughtWorks (2010)
 - **OSS health metrics**: CHAOSS / Linux Foundation (2017)
+- **Pre-mortem analysis**: Gary Klein, *Sources of Power* (1998)
+- **Strategic assumption surfacing (SAST)**: Richard Mason & Ian Mitroff (1981)
+- **Johari Window**: Joseph Luft & Harrington Ingham (1955)
+- **Authentic dissent research**: Charlan Nemeth (2001)
+- **Black Swan theory**: Nassim Nicholas Taleb (2007)
+- **Cynefin framework**: Dave Snowden (2007)
+- **Structure-mapping theory**: Dedre Gentner (1983)
 
 I just made commands to use them.
 

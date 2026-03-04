@@ -8,7 +8,7 @@ description: Generate or audit documentation using the Diataxis four-quadrant fr
 
 **Arguments:** `$ARGUMENTS` (required) - Topic, docs path, or "audit"
 
-**Output:** Diataxis-structured documentation (files or audit report)
+**Output:** Diataxis-structured documentation output directly to the conversation, organized by quadrant (Write is available if the user requests the output be saved to files)
 
 ---
 
@@ -98,9 +98,11 @@ Same as Audit Step A1-A2, but also extract the content.
 **Step B2: Plan the restructuring**
 Show the restructuring plan to the user and ask for confirmation.
 
-**Step B3: Generate restructured files**
+**Step B3: Generate restructured content**
 
-Create the following directory structure:
+Output the restructured content to the conversation, organized by quadrant. For each quadrant, output the content under a clear heading (e.g., `## Tutorials`, `## How-to Guides`, `## Reference`, `## Explanation`). Include an index section that links to all four quadrants with descriptions.
+
+**Suggested file structure (for when the user wants to save):**
 ```
 docs/<topic>/
 ├── tutorials/
@@ -114,9 +116,9 @@ docs/<topic>/
 └── index.md
 ```
 
-The `index.md` links to all four quadrants with descriptions.
+**Step B4: Output summary**
 
-**Step B4: Output summary** (same format as Generate mode)
+Use the same format as Generate mode (Step C4). After the summary, offer to save the content to files using the suggested directory structure above.
 
 ---
 
@@ -138,7 +140,7 @@ Show the plan to the user and ask for confirmation before generating.
 
 **Step C3: Generate the documentation**
 
-Write each quadrant following its specific rules:
+Output each quadrant's content to the conversation, under a clear heading per quadrant. Follow each quadrant's specific rules:
 
 **Tutorials:**
 - Step-by-step, numbered instructions
@@ -170,7 +172,7 @@ Write each quadrant following its specific rules:
 DIATAXIS DOCUMENTATION: <TOPIC>
 ══════════════════════════════════════════════════════════════
 
-Created <N> files in docs/<topic>/
+Generated <N> quadrants
 
 QUADRANT COVERAGE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -185,15 +187,22 @@ QUADRANT COVERAGE
   │            │ ✓ <count>   │ ✓ <count>   │
   └────────────┴─────────────┴─────────────┘
 
-FILES
+CONTENT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-index.md                           — Entry point with quadrant links
-tutorials/<name>.md                — <description>
-how-to/<name>.md                   — <description>
-reference/<name>.md                — <description>
-explanation/<name>.md              — <description>
+Index                              — Entry point with quadrant links
+Tutorials: <name>                  — <description>
+How-to: <name>                     — <description>
+Reference: <name>                  — <description>
+Explanation: <name>                — <description>
 
-Start here: docs/<topic>/index.md
+SAVE TO FILES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+To save this documentation, request file output. Suggested structure:
+  docs/<topic>/index.md
+  docs/<topic>/tutorials/<name>.md
+  docs/<topic>/how-to/<name>.md
+  docs/<topic>/reference/<name>.md
+  docs/<topic>/explanation/<name>.md
 ```
 
 ---

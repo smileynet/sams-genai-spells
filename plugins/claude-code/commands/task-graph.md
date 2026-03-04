@@ -1,6 +1,6 @@
 ---
 description: Map task dependencies or diagram a workflow using DAGs and critical path analysis
-allowed-tools: Bash, Read, Write, Glob, Grep, Task, AskUserQuestion, WebFetch, WebSearch
+allowed-tools: Bash, Read, Glob, Grep, Task, AskUserQuestion, WebFetch, WebSearch
 ---
 
 ## Summary
@@ -9,7 +9,7 @@ allowed-tools: Bash, Read, Write, Glob, Grep, Task, AskUserQuestion, WebFetch, W
 
 **Arguments:** `$ARGUMENTS` (required) - Task list, process description, or file path
 
-**Output:** Mermaid diagram + structured text analysis (to conversation, not files)
+**Output:** Mermaid diagram + structured text analysis output directly to the conversation
 
 ---
 

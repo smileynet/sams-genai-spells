@@ -4,7 +4,7 @@
 
 **Arguments:** `$ARGUMENTS` (required) - Task list, process description, or file path
 
-**Output:** Mermaid diagram + structured text analysis (to conversation, not files)
+**Output:** Mermaid diagram + structured text analysis output directly to the conversation
 
 ---
 

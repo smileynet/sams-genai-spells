@@ -8,13 +8,13 @@ allowed-tools: Bash, Read, Write, Glob, Grep, Task, AskUserQuestion
 **Write a structured handoff document, or resume from one.** Two modes:
 
 - **Generate** (default): Capture decisions, dead ends, current state, and next steps — everything the next session (or developer) needs to continue without losing ground.
-- **Resume**: Consume a handoff file — verify its claims against current state, build a prioritized action plan, and delete the file by default.
+- **Resume**: Consume a handoff file — verify its claims against current state, build a prioritized action plan, and offer to clean up the file.
 
 **Arguments:** `$ARGUMENTS` (optional)
 - Empty or task/feature description → Generate mode
 - `resume [path] [--keep]` → Resume mode
 
-**Output:** Structured handoff document (generate) or action plan (resume)
+**Output:** Structured handoff document or action plan output directly to the conversation (Write is available if the user requests the output be saved to a file)
 
 ---
 
@@ -217,7 +217,7 @@ If multiple candidates are found, use **AskUserQuestion** to ask which one to co
 
 If no handoff file is found, inform the user and exit.
 
-Check for the `--keep` flag in `$ARGUMENTS`. If present, the file will be preserved after consumption.
+Check for the `--keep` flag in `$ARGUMENTS`. If present, skip offering deletion in the final step.
 
 ### B2: Consume the Handoff
 
@@ -322,26 +322,19 @@ Decisions in effect:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 - [what the handoff claimed vs. what current state shows]
 
-Source: <path> | Status: <consumed and deleted | kept (--keep)>
+Source: <path> | Status: consumed
 ```
 
-### B6: Delete or Keep
-
-**Default behavior:** Delete the handoff file after consumption.
-
-Use **Bash** to check if the file is tracked by git:
-- If tracked: `git rm <path>` (stages the deletion)
-- If untracked: delete the file directly
-
-If `--keep` was specified in `$ARGUMENTS`, skip deletion and note "kept (--keep)" in the output.
-
-### B7: Offer to Begin
+### B6: Offer to Begin
 
 Use **AskUserQuestion** to ask how to proceed:
 - **Start Priority 1** — Begin working on the top in-progress item immediately
 - **Review the plan** — Walk through the action plan in detail before starting
 - **Load key files** — Read the key files into context before deciding
 - **Resolve open questions first** — Address open questions before starting work
+- **Delete the handoff file** — Remove the consumed handoff file (recommended — stale handoffs cause confusion)
+
+If `--keep` was specified in `$ARGUMENTS`, omit the "Delete the handoff file" option.
 
 ---
 
@@ -362,7 +355,7 @@ Use **AskUserQuestion** to ask how to proceed:
 - **Resume consumes context, not just text.** Understand the handoff's intent and build an action plan — don't just reformat the content.
 - **Dead ends are sacred on resume.** Never suggest a documented dead end as an approach. If the handoff says "Tried X, abandoned because Y," X is off the table unless Y has demonstrably changed.
 - **Verify before assuming.** The handoff may be stale. Check every claim against current git state before building on it.
-- **Delete is the right default.** Stale handoffs are worse than no handoff — they look authoritative while being out of date. Consume and delete unless the user explicitly requests `--keep`.
+- **Recommend deletion, don't force it.** Stale handoffs are worse than no handoff — they look authoritative while being out of date. Offer deletion as a recommended option, but let the user decide.
 - **Watch for context poisoning.** If a handoff claim doesn't match git evidence, flag the discrepancy. Don't silently trust the handoff over observable reality.
 
 ### Both Modes

@@ -1,6 +1,6 @@
 ---
 description: Systematic root cause analysis — trace symptoms to their actual cause before attempting fixes
-allowed-tools: Bash, Read, Write, Glob, Grep, Task, AskUserQuestion, WebFetch, WebSearch
+allowed-tools: Bash, Read, Glob, Grep, Task, AskUserQuestion, WebFetch, WebSearch
 ---
 
 ## Summary
@@ -9,7 +9,7 @@ allowed-tools: Bash, Read, Write, Glob, Grep, Task, AskUserQuestion, WebFetch, W
 
 **Arguments:** `$ARGUMENTS` (required) - Error message, symptom description, stack trace, file path, or bug description
 
-**Output:** Structured diagnosis report with root cause, causal chain, category, and fix recommendation
+**Output:** Structured diagnosis report with root cause, causal chain, category, and fix recommendation output directly to the conversation
 
 ---
 

@@ -8,7 +8,7 @@ description: Systematic root cause analysis — trace symptoms to their actual c
 
 **Arguments:** `$ARGUMENTS` (required) - Error message, symptom description, stack trace, file path, or bug description
 
-**Output:** Structured diagnosis report with root cause, causal chain, category, and fix recommendation
+**Output:** Structured diagnosis report with root cause, causal chain, category, and fix recommendation output directly to the conversation
 
 ---
 

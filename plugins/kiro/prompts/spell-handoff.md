@@ -3,13 +3,13 @@
 **Write a structured handoff document, or resume from one.** Two modes:
 
 - **Generate** (default): Capture decisions, dead ends, current state, and next steps — everything the next session (or developer) needs to continue without losing ground.
-- **Resume**: Consume a handoff file — verify its claims against current state, build a prioritized action plan, and delete the file by default.
+- **Resume**: Consume a handoff file — verify its claims against current state, build a prioritized action plan, and offer to clean up the file.
 
 **Arguments:** `$ARGUMENTS` (optional)
 - Empty or task/feature description → Generate mode
 - `resume [path] [--keep]` → Resume mode
 
-**Output:** Structured handoff document (generate) or action plan (resume)
+**Output:** Structured handoff document or action plan output directly to the conversation (Write is available if the user requests the output be saved to a file)
 
 ---
 
@@ -184,7 +184,7 @@ Search for `HANDOFF.md` in the repository root, then `*.handoff.md`, then common
 
 If no handoff file is found, inform the user and exit.
 
-Check for the `--keep` flag in `$ARGUMENTS`. If present, the file will be preserved after consumption.
+Check for the `--keep` flag in `$ARGUMENTS`. If present, skip offering deletion in the final step.
 
 ### B2: Consume the Handoff
 
@@ -285,18 +285,12 @@ Decisions in effect:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 - [what the handoff claimed vs. what current state shows]
 
-Source: <path> | Status: <consumed and deleted | kept (--keep)>
+Source: <path> | Status: consumed
 ```
 
-### B6: Delete or Keep
+### B6: Offer to Begin
 
-**Default behavior:** Delete the handoff file after consumption.
-
-If the file is git-tracked, use `git rm`. If untracked, delete directly. Skip if `--keep` was specified.
-
-### B7: Offer to Begin
-
-Ask the user how to proceed: start P1 work, review the plan, load key files, or resolve open questions first.
+Ask the user how to proceed: start P1 work, review the plan, load key files, resolve open questions first, or delete the handoff file (recommended). If `--keep` was specified, omit the deletion option.
 
 ---
 
@@ -317,7 +311,7 @@ Ask the user how to proceed: start P1 work, review the plan, load key files, or 
 - **Resume consumes context, not just text.** Understand the handoff's intent and build an action plan — don't just reformat the content.
 - **Dead ends are sacred on resume.** Never suggest a documented dead end as an approach. If the handoff says "Tried X, abandoned because Y," X is off the table unless Y has demonstrably changed.
 - **Verify before assuming.** The handoff may be stale. Check every claim against current git state before building on it.
-- **Delete is the right default.** Stale handoffs are worse than no handoff — they look authoritative while being out of date. Consume and delete unless the user explicitly requests `--keep`.
+- **Recommend deletion, don't force it.** Stale handoffs are worse than no handoff — they look authoritative while being out of date. Offer deletion as a recommended option, but let the user decide.
 - **Watch for context poisoning.** If a handoff claim doesn't match git evidence, flag the discrepancy. Don't silently trust the handoff over observable reality.
 
 ### Both Modes

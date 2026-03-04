@@ -4,7 +4,7 @@
 
 **Arguments:** `$ARGUMENTS` (required) - Topic, documentation path, or codebase area to document
 
-**Output:** Directory of 4-7 linked markdown files
+**Output:** 4-7 linked markdown documents at progressive detail levels output directly to the conversation (Write is available if the user requests the output be saved to files)
 
 ---
 
@@ -65,19 +65,19 @@ Level 5: DEEP DIVES (optional)
 
 Show the planned structure to the user and ask for confirmation before generating.
 
-### Step 4: Generate the Files
+### Step 4: Generate the Content
 
-For each file:
+For each document:
 
-1. **Write the content** at the appropriate detail level
-2. **Add navigation links** at the top and bottom:
+1. **Output the content to the conversation** at the appropriate detail level, under a clear heading (e.g., `## 00 — Overview`, `## 01 — Getting Started`)
+2. **Add navigation links** at the top and bottom of each section:
    ```markdown
    > **Navigation:** [Overview](./00-overview.md) | [Getting Started](./01-getting-started.md) | **This Guide** | [Reference](./03-reference.md)
    ```
-3. **Cross-reference related files** inline where relevant
-4. **Keep within target line count** (200-500 lines per file)
+3. **Cross-reference related documents** inline where relevant
+4. **Keep within target line count** (200-500 lines per document)
 
-**File naming convention:**
+**Suggested file structure (for when the user wants to save):**
 ```
 docs/<topic>/
 ├── 00-overview.md
@@ -94,19 +94,27 @@ docs/<topic>/
 PROGRESSIVE DISCLOSURE: <TOPIC>
 ══════════════════════════════════════════════════════════════
 
-Created <N> files in docs/<topic>/
+Generated <N> documents
 
-FILES
+CONTENT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-00-overview.md          (<lines> lines) — <one-line description>
-01-getting-started.md   (<lines> lines) — <one-line description>
-02-guide-<name>.md      (<lines> lines) — <one-line description>
+00 — Overview            (<lines> lines) — <one-line description>
+01 — Getting Started     (<lines> lines) — <one-line description>
+02 — Guide: <name>       (<lines> lines) — <one-line description>
 ...
 
 NAVIGATION
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Start here: docs/<topic>/00-overview.md
-Each file links to the next level of detail.
+Start with the Overview section above.
+Each document links to the next level of detail.
+
+SAVE TO FILES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+To save this documentation, request file output. Suggested structure:
+  docs/<topic>/00-overview.md
+  docs/<topic>/01-getting-started.md
+  docs/<topic>/02-guide-<name>.md
+  ...
 
 AI USAGE TIP
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

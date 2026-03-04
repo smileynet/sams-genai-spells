@@ -46,6 +46,13 @@ Report the results in a clear table (pass/fail per check, any warnings).
 - **Behind origin/main** -> Suggest `git pull`
 - **Validation script errors** -> Show the specific failures and suggest fixes
 
+**Then review [Unreleased] changelog entries.** Whether entries were just auto-populated or already existed, review them against the changelog style guide:
+
+1. Read `CHANGELOG.md` [Unreleased] section and `docs/guidance/changelog.md`
+2. Apply the litmus test to each entry: *Would a spell user notice this change?* Remove entries that fail (dev scripts, internal tooling, template sync infra, docs unless user-facing).
+3. Rewrite any entries that describe implementation mechanisms to lead with user value — what users can now do, or what problem is solved.
+4. Commit any changes made.
+
 **Then investigate all warnings.** The `--check` output summarizes pass/warn/fail per script but hides details. Run each validation script individually to see full warning output:
 
 ```bash

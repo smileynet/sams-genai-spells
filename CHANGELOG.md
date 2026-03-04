@@ -3,14 +3,10 @@
 ## [Unreleased]
 ### Added
 - **cause-map** spell — map all possible causes of a problem using fishbone (Ishikawa) categorical decomposition with evidence grading and cross-reference analysis
-- Skill reference for fishbone analysis (`docs/skills/fishbone-analysis.md`)
-- Tutorial for cause-map concept (`docs/tutorials/cause-map.md`)
 
 ### Changed
 - **debug → diagnose** — renamed to avoid conflict with Claude Code's built-in `/debug` command
 - **diagnose** spell now includes a fishbone categorization step (Step 3) that surveys all plausible cause categories before tracing the most likely chain with 5 Whys
-- Added `blind-spot` and `zoom-out` to platform parity checker CORE_COMMANDS (drive-by fix)
-- Added `blind-spot` and `zoom-out` to OpenCode manifest commands array (drive-by fix)
 
 ## [0.6.0] - 2026-02-25
 ### Added

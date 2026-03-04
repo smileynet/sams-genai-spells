@@ -97,17 +97,31 @@ Where you see it: Build systems (Make, Bazel), package managers
 The spell: Maps task dependencies into execution order with
 parallel waves, critical path, and Mermaid diagrams.
 
-DEBUG
+DIAGNOSE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 The concept: Bugs have root causes, not just symptoms. Fixing
 the symptom (add a null check, wrap in try/catch) hides the
 real problem. Hypothesis-driven debugging — observe, hypothesize,
-predict, test — finds the actual cause.
+predict, test — finds the actual cause. Categorical brainstorming
+(fishbone) ensures breadth before depth.
 Where you see it: NTSB crash investigations, Toyota's 5 Whys,
-git bisect, post-mortem analysis, reliability engineering.
-The spell: Forces the AI to trace the causal chain before
-suggesting fixes, producing a structured diagnosis instead
-of a quick patch.
+Ishikawa fishbone diagrams, git bisect, post-mortem analysis.
+The spell: Surveys all plausible cause categories, then traces
+the most likely chain to its root — producing a structured
+diagnosis instead of a quick patch.
+
+CAUSE MAP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The concept: When a problem has unknown, multiple, or recurring
+causes, tracing a single chain misses the landscape. Fishbone
+(Ishikawa) diagrams organize ALL possible causes by category,
+revealing systemic issues that depth-first analysis can't see.
+Where you see it: Manufacturing quality circles, hospital sentinel
+event analysis, software incident post-mortems, Reason's Swiss
+Cheese Model.
+The spell: Maps the full cause landscape with categorized causes,
+evidence grades, cross-cutting analysis, and prioritized
+investigation plan.
 
 DEEP DIVE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -188,7 +202,8 @@ Use **WebSearch** to find authoritative sources about the concept:
 - For "progressive-disclosure": search for progressive disclosure in UX/instructional design
 - For "diataxis": search for "diataxis framework" site:diataxis.fr
 - For "task-graph": search for "critical path method" CPM, "Kahn's topological sort", DAG task scheduling
-- For "debug": search for "5 Whys root cause analysis", "systematic debugging scientific method", Zeller "Why Programs Fail"
+- For "diagnose": search for "5 Whys root cause analysis", "systematic debugging scientific method", Zeller "Why Programs Fail", "Ishikawa fishbone cause categorization"
+- For "cause-map": search for "Ishikawa fishbone diagram quality tools", "categorical cause decomposition", "Swiss Cheese Model James Reason", "Seven Basic Quality Tools ASQ"
 - For "deep-dive": search for "program comprehension strategies", "architecture recovery reflexion models", Ko "information foraging code navigation"
 - For "prior-art": search for "prior art search methodology", "technology evaluation framework", "build vs buy decision", "ThoughtWorks Technology Radar"
 - For "handoff": search for "SBAR handoff protocol", "shift handoff communication", "Joint Commission handoff requirements", "context transfer software engineering"
@@ -260,7 +275,8 @@ SOURCES
 | progressive-disclosure | Progressive disclosure | UX Design | J.M. Keller, 1983; Nielsen Norman Group |
 | diataxis | Diataxis documentation framework | Documentation theory | Daniele Procida, diataxis.fr |
 | task-graph | DAGs + Critical Path Method + topological sort | Operations research | Kelley & Walker 1957; Kahn 1962 |
-| debug | 5 Whys + fault tree analysis + scientific method | Reliability engineering | Ohno 1950s; Zeller 2009; Bell Labs 1961 |
+| diagnose | 5 Whys + fishbone categorization + fault tree analysis + scientific method | Reliability engineering | Ishikawa 1968; Ohno 1950s; Zeller 2009; Bell Labs 1961 |
+| cause-map | Ishikawa fishbone diagram + categorical decomposition + Swiss Cheese Model | Quality engineering / safety science | Ishikawa 1968; Reason 1990; ASQ Seven Basic Quality Tools |
 | deep-dive | Program comprehension + architecture recovery | Software engineering | Rajlich, LaToza, Ko; Murphy 1995; Parnas 1972 |
 | prior-art | Prior art search + technology evaluation + literature review | Patent law / software engineering | US Patent Act 1790; ThoughtWorks Technology Radar 2010; CHAOSS 2017 |
 | blind-spot | Pre-mortem + assumption surfacing + cross-domain transfer + negative space analysis | Risk management / cognitive science / strategic foresight | Klein 1998; Mason & Mitroff 1981; Luft & Ingham 1955; Nemeth 2001; Gentner 1983 |

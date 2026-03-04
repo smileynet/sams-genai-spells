@@ -42,11 +42,12 @@ WORKFLOWS (produce artifacts)
 /spell:progressive-disclosure <topic>   Break docs into linked files (by detail level)
 /spell:diataxis <topic>                 Four-quadrant documentation (by purpose)
 /spell:task-graph <tasks or process>    Map dependencies or diagram a workflow
-/spell:debug <symptom>                 Systematic root cause analysis
+/spell:diagnose <symptom>              Systematic root cause analysis
 /spell:deep-dive <path or question>   Explore and map how code works
 /spell:prior-art <need>               Survey existing solutions before building
 /spell:blind-spot <topic>            Find what you don't know you don't know
 /spell:zoom-out <plan or direction>  Step back — are we solving the right problem?
+/spell:cause-map <problem>           Map all possible causes (fishbone diagram)
 /spell:handoff [task or context]      Write a structured handoff for the next session
 /spell:handoff resume [path]          Resume from a handoff — load context, plan actions
 
@@ -104,7 +105,7 @@ Spell not found: <argument>
 
 Available spells:
   Modifiers: idiomatic, socratic
-  Workflows: bpap, progressive-disclosure, diataxis, task-graph, debug, deep-dive, prior-art, blind-spot, zoom-out, handoff
+  Workflows: bpap, progressive-disclosure, diataxis, task-graph, diagnose, deep-dive, prior-art, blind-spot, zoom-out, cause-map, handoff
   Meta: teach, help
 
 Run /spell:help for overview.
@@ -122,7 +123,8 @@ Run /spell:help for overview.
 | `/spell:progressive-disclosure` | Workflow | Break documentation into linked, AI-friendly files at progressive detail levels |
 | `/spell:diataxis` | Workflow | Generate or audit documentation using the four-quadrant Diataxis framework |
 | `/spell:task-graph` | Workflow | Map task dependencies or diagram a workflow using DAGs and critical path analysis |
-| `/spell:debug` | Workflow | Systematic root cause analysis — find the real bug before attempting fixes |
+| `/spell:diagnose` | Workflow | Systematic root cause analysis — trace symptoms to their actual cause before attempting fixes |
+| `/spell:cause-map` | Workflow | Map all possible causes of a problem using fishbone (Ishikawa) categorical decomposition |
 | `/spell:deep-dive` | Workflow | Explore and map how a codebase or subsystem works — architecture, data flow, and key abstractions |
 | `/spell:prior-art` | Workflow | Survey existing solutions before building — libraries, tools, frameworks, and patterns |
 | `/spell:blind-spot` | Workflow | Find what you don't know you don't know — surface hidden assumptions, failure modes, and missing perspectives |

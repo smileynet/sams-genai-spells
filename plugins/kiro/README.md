@@ -13,9 +13,13 @@ Real-world concepts from programming, education, and design — packaged as AI c
 | `@spell-progressive-disclosure` | Break docs into linked AI-friendly files |
 | `@spell-diataxis` | Four-quadrant documentation (audit/restructure/generate) |
 | `@spell-task-graph` | Map task dependencies or diagram a workflow |
-| `@spell-debug` | Systematic root cause analysis |
+| `@spell-diagnose` | Systematic root cause analysis |
+| `@spell-cause-map` | Map all possible causes (fishbone diagram) |
 | `@spell-deep-dive` | Explore and map how a codebase or subsystem works |
 | `@spell-prior-art` | Survey existing solutions before building |
+| `@spell-blind-spot` | Find what you don't know you don't know |
+| `@spell-zoom-out` | Step back — are we solving the right problem? |
+| `@spell-handoff` | Write or resume from a structured handoff document |
 | `@spell-teach` | Learn the concept behind any spell |
 
 ## Installation

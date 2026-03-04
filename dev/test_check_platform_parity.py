@@ -28,11 +28,11 @@ def test_claude_code_ignores_non_command_md_files():
         _make_commands_dir(
             root,
             "plugins/claude-code/commands",
-            ["help.md", "debug.md", "README.md"],
+            ["help.md", "diagnose.md", "README.md"],
         )
         result = discover_claude_code_commands(root)
         assert "README" not in result
-        assert result == {"help", "debug"}
+        assert result == {"help", "diagnose"}
 
 
 def test_claude_code_discovers_core_commands():
@@ -52,11 +52,11 @@ def test_opencode_not_affected_by_stray_files():
         _make_commands_dir(
             root,
             "plugins/opencode/commands",
-            ["spell-help.md", "spell-debug.md", "README.md"],
+            ["spell-help.md", "spell-diagnose.md", "README.md"],
         )
         result = discover_opencode_commands(root)
         assert "README" not in result
-        assert result == {"help", "debug"}
+        assert result == {"help", "diagnose"}
 
 
 def test_kiro_not_affected_by_stray_files():
@@ -66,8 +66,8 @@ def test_kiro_not_affected_by_stray_files():
         _make_commands_dir(
             root,
             "plugins/kiro/prompts",
-            ["spell-help.md", "spell-debug.md", "README.md"],
+            ["spell-help.md", "spell-diagnose.md", "README.md"],
         )
         result = discover_kiro_commands(root)
         assert "README" not in result
-        assert result == {"help", "debug"}
+        assert result == {"help", "diagnose"}

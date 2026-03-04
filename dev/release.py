@@ -3,10 +3,11 @@
 release.py - Automate mechanical steps of releasing a new sams-spells version.
 
 Handles version sync, CHANGELOG transformation, validation, and commit creation.
-Preserves human judgment for content quality - the script only handles mechanics.
+Runs non-interactively — the release command/agent handles user approval before
+invoking this script. The script only handles mechanics.
 
 Usage:
-    ./dev/release.py 0.6.0              # Prepare release (interactive)
+    ./dev/release.py 0.6.0              # Prepare release
     ./dev/release.py 0.6.0 --push       # Prepare + push (triggers GH release)
     ./dev/release.py 0.6.0 --dry-run    # Show what would change, no modifications
     ./dev/release.py --check            # Validate current state only
@@ -67,7 +68,6 @@ class ReleaseConfig:
     version: str
     dry_run: bool = False
     push: bool = False
-    yes: bool = False
     repo_root: Path = field(default_factory=lambda: Path(__file__).parent.parent)
     previous_version: Optional[str] = None  # Set before updating versions
 
@@ -122,10 +122,8 @@ def on_main_branch() -> bool:
 
 def up_to_date_with_remote() -> bool:
     """Check if local main is up to date with origin/main."""
-    # Fetch first
     run_git(["fetch", "origin", "main"], capture=False)
 
-    # Compare HEAD with origin/main
     code, local = run_git(["rev-parse", "HEAD"])
     if code != 0:
         return False
@@ -417,15 +415,13 @@ def create_commit(config: ReleaseConfig) -> bool:
             print(f"  {color('✗', Colors.RED)} Failed to stage {file}")
             return False
 
-    # Create commit
     commit_message = f"chore(release): v{config.version}"
-    code, output = run_git(["commit", "-m", commit_message])
+    code, _ = run_git(["commit", "-m", commit_message])
 
     if code != 0:
         print(f"  {color('✗', Colors.RED)} Failed to create commit")
         return False
 
-    # Get commit hash
     code, commit_hash = run_git(["rev-parse", "--short", "HEAD"])
 
     print(f"  {color('✓', Colors.GREEN)} Created: {commit_hash} \"{commit_message}\"")
@@ -458,30 +454,6 @@ def print_header(version: str, dry_run: bool = False):
     print(color(f"║  {title:<{width - 4}}║", Colors.BOLD))
     print(color("╚" + "═" * (width - 2) + "╝", Colors.BOLD))
     print()
-
-
-def print_checklist():
-    """Print pre-release checklist reminder."""
-    print()
-    print(color("Before releasing, verify:", Colors.YELLOW))
-    print("  [ ] All notable changes documented")
-    print("  [ ] Changes categorized correctly")
-    print("  [ ] User-friendly language used")
-    print("  [ ] Breaking changes highlighted (if any)")
-    print()
-
-
-def confirm_release(config: ReleaseConfig) -> bool:
-    """Ask for confirmation before proceeding."""
-    if config.yes or config.dry_run:
-        return True
-
-    try:
-        response = input(f"Proceed with release v{config.version}? [y/N] ")
-        return response.lower() in ("y", "yes")
-    except (EOFError, KeyboardInterrupt):
-        print()
-        return False
 
 
 def run_check_only(repo_root: Path) -> int:
@@ -569,11 +541,6 @@ def main():
         help="Push to remote after commit (triggers GitHub release)"
     )
     parser.add_argument(
-        "--yes", "-y",
-        action="store_true",
-        help="Skip confirmation prompt"
-    )
-    parser.add_argument(
         "--check",
         action="store_true",
         help="Validate current state only, don't release"
@@ -600,7 +567,6 @@ def main():
         version=args.version,
         dry_run=args.dry_run,
         push=args.push,
-        yes=args.yes,
         repo_root=repo_root
     )
 
@@ -640,13 +606,6 @@ def main():
         print()
         print(color("Pre-flight checks failed. Fix errors before releasing.", Colors.RED))
         return 1
-
-    # Show checklist and confirm
-    print_checklist()
-
-    if not confirm_release(config):
-        print("Release cancelled.")
-        return 0
 
     # Capture current version before updating (for changelog links)
     config.previous_version = preflight.current_version

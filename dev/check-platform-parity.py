@@ -39,8 +39,8 @@ class PlatformAssets:
 # Core commands that should exist on all platforms
 CORE_COMMANDS = {
     "help", "idiomatic", "socratic", "bpap", "progressive-disclosure",
-    "diataxis", "task-graph", "debug", "deep-dive", "prior-art",
-    "handoff", "teach",
+    "diataxis", "task-graph", "diagnose", "cause-map", "deep-dive",
+    "prior-art", "blind-spot", "zoom-out", "handoff", "teach",
 }
 
 

@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Platforms](https://img.shields.io/badge/platforms-Claude%20Code%20%7C%20OpenCode%20%7C%20Kiro-blue.svg)](#installation)
-[![Spells](https://img.shields.io/badge/spells-12-purple.svg)](#the-spells)
+[![Spells](https://img.shields.io/badge/spells-13-purple.svg)](#the-spells)
 
 > Real-world concepts from programming, education, and design — packaged as AI commands.
 
@@ -85,7 +85,8 @@ ANTIPATTERNS ⚠
 | **progressive-disclosure** | Docs too big for AI context, or too disorganized for anyone? Breaks them into linked files at progressive detail levels. |
 | **diataxis** | Docs that try to be everything at once? Audits, restructures, or generates docs using the four-quadrant Diataxis framework. |
 | **task-graph** | Twelve tasks and no idea what to start first? Maps dependencies into execution order with parallel waves and critical path analysis. |
-| **debug** | Bug that keeps coming back no matter what you try? Traces the causal chain to the root cause before suggesting any fix. |
+| **diagnose** | Bug that keeps coming back no matter what you try? Surveys all cause categories (fishbone brainstorm), then traces the most likely chain to the root cause before suggesting any fix. |
+| **cause-map** | Problem with unknown, multiple, or recurring causes? Maps ALL possible causes across categories using fishbone (Ishikawa) diagrams, surfaces systemic issues, and prioritizes investigation. |
 | **deep-dive** | New to a codebase with no docs and no one to ask? Systematically explores and maps the architecture, data flow, and key abstractions. |
 | **prior-art** | About to build something from scratch? Surveys what already exists — libraries, tools, frameworks — so you don't reinvent the wheel. |
 | **blind-spot** | Planning a migration and worried about what you're missing? Probes from five angles to surface hidden assumptions, failure modes, and perspectives nobody thought to consider. |
@@ -112,8 +113,10 @@ ANTIPATTERNS ⚠
 | Existing docs are a mess and need restructuring | **diataxis** |
 | Planning a project with lots of moving parts | **task-graph** |
 | Need to figure out what to parallelize | **task-graph** |
-| Bug that keeps coming back after you "fix" it | **debug** |
-| Need to understand why something fails, not just suppress the error | **debug** |
+| Bug that keeps coming back after you "fix" it | **diagnose** |
+| Need to understand why something fails, not just suppress the error | **diagnose** |
+| Recurring incidents with different symptoms but unknown common cause | **cause-map** |
+| Post-mortem: mapping all contributing factors to an incident | **cause-map** |
 | New to a codebase and need to understand how it works | **deep-dive** |
 | Exploring an unfamiliar module before making changes | **deep-dive** |
 | About to build something — not sure if a library already does it | **prior-art** |
@@ -186,7 +189,7 @@ Copy the `plugins/kiro/prompts/` directory to your Kiro project. Commands are pr
 /spell:diataxis audit docs/           # Audit docs against Diataxis framework
 /spell:task-graph design, implement, test, deploy  # Map task dependencies
 /spell:task-graph process for code review          # Diagram a workflow
-/spell:debug TypeError: Cannot read properties of undefined
+/spell:diagnose TypeError: Cannot read properties of undefined
 /spell:deep-dive src/api/             # Explore and map the API module
 /spell:deep-dive how does auth work?  # Trace how authentication is implemented
 /spell:prior-art markdown parsing     # Survey existing solutions before building
@@ -207,7 +210,8 @@ These spells aren't magic. They're packaging. Each one applies an established co
 - **[Progressive Disclosure](docs/tutorials/progressive-disclosure.md)** -- Docs too big for AI context, or too disorganized for anyone? Layered files let readers (and AI) load only what they need.
 - **[The Diataxis Framework](docs/tutorials/diataxis.md)** -- Docs that try to be everything at once and serve nobody? Four quadrants separate tutorials, how-tos, reference, and explanation.
 - **[Task Graphs, Critical Paths, and Topological Sort](docs/tutorials/task-graph.md)** -- Twelve tasks and no idea what to start first? DAGs and critical paths turn chaos into execution order.
-- **[Systematic Debugging & Root Cause Analysis](docs/tutorials/debug.md)** -- Bug keeps coming back after you "fix" it? Hypothesis-driven debugging traces the causal chain to the real problem.
+- **[Systematic Diagnosis & Root Cause Analysis](docs/tutorials/diagnose.md)** -- Bug keeps coming back after you "fix" it? Categorical brainstorming plus hypothesis-driven tracing finds the real problem.
+- **[Categorical Cause Decomposition & Fishbone Analysis](docs/tutorials/cause-map.md)** -- Recurring incidents with different root causes each time? Map the full cause landscape before investigating.
 - **[Codebase Exploration & Program Comprehension](docs/tutorials/deep-dive.md)** -- New to a codebase with 200 files and no docs? Top-down reading strategy produces an architecture map, not just familiarity.
 - **[Prior Art Search & Technology Evaluation](docs/tutorials/prior-art.md)** -- About to build something from scratch? Systematic survey of what already exists so you adopt, adapt, or build with full knowledge of the landscape.
 - **[Blind Spot Detection & Pre-Mortem Analysis](docs/tutorials/blind-spot.md)** -- Planning a migration and worried about what you can't see? Pre-mortem, assumption surfacing, and cross-domain transfer probe systematically for what you don't know you don't know.
@@ -227,6 +231,8 @@ I didn't invent any of these techniques. Credit where it's due:
 - **Diataxis**: Daniele Procida ([diataxis.fr](https://diataxis.fr/))
 - **Critical Path Method**: James Kelley & Morgan Walker (1957, DuPont)
 - **Topological sorting**: Arthur Kahn (1962)
+- **Fishbone (Ishikawa) diagrams**: Kaoru Ishikawa (1968), Seven Basic Quality Tools
+- **Swiss Cheese Model**: James Reason, *Human Error* (1990)
 - **5 Whys**: Taiichi Ohno, Toyota Production System (1950s)
 - **Systematic debugging**: Andreas Zeller, *Why Programs Fail* (2009)
 - **Fault tree analysis**: Bell Labs (1961)

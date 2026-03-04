@@ -46,7 +46,7 @@ Templates use conditional blocks for platform-specific content:
 - `@IF_OPENCODE@` / `@ENDIF_OPENCODE@` → OpenCode-only content
 - `@IF_KIRO@` / `@ENDIF_KIRO@` → Kiro-only content
 
-## The Twelve Spells
+## The Thirteen Spells
 
 | Spell | Type | Description |
 |-------|------|-------------|
@@ -56,7 +56,8 @@ Templates use conditional blocks for platform-specific content:
 | progressive-disclosure | Workflow | Linked files at progressive detail levels |
 | diataxis | Workflow | Four-quadrant documentation (audit/restructure/generate) |
 | task-graph | Workflow | Map task dependencies or diagram a workflow using DAGs and critical path analysis |
-| debug | Workflow | Systematic root cause analysis using 5 Whys and hypothesis-driven debugging |
+| diagnose | Workflow | Systematic root cause analysis using fishbone categorization, 5 Whys, and hypothesis-driven debugging |
+| cause-map | Workflow | Map all possible causes using fishbone (Ishikawa) categorical decomposition |
 | deep-dive | Workflow | Explore and map how a codebase or subsystem works |
 | prior-art | Workflow | Survey existing solutions before building — libraries, tools, frameworks, and patterns |
 | blind-spot | Workflow | Find what you don't know you don't know — surface hidden assumptions, failure modes, and missing perspectives |

@@ -17,9 +17,12 @@
       "spell-progressive-disclosure",
       "spell-diataxis",
       "spell-task-graph",
-      "spell-debug",
+      "spell-diagnose",
+      "spell-cause-map",
       "spell-deep-dive",
       "spell-prior-art",
+      "spell-blind-spot",
+      "spell-zoom-out",
       "spell-handoff",
       "spell-teach"
     ]

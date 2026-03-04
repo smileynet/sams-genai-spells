@@ -1,11 +1,6 @@
----
-description: Systematic root cause analysis — find the real bug before attempting fixes
-allowed-tools: Bash, Read, Write, Glob, Grep, Task, AskUserQuestion, WebFetch, WebSearch
----
-
 ## Summary
 
-**Systematic root cause analysis for bugs, errors, and unexpected behavior.** Uses hypothesis-driven debugging to trace symptoms back to their actual cause before attempting fixes. Applies the 5 Whys, fault tree analysis, and the scientific method to prevent shotgun debugging.
+**Systematic root cause analysis for bugs, errors, and unexpected behavior.** Surveys the cause landscape across categories (fishbone brainstorm) before tracing the most likely chain to its root (5 Whys). Applies categorical decomposition, hypothesis-driven debugging, and the scientific method to prevent shotgun debugging.
 
 **Arguments:** `$ARGUMENTS` (required) - Error message, symptom description, stack trace, file path, or bug description
 
@@ -17,10 +12,9 @@ allowed-tools: Bash, Read, Write, Glob, Grep, Task, AskUserQuestion, WebFetch, W
 
 Before proceeding, load the relevant skill documents for reference:
 
-- `docs/skills/root-cause-analysis.md` — 5 Whys technique, fault tree analysis, hypothesis testing, root cause categories
-- `docs/skills/debugging-antipatterns.md` — 7 antipatterns to avoid, expert vs. novice patterns, pressure resistance
-
-Use **Read** to load these files from the repository root.
+Read the following files from the repository root:
+- `docs/skills/root-cause-analysis.md`
+- `docs/skills/debugging-antipatterns.md`
 
 ---
 
@@ -38,12 +32,7 @@ Parse `$ARGUMENTS` to determine what the user is experiencing:
 | Vague or incomplete | Clarify before proceeding (see below). |
 
 **If the symptom is unclear:**
-Use **AskUserQuestion** to ask: "What's the symptom you're seeing?"
-Options:
-- "Error or exception" — Something crashes or throws an error
-- "Wrong output" — Code runs but produces incorrect results
-- "Performance issue" — Code is too slow, uses too much memory, or hangs
-- "Intermittent failure" — Works sometimes, fails other times
+Ask the user to describe the symptom: what happened, what they expected, and when it started.
 
 **Output the symptom summary:**
 
@@ -62,17 +51,7 @@ Context:   <when it started, frequency, environment>
 
 Collect evidence from multiple sources before forming any hypothesis.
 
-**Code investigation:**
-- Use **Read** to examine the files mentioned in the error or symptom
-- Use **Grep** to search for the error message, related patterns, and similar code paths
-- Use **Grep** to find TODO/FIXME/HACK comments in related files
-- Use **Bash** with `git log` and `git diff` to check recent changes to affected files
-
-**Web research (for context, NOT for fixes):**
-- Use **WebSearch** to search for the error message or symptom — understand what the error *means*, not how to suppress it
-- Use **WebSearch** for known issues in relevant libraries or frameworks
-- Use **WebFetch** on the most relevant 1-2 results (official docs, issue trackers)
-- Frame all web research as evidence gathering: "What does this error indicate?" not "How do I fix this?"
+Examine the relevant code files, check recent git changes, search for related error messages and patterns, and search the web to understand what the error indicates (not to find fixes).
 
 **Graceful degradation:** If web search is unavailable, rely on code analysis and built-in knowledge. Note this limitation.
 
@@ -98,22 +77,72 @@ External context:
 
 ---
 
-### Step 3: Root Cause Tracing (5 Whys)
+### Step 3: Categorize Potential Causes (Fishbone Brainstorm)
 
-Trace backward from the symptom through the causal chain. One hypothesis at a time, one variable at a time.
+Before tracing a single causal chain, survey the landscape. Use the 9 root cause categories as fishbone "bones" to brainstorm candidate causes based on the evidence from Step 2.
+
+**For each relevant category, brainstorm 2-3 candidate causes:**
+
+| Category | Guiding question |
+|----------|-----------------|
+| **Logic error** | Could a wrong condition, off-by-one, or incorrect algorithm cause this? |
+| **State management** | Could stale state, mutation side effects, or initialization order cause this? |
+| **Race condition** | Could timing, concurrency, or async ordering cause this? |
+| **Type mismatch** | Could wrong types, implicit conversion, or null cause this? |
+| **Missing validation** | Could bad input reaching unguarded code cause this? |
+| **Configuration error** | Could a wrong setting, env var, or feature flag cause this? |
+| **Dependency issue** | Could a version mismatch, breaking change, or missing dep cause this? |
+| **Design flaw** | Could the architecture simply not support this use case? |
+| **Environmental** | Could differences between machines, OS, or runtime versions cause this? |
+
+**Rate each candidate:**
+- **Confirmed** — evidence from Step 2 directly supports this
+- **Suspected** — plausible given the evidence, but not yet verified
+- **Speculative** — hypothesis only, no supporting evidence yet
+
+**Skip categories that clearly don't apply** — not every bone needs causes. The goal is breadth where it matters, not forced completeness.
+
+**Output the categorized view:**
+
+```
+POTENTIAL CAUSES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+<Category>:
+  - <candidate cause> [Confirmed/Suspected/Speculative]
+  - <candidate cause> [Suspected]
+
+<Category>:
+  - <candidate cause> [Suspected]
+
+...
+
+Highest-priority category: <category with most Confirmed/Suspected causes>
+Starting investigation: <specific cause to trace first>
+```
+
+**Guideline:** Survey the landscape, then dig where the evidence points.
+
+---
+
+### Step 4: Root Cause Tracing (5 Whys)
+
+Start with the highest-priority cause from Step 3. Trace backward through the causal chain. One hypothesis at a time, one variable at a time.
 
 **For each level of the chain:**
 
 1. **State a hypothesis:** "The symptom occurs because [X]"
 2. **Predict evidence:** "If this hypothesis is correct, we should see [Y]"
 3. **Test the prediction:** Check the code, run a command, or read a file to verify
-4. **Confirm or reject:** If confirmed, ask "Why does [X] happen?" and go deeper. If rejected, form a new hypothesis.
+4. **Confirm or reject:** If confirmed, ask "Why does [X] happen?" and go deeper. If rejected, return to Step 3's candidates and pick the next most likely cause.
 
 **Stopping criteria — stop when you reach a cause that is:**
 - A design decision (intentional but wrong for this case)
 - A missing constraint (validation, type check, guard clause that should exist)
 - A false assumption (code assumes something that isn't true)
 - An environmental difference (works in one environment, fails in another)
+
+**Escape hatch:** If the 5 Whys reveals multiple independent contributing factors (the problem requires several causes aligning), recommend `@spell-cause-map` for a full categorical decomposition with cross-reference analysis.
 
 **Pressure resistance:**
 - If the user says "just fix it" or pushes to skip analysis, explain: root cause tracing IS the fastest path. Fixing symptoms creates new bugs.
@@ -141,7 +170,7 @@ Root cause: <the fundamental issue>
 
 ---
 
-### Step 4: Verify and Report
+### Step 5: Verify and Report
 
 Before reporting, verify the root cause:
 - **Does it explain ALL symptoms?** If not, there may be multiple root causes or you stopped too early.
@@ -212,17 +241,18 @@ VERIFICATION
 - **One hypothesis at a time.** Changing multiple things simultaneously makes it impossible to know what worked.
 - **Trace the chain, don't guess the root.** The root cause is rarely the first thing you suspect.
 - **Web research is for understanding, not solution-hunting.** Search to understand what an error means, not to find code to copy.
-- **Name the category.** If a bug doesn't fit the 9 categories, that's a signal — re-examine the diagnosis.
+- **Name the category.** If a bug doesn't fit any of the categories, that's a signal — re-examine the diagnosis.
 - **Check for siblings.** Once you find a root cause, check if the same pattern exists elsewhere in the codebase.
-- **Credit:** This spell applies the 5 Whys (Ohno/Toyota Production System), fault tree analysis (Bell Labs, 1961), and systematic debugging principles from Zeller's *Why Programs Fail* and the scientific method.
+- **Survey before tracing.** The fishbone brainstorm (Step 3) ensures you consider ALL plausible categories before committing to a single chain. Skipping it is the #1 way to miss the real cause.
+- **Credit:** This spell applies categorical cause decomposition (Ishikawa, 1968), the 5 Whys (Ohno/Toyota Production System), fault tree analysis (Bell Labs, 1961), and systematic debugging principles from Zeller's *Why Programs Fail* and the scientific method.
 
 ---
 
 ## Example Usage
 
 ```
-/spell:debug TypeError: Cannot read properties of undefined (reading 'map')
-/spell:debug the login form submits but nothing happens — no error, no redirect
-/spell:debug tests pass locally but fail in CI
-/spell:debug src/api/handler.ts — intermittent 500 errors on the /users endpoint
+@spell-diagnose TypeError: Cannot read properties of undefined (reading 'map')
+@spell-diagnose the login form submits but nothing happens — no error, no redirect
+@spell-diagnose tests pass locally but fail in CI
+@spell-diagnose src/api/handler.ts — intermittent 500 errors on the /users endpoint
 ```

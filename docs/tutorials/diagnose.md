@@ -1,4 +1,4 @@
-# Systematic Debugging & Root Cause Analysis
+# Systematic Diagnosis & Root Cause Analysis
 
 ## The Problem
 
@@ -12,12 +12,13 @@ The worst part is that it feels productive. Each patch "fixes" the immediate pro
 
 Systematic debugging replaces guess-and-patch with observe-hypothesize-predict-test. Instead of asking "how do I make this error go away?", you ask "why does this error happen?" and trace backward through the causal chain until you find the actual root cause.
 
-The process is four steps:
+The process is five steps:
 
 1. **Clarify the symptom** — What exactly happened? What was expected? When did it start? A precise symptom definition prevents you from solving the wrong problem.
 2. **Gather evidence** — Read the code, check recent changes, search for related patterns. Understand the landscape before forming theories.
-3. **Trace the causal chain** — Ask "why?" repeatedly, testing each hypothesis before going deeper. One hypothesis at a time, one variable at a time.
-4. **Verify and report** — Confirm the root cause explains all symptoms, categorize it, and recommend a fix at the right level.
+3. **Categorize potential causes** — Use root cause categories as a fishbone brainstorm to survey ALL plausible causes before picking one to trace. This prevents availability bias — fixating on the first hypothesis that comes to mind.
+4. **Trace the causal chain** — Start from the highest-priority cause in Step 3. Ask "why?" repeatedly, testing each hypothesis before going deeper. One hypothesis at a time, one variable at a time.
+5. **Verify and report** — Confirm the root cause explains all symptoms, categorize it, and recommend a fix at the right level.
 
 The discipline is in not skipping steps. The temptation to jump from symptom to fix is strong — resist it. The 10 minutes you spend tracing the causal chain saves hours of debugging regressions.
 
@@ -44,12 +45,13 @@ AI assistants are particularly well-suited to this because they can hold the ful
 
 ## The Command
 
-The `/spell:debug <symptom>` command applies these principles:
+The `/spell:diagnose <symptom>` command applies these principles:
 
 1. Parses the error message, symptom, or bug description to establish what's actually happening
 2. Gathers evidence from code, git history, related patterns, and web research (for understanding, not fix-hunting)
-3. Traces the causal chain using 5 Whys — one hypothesis at a time, tested before proceeding
-4. Produces a structured diagnosis: root cause, category, causal chain, fix recommendation, defense in depth, and verification steps
+3. Surveys all plausible cause categories using a lightweight fishbone brainstorm — breadth before depth
+4. Traces the causal chain using 5 Whys from the highest-priority cause — one hypothesis at a time, tested before proceeding
+5. Produces a structured diagnosis: root cause, category, causal chain, fix recommendation, defense in depth, and verification steps
 
 The output is a diagnosis, not a patch. It tells you what the root cause is, where to fix it, and how to verify the fix works. The structured format forces the AI to do the work of understanding before the work of fixing.
 
@@ -57,7 +59,7 @@ The output is a diagnosis, not a patch. It tells you what the root cause is, whe
 
 Systematic debugging has roots in multiple fields. Andreas Zeller's *Why Programs Fail* (2009) formalized the scientific method for software debugging: observe, hypothesize, predict, test, diagnose. Taiichi Ohno's 5 Whys (1950s) provided the iterative questioning framework from manufacturing. Kaoru Ishikawa's fishbone diagrams (1968) introduced visual cause-and-effect analysis for quality control. Fault tree analysis, developed at Bell Labs in 1961 for the Minuteman missile system, gave engineers a way to systematically enumerate all possible causes of a failure.
 
-The Kepner-Tregoe method (1958) contributed the distinction between problem analysis and decision analysis — understanding *what went wrong* is a separate activity from *deciding what to do about it*. This separation is the core discipline of the debug spell: diagnose first, fix second.
+The Kepner-Tregoe method (1958) contributed the distinction between problem analysis and decision analysis — understanding *what went wrong* is a separate activity from *deciding what to do about it*. This separation is the core discipline of the diagnose spell: diagnose first, fix second.
 
 In software, these techniques converge in modern reliability engineering. Google's Site Reliability Engineering practices, Netflix's chaos engineering, and Amazon's "5 Whys" post-mortem culture all emphasize root cause analysis over symptom treatment. The pattern is consistent: organizations that invest in understanding failures outperform those that merely fix them.
 

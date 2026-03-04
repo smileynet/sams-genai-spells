@@ -103,9 +103,18 @@ For each hypothesis during root cause tracing:
 - [ ] **If rejected:** Form a new hypothesis based on what you learned
 - [ ] **If inconclusive:** Gather more evidence before proceeding
 
+## Fishbone (Ishikawa) Categorization
+
+Before tracing a single causal chain, survey all plausible cause categories. This "breadth before depth" step prevents fixating on the first hypothesis.
+
+The diagnose spell integrates a lightweight fishbone brainstorm (Step 3) that uses the root cause categories above as fishbone "bones" — brainstorming 2-3 candidate causes per relevant category, grading each as Confirmed/Suspected/Speculative, then selecting the highest-priority cause for 5 Whys tracing.
+
+For a full categorical decomposition with ASCII fishbone diagrams, cross-reference analysis, and prioritization scoring, see:
+- `docs/skills/fishbone-analysis.md` — complete Ishikawa technique reference with standard category sets, decomposition method, and diagram format
+
 ## Reporting Template
 
-> **Note:** The spell template (`debug.md.template`) is the canonical source for output format. This template is a simplified reference; defer to the spell if they differ.
+> **Note:** The spell template (`diagnose.md.template`) is the canonical source for output format. This template is a simplified reference; defer to the spell if they differ.
 
 Use this format when reporting root cause analysis results:
 

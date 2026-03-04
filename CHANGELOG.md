@@ -2,11 +2,14 @@
 
 ## [Unreleased]
 ### Added
+- **blind-spot** spell — surface hidden assumptions, failure modes, and missing perspectives you haven't considered
+- **zoom-out** spell — challenge a plan or direction from five strategic lenses before committing to implementation
 - **cause-map** spell — map all possible causes of a problem using fishbone (Ishikawa) categorical decomposition with evidence grading and cross-reference analysis
 
 ### Changed
 - **debug → diagnose** — renamed to avoid conflict with Claude Code's built-in `/debug` command
-- **diagnose** spell now includes a fishbone categorization step (Step 3) that surveys all plausible cause categories before tracing the most likely chain with 5 Whys
+- **diagnose** spell now surveys all plausible cause categories before drilling into the most likely chain, giving a broader view of potential root causes
+- **bpap** output is clearer and more actionable — best practices and antipatterns are now numbered for easy reference, and cross-references link related items together
 
 ## [0.6.0] - 2026-02-25
 ### Added

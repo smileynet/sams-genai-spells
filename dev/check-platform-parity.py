@@ -40,7 +40,7 @@ class PlatformAssets:
 CORE_COMMANDS = {
     "help", "idiomatic", "socratic", "bpap", "progressive-disclosure",
     "diataxis", "task-graph", "diagnose", "cause-map", "deep-dive",
-    "prior-art", "blind-spot", "zoom-out", "handoff", "teach",
+    "prior-art", "blind-spot", "zoom-out", "handoff", "teach", "ritual",
 }
 
 

@@ -25,7 +25,8 @@ printf "Installing sams-spells plugin v%s for Claude Code...\n\n" "$VERSION"
 # Step 1: Create marketplace directory structure
 mkdir -p "$MARKETPLACE_DIR/.claude-plugin" \
          "$MARKETPLACE_DIR/spell/.claude-plugin" \
-         "$MARKETPLACE_DIR/spell/commands"
+         "$MARKETPLACE_DIR/spell/commands" \
+         "$MARKETPLACE_DIR/spell/rituals"
 
 # Write marketplace manifest
 cat > "$MARKETPLACE_DIR/.claude-plugin/marketplace.json" << EOF
@@ -42,7 +43,7 @@ cat > "$MARKETPLACE_DIR/.claude-plugin/marketplace.json" << EOF
     {
       "name": "spell",
       "source": "./spell",
-      "description": "Sam's Spells - idiomatic, socratic, bpap, progressive-disclosure, diataxis, task-graph, diagnose, cause-map, deep-dive, prior-art, blind-spot, zoom-out, handoff",
+      "description": "Sam's Spells - idiomatic, socratic, bpap, progressive-disclosure, diataxis, task-graph, diagnose, cause-map, deep-dive, prior-art, blind-spot, zoom-out, handoff, ritual",
       "version": "$VERSION"
     }
   ]
@@ -53,6 +54,10 @@ EOF
 cp "$REPO_DIR/plugins/claude-code/.claude-plugin/plugin.json" "$MARKETPLACE_DIR/spell/.claude-plugin/"
 rm -f "$MARKETPLACE_DIR/spell/commands/"*.md
 cp "$REPO_DIR/plugins/claude-code/commands/"*.md "$MARKETPLACE_DIR/spell/commands/"
+
+# Copy ritual definitions
+rm -f "$MARKETPLACE_DIR/spell/rituals/"*.md
+cp "$REPO_DIR/core/rituals/"*.md "$MARKETPLACE_DIR/spell/rituals/"
 
 # Step 2: Register marketplace via CLI (idempotent — re-adding updates it)
 printf "Registering marketplace...\n"

@@ -163,7 +163,7 @@ Start with the highest-priority cause from Step 3. Trace backward through the ca
 - A false assumption (code assumes something that isn't true)
 - An environmental difference (works in one environment, fails in another)
 
-**Escape hatch:** If the 5 Whys reveals multiple independent contributing factors (the problem requires several causes aligning), recommend `/spell:cause-map` for a full categorical decomposition with cross-reference analysis.
+**Escape hatch:** If the 5 Whys reveals multiple independent contributing factors (the problem requires several causes aligning), recommend `/spell:cause-map` for a full categorical decomposition with cross-reference analysis, or `/spell:ritual investigate` to run both cause-map and diagnose in sequence with automated bridging.
 
 **Pressure resistance:**
 - If the user says "just fix it" or pushes to skip analysis, explain: root cause tracing IS the fastest path. Fixing symptoms creates new bugs.

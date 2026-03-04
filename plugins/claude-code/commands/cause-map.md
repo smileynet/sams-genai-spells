@@ -222,6 +222,7 @@ For the top 3-5 causes:
 NEXT STEPS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 • To trace the #1 cause to its root: /spell:diagnose <top cause>
+• To map causes AND trace the top one in sequence: /spell:ritual investigate <problem>
 • To check for causes outside these categories: /spell:blind-spot <problem>
 ```
 

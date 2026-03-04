@@ -178,6 +178,23 @@ The spell: Captures decisions, dead ends, current state, and next
 steps in a structured document — and can resume from one, restoring
 context and proposing an action plan for the new session.
 
+RITUAL (ORCHESTRATION)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The concept: Complex analyses benefit from chained steps where each
+step's output feeds the next — but merging steps into one mega-prompt
+degrades quality. Prompt chaining research (ACL 2024) shows that
+sequential refinement outperforms single-pass, and context rot
+research (Chroma 2025) shows all models degrade with length. The
+solution: run each step at full strength, then bridge selectively.
+Where you see it: Scientific method (observe → hypothesize → test),
+medical diagnosis (triage → examination → diagnosis → treatment),
+intelligence analysis (collection → processing → analysis → dissemination),
+software pipelines (build → test → deploy).
+The ritual: Sequences multiple spells with context bridges between
+them, preserving each spell's full process while automating the
+handoff. Adds synthesis that cross-references outputs for convergence,
+divergence, and emergent insights.
+
 For deeper dives: @spell-teach <spell-name>
 ```
 
@@ -254,6 +271,7 @@ SOURCES
 | blind-spot | Pre-mortem + assumption surfacing + cross-domain transfer + negative space analysis | Risk management / cognitive science / strategic foresight | Klein 1998; Mason & Mitroff 1981; Luft & Ingham 1955; Nemeth 2001; Gentner 1983 |
 | zoom-out | Problem framing + inversion + second-order thinking + upstream analysis | Strategic thinking / decision science | Schon 1983; Dorst 2011; Munger; Marks 2011; Heath 2020; Meadows 2008 |
 | handoff | Shift handoff protocols + structured context transfer | Medicine / aviation / military | SBAR (Kaiser Permanente 1990s); Joint Commission 2006; ICAO ATC protocols |
+| ritual | Prompt chaining + workflow orchestration + selective context transfer | AI engineering / systems design | ACL 2024 prompt chaining; Chroma 2025 context degradation; LangChain agent engineering |
 
 ---
 

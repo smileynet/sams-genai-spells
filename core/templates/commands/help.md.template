@@ -53,15 +53,28 @@ WORKFLOWS (produce artifacts)
 /@NAMESPACE@handoff [task or context]      Write a structured handoff for the next session
 /@NAMESPACE@handoff resume [path]          Resume from a handoff — load context, plan actions
 
+RITUALS (orchestrated spell sequences)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+/@NAMESPACE@ritual landscape <topic>       prior-art → bpap
+/@NAMESPACE@ritual architect <path/topic>  deep-dive → task-graph
+/@NAMESPACE@ritual investigate <problem>   cause-map → diagnose
+/@NAMESPACE@ritual doc-structure <topic>   diataxis → progressive-disclosure
+/@NAMESPACE@ritual challenge <plan>        blind-spot + zoom-out
+/@NAMESPACE@ritual survey <topic>          prior-art + deep-dive
+/@NAMESPACE@ritual full-landscape <topic>  prior-art + deep-dive → bpap
+/@NAMESPACE@ritual risk-map <plan>         blind-spot + zoom-out → cause-map
+
 META
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /@NAMESPACE@teach [spell]    Learn the concept behind any spell
+/@NAMESPACE@ritual list      Show all rituals with descriptions
 /@NAMESPACE@help [spell]     You are here
 
 TIPS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 • Modifiers set session behavior — invoke once and keep working
 • Workflows produce files — they'll ask questions, research, then output
+• Rituals sequence multiple spells with context bridges and synthesis
 • Use /@NAMESPACE@teach <spell> to learn the concept behind a spell
 • Most spells accept arguments, or ask interactively if you skip them
 
@@ -113,7 +126,8 @@ Spell not found: <argument>
 Available spells:
   Modifiers: idiomatic, socratic
   Workflows: bpap, progressive-disclosure, diataxis, task-graph, diagnose, deep-dive, prior-art, blind-spot, zoom-out, cause-map, handoff
-  Meta: teach, help
+  Rituals: landscape, architect, investigate, doc-structure, challenge, survey, full-landscape, risk-map
+  Meta: ritual, teach, help
 
 Run /@NAMESPACE@help for overview.
 ```
@@ -137,6 +151,7 @@ Run /@NAMESPACE@help for overview.
 | `/@NAMESPACE@blind-spot` | Workflow | Find what you don't know you don't know — surface hidden assumptions, failure modes, and missing perspectives |
 | `/@NAMESPACE@zoom-out` | Workflow | Step back — are we solving the right problem? Challenge a plan or direction from five strategic lenses |
 | `/@NAMESPACE@handoff` | Workflow | Write or resume from a structured handoff document — decisions, dead ends, state, and next steps |
+| `/@NAMESPACE@ritual` | Meta | Run a multi-spell ritual — orchestrated sequences that combine spells for greater effect |
 | `/@NAMESPACE@teach` | Meta | Learn the real-world concept behind any spell — where it comes from, where you see it, how the spell applies it |
 | `/@NAMESPACE@help` | Meta | Show this listing, or detailed help for a specific spell |
 

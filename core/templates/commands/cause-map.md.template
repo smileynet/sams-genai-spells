@@ -243,6 +243,7 @@ For the top 3-5 causes:
 NEXT STEPS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 • To trace the #1 cause to its root: /@NAMESPACE@diagnose <top cause>
+• To map causes AND trace the top one in sequence: /@NAMESPACE@ritual investigate <problem>
 • To check for causes outside these categories: /@NAMESPACE@blind-spot <problem>
 ```
 

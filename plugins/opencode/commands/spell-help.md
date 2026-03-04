@@ -50,15 +50,28 @@ WORKFLOWS (produce artifacts)
 /spell-handoff [task or context]      Write a structured handoff for the next session
 /spell-handoff resume [path]          Resume from a handoff — load context, plan actions
 
+RITUALS (orchestrated spell sequences)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+/spell-ritual landscape <topic>       prior-art → bpap
+/spell-ritual architect <path/topic>  deep-dive → task-graph
+/spell-ritual investigate <problem>   cause-map → diagnose
+/spell-ritual doc-structure <topic>   diataxis → progressive-disclosure
+/spell-ritual challenge <plan>        blind-spot + zoom-out
+/spell-ritual survey <topic>          prior-art + deep-dive
+/spell-ritual full-landscape <topic>  prior-art + deep-dive → bpap
+/spell-ritual risk-map <plan>         blind-spot + zoom-out → cause-map
+
 META
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /spell-teach [spell]    Learn the concept behind any spell
+/spell-ritual list      Show all rituals with descriptions
 /spell-help [spell]     You are here
 
 TIPS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 • Modifiers set session behavior — invoke once and keep working
 • Workflows produce files — they'll ask questions, research, then output
+• Rituals sequence multiple spells with context bridges and synthesis
 • Use /spell-teach <spell> to learn the concept behind a spell
 • Most spells accept arguments, or ask interactively if you skip them
 
@@ -105,7 +118,8 @@ Spell not found: <argument>
 Available spells:
   Modifiers: idiomatic, socratic
   Workflows: bpap, progressive-disclosure, diataxis, task-graph, diagnose, deep-dive, prior-art, blind-spot, zoom-out, cause-map, handoff
-  Meta: teach, help
+  Rituals: landscape, architect, investigate, doc-structure, challenge, survey, full-landscape, risk-map
+  Meta: ritual, teach, help
 
 Run /spell-help for overview.
 ```
@@ -129,6 +143,7 @@ Run /spell-help for overview.
 | `/spell-blind-spot` | Workflow | Find what you don't know you don't know — surface hidden assumptions, failure modes, and missing perspectives |
 | `/spell-zoom-out` | Workflow | Step back — are we solving the right problem? Challenge a plan or direction from five strategic lenses |
 | `/spell-handoff` | Workflow | Write or resume from a structured handoff document — decisions, dead ends, state, and next steps |
+| `/spell-ritual` | Meta | Run a multi-spell ritual — orchestrated sequences that combine spells for greater effect |
 | `/spell-teach` | Meta | Learn the real-world concept behind any spell — where it comes from, where you see it, how the spell applies it |
 | `/spell-help` | Meta | Show this listing, or detailed help for a specific spell |
 

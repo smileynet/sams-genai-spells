@@ -2,11 +2,11 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Platforms](https://img.shields.io/badge/platforms-Claude%20Code%20%7C%20OpenCode%20%7C%20Kiro-blue.svg)](#installation)
-[![Spells](https://img.shields.io/badge/spells-13-purple.svg)](#the-spells)
+[![Spells](https://img.shields.io/badge/spells-14-purple.svg)](#the-spells)
 
 > Real-world concepts from programming, education, and design — packaged as AI commands.
 
-These aren't prompt engineering techniques I invented. They're established concepts from real fields — idiomatic code (programming), the Socratic method (education), progressive disclosure (UX design), Diataxis (documentation theory), task graphs (operations research), systematic debugging (reliability engineering), program comprehension (software engineering). I just got tired of re-explaining them every session and made commands to use them.
+These aren't prompt engineering techniques I invented. They're established concepts from real fields — idiomatic code (programming), the Socratic method (education), Diataxis + progressive disclosure (documentation theory), task graphs (operations research), systematic debugging (reliability engineering), program comprehension (software engineering). I just got tired of re-explaining them every session and made commands to use them.
 
 ## What It Looks Like
 
@@ -82,8 +82,9 @@ ANTIPATTERNS ⚠
 | Spell | What it does |
 |-------|-------------|
 | **bpap** | Need a quick reference for what to do and not do? Researches a topic and produces structured do's, don'ts, and named antipatterns with trap analysis. |
-| **progressive-disclosure** | Docs too big for AI context, or too disorganized for anyone? Breaks them into linked files at progressive detail levels. |
-| **diataxis** | Docs that try to be everything at once? Audits, restructures, or generates docs using the four-quadrant Diataxis framework. |
+| **doc-audit** | Docs but not sure what's wrong? Analyzes existing docs for gaps, mixed concerns, and structural issues using three lenses. |
+| **doc-restructure** | Docs that need reorganizing? Restructures by purpose (Diataxis quadrants) and detail level (progressive disclosure) incrementally. |
+| **doc-generate** | Need docs from scratch? Researches the topic, identifies the audience, then creates structured documentation. |
 | **task-graph** | Twelve tasks and no idea what to start first? Maps dependencies into execution order with parallel waves and critical path analysis. |
 | **diagnose** | Bug that keeps coming back no matter what you try? Surveys all cause categories (fishbone brainstorm), then traces the most likely chain to the root cause before suggesting any fix. |
 | **cause-map** | Problem with unknown, multiple, or recurring causes? Maps ALL possible causes across categories using fishbone (Ishikawa) diagrams, surfaces systemic issues, and prioritizes investigation. |
@@ -109,8 +110,9 @@ ANTIPATTERNS ⚠
 | Want to actually learn something, not just get an answer | **socratic** |
 | Onboarding someone (including yourself) to a new topic | **socratic** |
 | Need a quick reference for what to do and not do | **bpap** |
-| Writing docs for a codebase that has none | **progressive-disclosure** or **diataxis** |
-| Existing docs are a mess and need restructuring | **diataxis** |
+| Writing docs for a codebase that has none | **doc-generate** |
+| Existing docs are a mess and need restructuring | **doc-restructure** |
+| Not sure what's wrong with your docs | **doc-audit** |
 | Planning a project with lots of moving parts | **task-graph** |
 | Need to figure out what to parallelize | **task-graph** |
 | Bug that keeps coming back after you "fix" it | **diagnose** |
@@ -185,8 +187,9 @@ Copy the `plugins/kiro/prompts/` directory to your Kiro project. Commands are pr
 /spell:idiomatic Python 3.12          # Set idiomatic Python constraints
 /spell:socratic React hooks           # Learn React hooks through questions
 /spell:bpap TypeScript                # Get a structured best-practices and antipatterns guide
-/spell:progressive-disclosure src/    # Break docs into linked files
-/spell:diataxis audit docs/           # Audit docs against Diataxis framework
+/spell:doc-audit docs/                # Analyze docs for gaps and structure issues
+/spell:doc-restructure docs/          # Reorganize docs by purpose and detail level
+/spell:doc-generate React hooks       # Research a topic and create structured docs
 /spell:task-graph design, implement, test, deploy  # Map task dependencies
 /spell:task-graph process for code review          # Diagram a workflow
 /spell:diagnose TypeError: Cannot read properties of undefined
@@ -197,7 +200,7 @@ Copy the `plugins/kiro/prompts/` directory to your Kiro project. Commands are pr
 /spell:zoom-out rewrite as microservices # Are we solving the right problem?
 /spell:handoff                        # Capture session context before ending
 /spell:handoff resume HANDOFF.md      # Resume from a handoff file
-/spell:teach diataxis                 # Learn the concept behind Diataxis
+/spell:teach doc-audit                 # Learn the concepts behind documentation spells
 ```
 
 ## Learn the Concepts
@@ -207,8 +210,8 @@ These spells aren't magic. They're packaging. Each one applies an established co
 - **[Idiomatic Code](docs/tutorials/idiomatic.md)** -- AI hallucinating APIs? Code that compiles but fails review? Constraining to documented patterns fixes both.
 - **[The Socratic Method](docs/tutorials/socratic.md)** -- Keep asking the AI the same question because you never learned the answer? Guided questions build understanding that sticks.
 - **[Best Practices & Antipatterns](docs/tutorials/bpap.md)** -- Team knowledge trapped in Slack threads and tribal memory? The do/don't format plus named antipatterns make it scannable, durable, and transferable.
-- **[Progressive Disclosure](docs/tutorials/progressive-disclosure.md)** -- Docs too big for AI context, or too disorganized for anyone? Layered files let readers (and AI) load only what they need.
-- **[The Diataxis Framework](docs/tutorials/diataxis.md)** -- Docs that try to be everything at once and serve nobody? Four quadrants separate tutorials, how-tos, reference, and explanation.
+- **[Progressive Disclosure](docs/tutorials/progressive-disclosure.md)** -- The UX principle behind doc-audit, doc-restructure, and doc-generate: layered files let readers (and AI) load only what they need.
+- **[The Diataxis Framework](docs/tutorials/diataxis.md)** -- The documentation theory behind doc-audit, doc-restructure, and doc-generate: four quadrants separate tutorials, how-tos, reference, and explanation.
 - **[Task Graphs, Critical Paths, and Topological Sort](docs/tutorials/task-graph.md)** -- Twelve tasks and no idea what to start first? DAGs and critical paths turn chaos into execution order.
 - **[Systematic Diagnosis & Root Cause Analysis](docs/tutorials/diagnose.md)** -- Bug keeps coming back after you "fix" it? Categorical brainstorming plus hypothesis-driven tracing finds the real problem.
 - **[Categorical Cause Decomposition & Fishbone Analysis](docs/tutorials/cause-map.md)** -- Recurring incidents with different root causes each time? Map the full cause landscape before investigating.

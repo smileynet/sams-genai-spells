@@ -41,8 +41,9 @@ MODIFIERS (change how the AI behaves)
 WORKFLOWS (produce artifacts)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /@NAMESPACE@bpap <topic>                     Structured do's, don'ts, and named antipatterns
-/@NAMESPACE@progressive-disclosure <topic>   Break docs into linked files (by detail level)
-/@NAMESPACE@diataxis <topic>                 Four-quadrant documentation (by purpose)
+/@NAMESPACE@doc-audit <path>                  Analyze docs for gaps, mixed concerns, and structure
+/@NAMESPACE@doc-restructure <path>            Reorganize docs by purpose and detail level
+/@NAMESPACE@doc-generate <topic>              Research a topic and create structured docs
 /@NAMESPACE@task-graph <tasks or process>    Map dependencies or diagram a workflow
 /@NAMESPACE@diagnose <symptom>              Systematic root cause analysis
 /@NAMESPACE@deep-dive <path or question>   Explore and map how code works
@@ -58,7 +59,7 @@ RITUALS (orchestrated spell sequences)
 /@NAMESPACE@ritual landscape <topic>       prior-art → bpap
 /@NAMESPACE@ritual architect <path/topic>  deep-dive → task-graph
 /@NAMESPACE@ritual investigate <problem>   cause-map → diagnose
-/@NAMESPACE@ritual doc-structure <topic>   diataxis → progressive-disclosure
+/@NAMESPACE@ritual doc-structure <path>    doc-audit → doc-restructure
 /@NAMESPACE@ritual challenge <plan>        blind-spot + zoom-out
 /@NAMESPACE@ritual survey <topic>          prior-art + deep-dive
 /@NAMESPACE@ritual full-landscape <topic>  prior-art + deep-dive → bpap
@@ -125,7 +126,7 @@ Spell not found: <argument>
 
 Available spells:
   Modifiers: idiomatic, socratic
-  Workflows: bpap, progressive-disclosure, diataxis, task-graph, diagnose, deep-dive, prior-art, blind-spot, zoom-out, cause-map, handoff
+  Workflows: bpap, doc-audit, doc-restructure, doc-generate, task-graph, diagnose, deep-dive, prior-art, blind-spot, zoom-out, cause-map, handoff
   Rituals: landscape, architect, investigate, doc-structure, challenge, survey, full-landscape, risk-map
   Meta: ritual, teach, help
 
@@ -141,8 +142,9 @@ Run /@NAMESPACE@help for overview.
 | `/@NAMESPACE@idiomatic` | Modifier | Set session constraints to use canonical, documented patterns for a tool or language |
 | `/@NAMESPACE@socratic` | Modifier | Shift the AI into Socratic teaching mode — questions instead of answers |
 | `/@NAMESPACE@bpap` | Workflow | Research and produce a structured best-practices and antipatterns document for a topic |
-| `/@NAMESPACE@progressive-disclosure` | Workflow | Break documentation into linked, AI-friendly files at progressive detail levels |
-| `/@NAMESPACE@diataxis` | Workflow | Generate or audit documentation using the four-quadrant Diataxis framework |
+| `/@NAMESPACE@doc-audit` | Workflow | Analyze existing docs for gaps, mixed concerns, and structural issues |
+| `/@NAMESPACE@doc-restructure` | Workflow | Reorganize existing docs by purpose (Diataxis quadrants) and detail level (progressive disclosure) |
+| `/@NAMESPACE@doc-generate` | Workflow | Research a topic and create structured documentation from scratch |
 | `/@NAMESPACE@task-graph` | Workflow | Map task dependencies or diagram a workflow using DAGs and critical path analysis |
 | `/@NAMESPACE@diagnose` | Workflow | Systematic root cause analysis — trace symptoms to their actual cause before attempting fixes |
 | `/@NAMESPACE@cause-map` | Workflow | Map all possible causes of a problem using fishbone (Ishikawa) categorical decomposition |

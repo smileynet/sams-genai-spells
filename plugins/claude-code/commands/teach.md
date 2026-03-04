@@ -7,7 +7,7 @@ allowed-tools: Bash, Read, Glob, AskUserQuestion, WebFetch, WebSearch
 
 **Dedicated entry point for learning the concepts behind the spells.** Each spell applies an established idea from a real field — programming, education, UX design, documentation theory, or operations research. This command explains what the concept is, where you already encounter it, and how the spell applies it.
 
-**Arguments:** `$ARGUMENTS` (optional) - Spell name to explain (e.g., "idiomatic", "diataxis")
+**Arguments:** `$ARGUMENTS` (optional) - Spell name to explain (e.g., "idiomatic", "doc-audit")
 
 ---
 
@@ -64,26 +64,38 @@ Engineering Practices, Brown et al.'s AntiPatterns book.
 The spell: Uses AI to research and synthesize a structured
 do's, don'ts, and named antipatterns guide with sources.
 
-PROGRESSIVE DISCLOSURE
+DOC AUDIT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-The concept: Show the simplest useful information first, reveal
-complexity only when someone asks for it. Don't overwhelm
-beginners; don't hide power features from experts.
-Where you see it: iPhone settings, CLI --help vs man pages,
-textbook chapter ordering, FAQ pages.
-The spell: Breaks docs into linked files at progressive detail
-levels, sized for AI context windows.
+The concept: Documentation needs regular health checks — not just
+"does it exist?" but "does it serve its purpose?" Combines Diataxis
+quadrant classification, progressive disclosure depth assessment,
+and ROT analysis (Redundant, Outdated, Trivial) from content strategy.
+Where you see it: Content audits, editorial calendars, style guide
+compliance checks, documentation governance reviews.
+The spell: Analyzes existing docs through three lenses and produces
+a prioritized report of gaps, mixed concerns, and structural issues.
 
-DIATAXIS
+DOC RESTRUCTURE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-The concept: Documentation fails when it tries to do too many
-things at once. Splitting it into four quadrants — tutorials,
-how-to guides, reference, explanation — lets each piece do its
-job well.
+The concept: Well-organized docs separate content by purpose
+(Diataxis quadrants) and layer it by depth (progressive disclosure).
+Topic-based authoring makes each doc a self-contained module.
+The strangler fig pattern enables incremental transformation.
 Where you see it: Django docs, Stripe API docs, any well-organized
-documentation site.
-The spell: Audits, restructures, or generates docs using the
-Diataxis four-quadrant framework.
+documentation site, DITA content management systems.
+The spell: Reorganizes existing docs by classifying content, planning
+structure, and restructuring incrementally — piece by piece.
+
+DOC GENERATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The concept: Good documentation starts with audience analysis —
+who reads this and what are they trying to accomplish? Then applies
+Diataxis quadrant-specific writing rules and progressive disclosure
+depth layering to create structured, navigable docs.
+Where you see it: Documentation-driven development, API documentation
+workflows, technical writing style guides (Google, Microsoft).
+The spell: Researches a topic, identifies the audience, then generates
+structured docs organized by purpose and detail level.
 
 TASK GRAPH
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -213,8 +225,9 @@ Use **WebSearch** to find authoritative sources about the concept:
 - For "idiomatic": search for the tool/language style guides and the concept of idiomatic code
 - For "socratic": search for Socratic method in education and AI tutoring
 - For "bpap": search for technical writing best practices, structured documentation, and software antipatterns
-- For "progressive-disclosure": search for progressive disclosure in UX/instructional design
-- For "diataxis": search for "diataxis framework" site:diataxis.fr
+- For "doc-audit": search for "content audit methodology", "ROT analysis documentation", "Kristina Halvorson content strategy", "diataxis framework" site:diataxis.fr, "progressive disclosure documentation"
+- For "doc-restructure": search for "topic-based authoring DITA", "strangler fig migration pattern", "diataxis framework" site:diataxis.fr, "progressive disclosure documentation structure", "Every Page is Page One Mark Baker"
+- For "doc-generate": search for "documentation-driven development", "audience analysis JTBD documentation", "diataxis framework" site:diataxis.fr, "Google developer documentation style guide", "progressive disclosure documentation"
 - For "task-graph": search for "critical path method" CPM, "Kahn's topological sort", DAG task scheduling
 - For "diagnose": search for "5 Whys root cause analysis", "systematic debugging scientific method", Zeller "Why Programs Fail", "Ishikawa fishbone cause categorization"
 - For "cause-map": search for "Ishikawa fishbone diagram quality tools", "categorical cause decomposition", "Swiss Cheese Model James Reason", "Seven Basic Quality Tools ASQ"
@@ -283,8 +296,9 @@ SOURCES
 | idiomatic | Idiomatic code / canonical patterns | Programming | Official language style guides |
 | socratic | Socratic method | Education | Plato's dialogues; modern tutoring research |
 | bpap | Best practices & antipatterns | Engineering | IEEE/ACM standards; Google Engineering Practices; Brown et al. AntiPatterns |
-| progressive-disclosure | Progressive disclosure | UX Design | J.M. Keller, 1983; Nielsen Norman Group |
-| diataxis | Diataxis documentation framework | Documentation theory | Daniele Procida, diataxis.fr |
+| doc-audit | Diataxis + progressive disclosure + ROT analysis | Documentation theory / content strategy | Procida diataxis.fr; Keller 1983; Halvorson content strategy |
+| doc-restructure | Diataxis + progressive disclosure + topic-based authoring | Documentation theory / UX design | Procida diataxis.fr; Keller 1983; DITA; Baker EPPO |
+| doc-generate | Diataxis + progressive disclosure + audience analysis | Documentation theory / technical writing | Procida diataxis.fr; Keller 1983; Google/Microsoft style guides |
 | task-graph | DAGs + Critical Path Method + topological sort | Operations research | Kelley & Walker 1957; Kahn 1962 |
 | diagnose | 5 Whys + fishbone categorization + fault tree analysis + scientific method | Reliability engineering | Ishikawa 1968; Ohno 1950s; Zeller 2009; Bell Labs 1961 |
 | cause-map | Ishikawa fishbone diagram + categorical decomposition + Swiss Cheese Model | Quality engineering / safety science | Ishikawa 1968; Reason 1990; ASQ Seven Basic Quality Tools |
@@ -302,6 +316,6 @@ SOURCES
 ```
 /spell:teach                    # Overview of all concepts
 /spell:teach idiomatic          # Deep dive on idiomatic code
-/spell:teach diataxis           # Deep dive on Diataxis framework
+/spell:teach doc-audit           # Deep dive on documentation analysis
 /spell:teach socratic           # Deep dive on Socratic method
 ```

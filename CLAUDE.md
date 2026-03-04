@@ -46,15 +46,16 @@ Templates use conditional blocks for platform-specific content:
 - `@IF_OPENCODE@` / `@ENDIF_OPENCODE@` → OpenCode-only content
 - `@IF_KIRO@` / `@ENDIF_KIRO@` → Kiro-only content
 
-## The Thirteen Spells
+## The Fourteen Spells
 
 | Spell | Type | Description |
 |-------|------|-------------|
 | idiomatic | Modifier | Session constraints for canonical tool/language patterns |
 | socratic | Modifier | Shifts AI to Socratic questioning mode |
 | bpap | Workflow | Structured do's, don'ts, and named antipatterns guide |
-| progressive-disclosure | Workflow | Linked files at progressive detail levels |
-| diataxis | Workflow | Four-quadrant documentation (audit/restructure/generate) |
+| doc-audit | Workflow | Analyze docs for gaps, mixed concerns, and structure |
+| doc-restructure | Workflow | Reorganize docs by purpose and detail level |
+| doc-generate | Workflow | Research a topic and create structured docs |
 | task-graph | Workflow | Map task dependencies or diagram a workflow using DAGs and critical path analysis |
 | diagnose | Workflow | Systematic root cause analysis using fishbone categorization, 5 Whys, and hypothesis-driven debugging |
 | cause-map | Workflow | Map all possible causes using fishbone (Ishikawa) categorical decomposition |

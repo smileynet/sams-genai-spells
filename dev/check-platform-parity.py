@@ -30,16 +30,10 @@ class ParityResult:
     info: list[str] = field(default_factory=list)
 
 
-@dataclass
-class PlatformAssets:
-    """Assets discovered on a platform."""
-    commands: set[str] = field(default_factory=set)
-
-
 # Core commands that should exist on all platforms
 CORE_COMMANDS = {
-    "help", "idiomatic", "socratic", "bpap", "progressive-disclosure",
-    "diataxis", "task-graph", "diagnose", "cause-map", "deep-dive",
+    "help", "idiomatic", "socratic", "bpap", "doc-audit",
+    "doc-restructure", "doc-generate", "task-graph", "diagnose", "cause-map", "deep-dive",
     "prior-art", "blind-spot", "zoom-out", "handoff", "teach", "ritual",
 }
 

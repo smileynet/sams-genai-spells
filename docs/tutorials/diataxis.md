@@ -38,15 +38,15 @@ For AI assistants, the separation is especially useful. A document that mixes "h
 
 **Rust documentation.** Rust's documentation ecosystem maps almost perfectly to the four quadrants — though it evolved that way organically, not by design. *The Rust Programming Language* ("the book") is a tutorial: it walks you from "Hello, World" through ownership, lifetimes, and concurrency, each chapter building on the last. *Rust by Example* is a collection of how-to guides: goal-oriented, minimal explanation, "here's how to do X." The standard library docs are pure reference: every type, every method, every trait implementation, organized for lookup. And *The Rustonomicon* is explanation: it covers the "why" behind unsafe Rust, memory layout, and the guarantees the compiler provides. A new Rust developer reads the book. A working developer uses the std docs daily and hits Rust by Example when they need a pattern. An advanced developer reads the Rustonomicon when they need to understand what the compiler actually does. Each document excels because it only tries to be one thing.
 
-## The Command
+## The Commands
 
-The `/spell:diataxis` command applies this concept in three modes:
+The Diataxis framework informs three documentation spells, each focused on one action:
 
-1. **Audit mode:** Analyzes existing docs, classifies each by quadrant, and reports gaps. The visual quadrant grid makes missing coverage obvious at a glance.
-2. **Restructure mode:** Reads existing content, splits it by quadrant, and reorganizes into the proper directory structure.
-3. **Generate mode:** Researches a topic and creates documentation in all four quadrants from scratch.
+1. **`/spell:doc-audit`** — Analyzes existing docs, classifies each by Diataxis quadrant (plus progressive disclosure depth and ROT quality), and reports gaps. The visual quadrant grid makes missing coverage obvious at a glance.
+2. **`/spell:doc-restructure`** — Reads existing content, classifies by quadrant and depth, splits mixed-concern docs, and reorganizes into proper structure incrementally.
+3. **`/spell:doc-generate`** — Starts with audience analysis, researches the topic, then creates documentation following quadrant-specific writing rules.
 
-All three modes produce the same directory structure: `tutorials/`, `how-to/`, `reference/`, `explanation/`, and an `index.md` entry point.
+The Diataxis framework itself lives in `docs/skills/diataxis-framework.md` as a skill reference loaded by all three spells.
 
 ## Background
 

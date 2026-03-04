@@ -36,17 +36,15 @@ The structure also makes maintenance tractable. When you need to update the API 
 
 **API documentation and the Stripe pattern.** Stripe's API docs are often cited as best-in-class, and their structure is progressive disclosure made explicit. The quickstart gets you making API calls in under five minutes — it shows one endpoint, one request, one response. The guides cover specific tasks: subscriptions, webhooks, error handling. The full API reference documents every endpoint, every parameter, every error code. A developer integrating Stripe for the first time reads the quickstart. A developer adding webhook handling reads the guide. A developer debugging a specific error code goes straight to the reference. Each level is useful on its own, and the navigation makes it obvious where to go next.
 
-## The Command
+## The Commands
 
-The `/spell:progressive-disclosure <topic>` command applies this concept by:
+The progressive disclosure framework informs three documentation spells, each focused on one action:
 
-1. Determining the scope (existing docs, codebase area, or new topic)
-2. Designing a 4-7 file structure following the progressive levels
-3. Confirming the plan with the user
-4. Generating the files with cross-links and navigation headers
-5. Numbering files (`00-`, `01-`, etc.) so `ls` shows them in reading order
+1. **`/spell:doc-audit`** — Assesses depth layering in existing docs: does an entry point exist? Are there clear depth levels? Are files sized for context windows? Checks progressive disclosure alongside Diataxis quadrant coverage and ROT quality.
+2. **`/spell:doc-restructure`** — Applies progressive disclosure depth levels when reorganizing: numbered prefixes (`00-`, `01-`), 200–500 line sizing, navigation links, and standalone readability.
+3. **`/spell:doc-generate`** — Designs new docs with progressive disclosure depth levels within each Diataxis quadrant: overview → getting started → guides → reference → deep dives.
 
-The numbered prefix is a small detail that matters — it means AI tools that alphabetize file lists present them in the correct reading order too.
+The progressive disclosure framework itself lives in `docs/skills/progressive-disclosure-framework.md` as a skill reference loaded by all three spells.
 
 ## Background
 

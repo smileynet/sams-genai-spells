@@ -35,9 +35,8 @@ SEQUENTIAL (A's output feeds B)
 /spell-ritual investigate <problem>   cause-map → diagnose
   Map all causes, then trace the top one to root
 
-/spell-ritual doc-structure <topic>   diataxis → progressive-disclosure
-  Audit docs by purpose, then layer by detail level
-  ⚠ Requires edit mode (both spells produce files)
+/spell-ritual doc-structure <path>    doc-audit → doc-restructure
+  Audit docs, then reorganize by purpose and detail level
 
 PARALLEL (independent analyses, then synthesize)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -91,13 +90,13 @@ Read the ritual definition file `core/rituals/<ritual-name>.md` from the reposit
 
 Read the **Plan mode** field from the ritual definition.
 
-**If the ritual is NOT plan-mode compatible** (currently only `doc-structure`):
+**If the ritual is NOT plan-mode compatible:**
 Report to the user:
 
 ```
 ⚠ The <ritual-name> ritual requires edit mode.
 
-<Explanation from the ritual definition about why — e.g., both spells produce files>
+<Explanation from the ritual definition about why>
 
 To proceed:
 1. Exit plan mode
@@ -106,7 +105,7 @@ To proceed:
 
 Stop execution.
 
-**Otherwise:** Continue.
+**Otherwise:** Continue. (Currently all rituals are plan-mode compatible.)
 
 ### Step 4: Announce and Begin
 

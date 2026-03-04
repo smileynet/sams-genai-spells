@@ -10,8 +10,9 @@ Real-world concepts from programming, education, and design — packaged as AI c
 | `@spell-idiomatic` | Set idiomatic constraints for a tool/language |
 | `@spell-socratic` | Shift into Socratic teaching mode |
 | `@spell-bpap` | Generate structured best-practices and antipatterns document |
-| `@spell-progressive-disclosure` | Break docs into linked AI-friendly files |
-| `@spell-diataxis` | Four-quadrant documentation (audit/restructure/generate) |
+| `@spell-doc-audit` | Analyze docs for gaps, mixed concerns, and structure |
+| `@spell-doc-restructure` | Reorganize docs by purpose and detail level |
+| `@spell-doc-generate` | Research a topic and create structured docs |
 | `@spell-task-graph` | Map task dependencies or diagram a workflow |
 | `@spell-diagnose` | Systematic root cause analysis |
 | `@spell-cause-map` | Map all possible causes (fishbone diagram) |

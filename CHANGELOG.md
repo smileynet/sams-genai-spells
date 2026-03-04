@@ -2,6 +2,21 @@
 
 ## [Unreleased]
 
+### Added
+- **doc-audit** spell — analyze existing docs for gaps, mixed concerns, and structural issues using Diataxis, progressive disclosure, and ROT analysis
+- **doc-restructure** spell — reorganize existing docs by purpose (Diataxis quadrants) and detail level (progressive disclosure) using incremental strangler fig approach
+- **doc-generate** spell — research a topic and create structured documentation with audience analysis, quadrant-specific writing rules, and quality gates
+- Skill reference: `docs/skills/diataxis-framework.md` — four-quadrant classification framework
+- Skill reference: `docs/skills/progressive-disclosure-framework.md` — depth layering framework
+
+### Changed
+- **doc-structure ritual** updated: now sequences `doc-audit → doc-restructure` (was `diataxis → progressive-disclosure`), now plan-mode compatible
+- **progressive-disclosure** and **diataxis** demoted from spells to skill references — their frameworks now inform the three new doc spells
+
+### Removed
+- **progressive-disclosure** spell — replaced by doc-audit, doc-restructure, and doc-generate
+- **diataxis** spell — replaced by doc-audit, doc-restructure, and doc-generate
+
 ## [0.7.0] - 2026-03-03
 ### Added
 - **blind-spot** spell — surface hidden assumptions, failure modes, and missing perspectives you haven't considered

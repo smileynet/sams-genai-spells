@@ -43,7 +43,7 @@ cat > "$MARKETPLACE_DIR/.claude-plugin/marketplace.json" << EOF
     {
       "name": "spell",
       "source": "./spell",
-      "description": "Sam's Spells - idiomatic, socratic, bpap, progressive-disclosure, diataxis, task-graph, diagnose, cause-map, deep-dive, prior-art, blind-spot, zoom-out, handoff, ritual",
+      "description": "Sam's Spells - idiomatic, socratic, bpap, doc-audit, doc-restructure, doc-generate, task-graph, diagnose, cause-map, deep-dive, prior-art, blind-spot, zoom-out, handoff, ritual",
       "version": "$VERSION"
     }
   ]

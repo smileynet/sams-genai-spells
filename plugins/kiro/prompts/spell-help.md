@@ -34,8 +34,9 @@ MODIFIERS (change how the AI behaves)
 WORKFLOWS (produce artifacts)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 @spell-bpap <topic>                     Structured do's, don'ts, and named antipatterns
-@spell-progressive-disclosure <topic>   Break docs into linked files (by detail level)
-@spell-diataxis <topic>                 Four-quadrant documentation (by purpose)
+@spell-doc-audit <path>                  Analyze docs for gaps, mixed concerns, and structure
+@spell-doc-restructure <path>            Reorganize docs by purpose and detail level
+@spell-doc-generate <topic>              Research a topic and create structured docs
 @spell-task-graph <tasks or process>    Map dependencies or diagram a workflow
 @spell-diagnose <symptom>              Systematic root cause analysis
 @spell-deep-dive <path or question>   Explore and map how code works
@@ -51,7 +52,7 @@ RITUALS (orchestrated spell sequences)
 @spell-ritual landscape <topic>       prior-art → bpap
 @spell-ritual architect <path/topic>  deep-dive → task-graph
 @spell-ritual investigate <problem>   cause-map → diagnose
-@spell-ritual doc-structure <topic>   diataxis → progressive-disclosure
+@spell-ritual doc-structure <path>    doc-audit → doc-restructure
 @spell-ritual challenge <plan>        blind-spot + zoom-out
 @spell-ritual survey <topic>          prior-art + deep-dive
 @spell-ritual full-landscape <topic>  prior-art + deep-dive → bpap
@@ -113,7 +114,7 @@ Spell not found: <argument>
 
 Available spells:
   Modifiers: idiomatic, socratic
-  Workflows: bpap, progressive-disclosure, diataxis, task-graph, diagnose, deep-dive, prior-art, blind-spot, zoom-out, cause-map, handoff
+  Workflows: bpap, doc-audit, doc-restructure, doc-generate, task-graph, diagnose, deep-dive, prior-art, blind-spot, zoom-out, cause-map, handoff
   Rituals: landscape, architect, investigate, doc-structure, challenge, survey, full-landscape, risk-map
   Meta: ritual, teach, help
 
@@ -129,8 +130,9 @@ Run @spell-help for overview.
 | `@spell-idiomatic` | Modifier | Set session constraints to use canonical, documented patterns for a tool or language |
 | `@spell-socratic` | Modifier | Shift the AI into Socratic teaching mode — questions instead of answers |
 | `@spell-bpap` | Workflow | Research and produce a structured best-practices and antipatterns document for a topic |
-| `@spell-progressive-disclosure` | Workflow | Break documentation into linked, AI-friendly files at progressive detail levels |
-| `@spell-diataxis` | Workflow | Generate or audit documentation using the four-quadrant Diataxis framework |
+| `@spell-doc-audit` | Workflow | Analyze existing docs for gaps, mixed concerns, and structural issues |
+| `@spell-doc-restructure` | Workflow | Reorganize existing docs by purpose (Diataxis quadrants) and detail level (progressive disclosure) |
+| `@spell-doc-generate` | Workflow | Research a topic and create structured documentation from scratch |
 | `@spell-task-graph` | Workflow | Map task dependencies or diagram a workflow using DAGs and critical path analysis |
 | `@spell-diagnose` | Workflow | Systematic root cause analysis — trace symptoms to their actual cause before attempting fixes |
 | `@spell-cause-map` | Workflow | Map all possible causes of a problem using fishbone (Ishikawa) categorical decomposition |

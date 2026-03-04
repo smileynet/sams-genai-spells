@@ -1,53 +1,52 @@
 # Ritual: Doc-Structure
 
-**Spells:** diataxis → progressive-disclosure
+**Spells:** doc-audit → doc-restructure
 **Type:** Sequential
-**Plan mode:** NOT compatible (both spells produce files as primary output)
+**Plan mode:** Compatible (doc-audit is read-only, doc-restructure outputs to conversation)
 
-**Use when:** You need to audit/restructure documentation by purpose (Diataxis quadrants) AND by detail level (progressive disclosure). Diataxis splits by quadrant; progressive-disclosure layers by depth.
-
-**Important:** This ritual requires edit mode — both spells generate files as their primary output. If running in plan mode, exit plan mode first.
+**Use when:** You need to audit documentation for gaps and structural issues, then reorganize it. Doc-audit analyzes by purpose (Diataxis quadrants), depth (progressive disclosure), and content quality (ROT). Doc-restructure applies the findings.
 
 ---
 
-## Phase 1: diataxis
+## Phase 1: doc-audit
 
-Run `diataxis` with the user's topic as the argument.
+Run `doc-audit` with the user's path as the argument.
 
-**Full spell execution** — run the entire diataxis process without modification.
+**Full spell execution** — run the entire doc-audit process without modification.
 
 ---
 
-## Bridge: diataxis → progressive-disclosure
+## Bridge: doc-audit → doc-restructure
 
-**Extract** from diataxis output:
-- **QUADRANT COVERAGE** — which quadrants exist and which are missing
-- **GAPS** — identified documentation gaps
+**Extract** from doc-audit output:
+- **QUADRANT COVERAGE** — which quadrants are populated and which are missing
+- **DEPTH LAYERING** — depth level assessment, navigation status, entry point
+- **GAPS** — identified documentation gaps and missing quadrants
+- **MIXED-CONCERN DOCS** — documents that need splitting
 - **RECOMMENDATIONS** — prioritized improvements
-- **FILES** — generated files (Generate/Restructure modes) or file-to-quadrant mapping from QUADRANT COVERAGE and MIXED DOCUMENTS (Audit mode)
 
-**Reframe** as input for progressive-disclosure:
-- Topic becomes: "layer <topic> documentation by detail level, starting from the Diataxis structure"
-- Context: Carry forward the quadrant assignments (so progressive-disclosure knows which files serve which purpose), the gaps (so progressive-disclosure can note which detail levels are missing for which quadrants), and the recommendations (so progressive-disclosure can incorporate them into the layering). Each Diataxis quadrant may need its own progressive-disclosure stack — a tutorial might have overview → walkthrough → deep dive, while reference might have cheatsheet → API docs → implementation notes.
+**Reframe** as input for doc-restructure:
+- Path stays the same as the user's original path
+- Context: Carry forward the quadrant classifications (so doc-restructure knows which files serve which purpose), the mixed-concern docs (so doc-restructure knows what to split), the depth layering assessment (so doc-restructure can apply progressive disclosure), and the prioritized recommendations (so doc-restructure addresses the most critical issues first).
 
 **Gate check:**
-- If diataxis produced a clear quadrant structure → proceed normally, progressive-disclosure will layer each quadrant by depth
-- If diataxis found documentation is severely lacking (3+ empty quadrants) → reframe progressive-disclosure to focus on the one populated quadrant first, then suggest building the others
-- If diataxis audit found no documentation exists → stop and report to user; generating docs from scratch should start with diataxis generate mode, then re-run the ritual
+- If doc-audit found no documentation exists → stop and report to user; creating docs from scratch should use `doc-generate` first
+- If doc-audit found documentation is already well-structured (no mixed concerns, good quadrant coverage, proper depth layering) → ask if restructure is still needed
+- If doc-audit found documentation but it's severely lacking (3+ empty quadrants, no entry point) → proceed but note that `doc-generate` may be needed for missing content
 
 **User checkpoint:** Present the bridge content and ask:
-1. Proceed with progressive-disclosure using this framing
-2. Modify the framing (focus on specific quadrants)
-3. Skip to synthesis (diataxis output is sufficient)
-4. Redirect to a different spell
+1. Proceed with doc-restructure using the audit findings
+2. Modify the approach (focus on specific issues)
+3. Skip to synthesis (audit report is sufficient)
+4. Redirect to a different spell (e.g., doc-generate for missing content)
 
 ---
 
-## Phase 2: progressive-disclosure
+## Phase 2: doc-restructure
 
-Run `progressive-disclosure` with the reframed topic from the bridge.
+Run `doc-restructure` with the same path from the bridge.
 
-**Full spell execution** — run the entire progressive-disclosure process without modification.
+**Full spell execution** — run the entire doc-restructure process without modification.
 
 ---
 
@@ -55,8 +54,8 @@ Run `progressive-disclosure` with the reframed topic from the bridge.
 
 Produce a synthesis that cross-references the two outputs:
 
-**Convergent findings:** Where Diataxis quadrant boundaries and progressive-disclosure depth levels align naturally (e.g., tutorials naturally map to the overview/walkthrough levels, reference naturally maps to the detailed/complete levels).
+**Convergent findings:** Where audit findings directly drove restructuring decisions — issues identified in the audit that were resolved by restructuring (e.g., mixed-concern docs that were split, missing entry point that was created).
 
-**Divergent findings:** Where the two frameworks tension each other (e.g., if progressive-disclosure suggests combining tutorial and reference at the overview level, but Diataxis insists they stay separate — that tension reveals a documentation design decision to make).
+**Divergent findings:** Where restructuring revealed issues the audit didn't catch — structural problems that only became visible when reorganizing content (e.g., content that seemed fine in place but didn't fit any quadrant cleanly when separated).
 
-**Emergent insights:** Patterns visible only in combination — the combined view may reveal that some documentation serves dual purposes across both dimensions (a document that's both "explanation" quadrant and "deep dive" depth level), creating a natural entry point into the documentation system.
+**Emergent insights:** Patterns visible only in combination — the combined view may reveal documentation debt patterns (e.g., all how-to content was buried inside tutorials, suggesting the team writes tutorials when they mean to write guides), or gaps that restructuring can't fix (content that needs to be written, not just moved).

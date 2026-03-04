@@ -7,8 +7,8 @@ allowed-tools: Bash, Read, Edit, Glob, Grep
 
 **Run release utilities or start an interactive release workflow.** Routes based on `$ARGUMENTS`:
 
-- No args -> pre-flight health check
-- Version number -> full interactive release workflow
+- No args → pre-flight health check
+- Version number → full interactive release workflow
 
 ---
 
@@ -28,23 +28,23 @@ Report the results in a clear table (pass/fail per check, any warnings).
 
 **Then fix any errors found:**
 
-- **Working tree not clean** -> Run `git status` to see what's dirty. Stage all changed files and commit them with an appropriate message describing the changes. This clears the tree for release readiness.
+- **Working tree not clean** → Run `git status` to see what's dirty. Stage all changed files and commit them with an appropriate message describing the changes. This clears the tree for release readiness.
 
-- **[Unreleased] section is empty** -> Populate it from git history:
+- **[Unreleased] section is empty** → Populate it from git history:
   1. Find the last release tag: `git describe --tags --abbrev=0`
   2. List commits since that tag: `git log <tag>..HEAD --oneline`
   3. Read `docs/guidance/changelog.md` for the full changelog style guide
   4. **Filter for user-facing changes only.** The changelog is for plugin users — people who install Sam's Spells and use its spells in their projects. Apply this litmus test: *Would a spell user notice this change?* If only contributors or maintainers would notice, exclude it.
      - **Include:** New spells, changed spell behavior, new workflow capabilities, bug fixes users encounter, breaking changes
      - **Exclude:** Dev scripts, template syncing infra, CI/workflow changes, internal refactoring, beads sync commits, docs updates (unless user-facing command docs)
-  5. Categorize: `feat:` -> Added, `fix:` -> Fixed, `refactor:` affecting behavior -> Changed
+  5. Categorize: `feat:` → Added, `fix:` → Fixed, `refactor:` affecting behavior → Changed
   6. Write entries that explain the **value** — what users can now do, or what problem is solved. Lead with the user experience, not the implementation mechanism. If an entry reads like a commit message describing what the code does internally, rewrite it to describe what the user experiences. Consolidate related commits into single entries.
   7. Edit `CHANGELOG.md` to add the entries under `## [Unreleased]`
   8. Commit the changelog update
 
-- **Not on main branch** -> Show current branch, suggest switching
-- **Behind origin/main** -> Suggest `git pull`
-- **Validation script errors** -> Show the specific failures and suggest fixes
+- **Not on main branch** → Show current branch, suggest switching
+- **Behind origin/main** → Suggest `git pull`
+- **Validation script errors** → Show the specific failures and suggest fixes
 
 **Then review [Unreleased] changelog entries.** Whether entries were just auto-populated or already existed, review them against the changelog style guide:
 

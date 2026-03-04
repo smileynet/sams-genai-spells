@@ -1,6 +1,8 @@
 # Changelog
 
 ## [Unreleased]
+
+## [0.7.0] - 2026-03-03
 ### Added
 - **blind-spot** spell — surface hidden assumptions, failure modes, and missing perspectives you haven't considered
 - **zoom-out** spell — challenge a plan or direction from five strategic lenses before committing to implementation
@@ -80,7 +82,8 @@ First release. Sam finally stopped re-typing the same prompting tricks and made 
 - Local Claude Code install script (`dev/install-claude-code.sh`)
 - Tutorial docs for all five concepts (`docs/tutorials/`)
 
-[Unreleased]: https://github.com/smileynet/sams-genai-spells/compare/v0.6.0...HEAD
+[Unreleased]: https://github.com/smileynet/sams-genai-spells/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/smileynet/sams-genai-spells/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/smileynet/sams-genai-spells/compare/v0.5.1...v0.6.0
 [0.5.1]: https://github.com/smileynet/sams-genai-spells/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/smileynet/sams-genai-spells/compare/v0.4.0...v0.5.0

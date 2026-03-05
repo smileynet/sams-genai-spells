@@ -16,6 +16,18 @@ This makes session transitions the highest-risk moment for context loss. A struc
 
 ## What to Capture
 
+### Transient vs. Permanent Knowledge
+
+A handoff captures two fundamentally different kinds of information:
+
+**Transient (session bridge):** Status, current state, next steps, key files, open questions — these expire naturally when the work continues. They answer "where are we right now?" and lose value as soon as the session resumes.
+
+**Permanent (system knowledge):** Decisions, dead ends, gotchas — these are properties of the system, not the session. Evidence from real handoff documents shows 76–100% of items in these categories are permanent system knowledge that outlives any individual session.
+
+The handoff is the right *moment* to capture both — context is richest during or just after the work. But it's not the right *home* for permanent knowledge. The layered taxonomy that tools in this space converge on: **episodic** (raw session events) → **working** (structured handoff) → **procedural** (permanent rules/docs). The handoff is the "working" layer — capture everything here, then promote permanent items to their final homes before closing.
+
+The **6-month heuristic** distinguishes the two: "Would a developer joining this project in 6 months need to know this?" If yes → permanent, promote to a durable location. If it only matters for the next session → transient, keep in the handoff.
+
 ### Decisions With Rationale
 
 **Capture format:** `[Decision] — Reason: [why this over alternatives]`
@@ -165,7 +177,32 @@ Silent reversal — changing a decision without acknowledging or understanding t
 
 ### Delete After Consumption
 
-By default, a consumed handoff file should be deleted. Stale handoff files left in the repository become **context rot** — a future session may read them, trust outdated claims, and make decisions based on obsolete state. If the handoff is still needed (e.g., work is being paused, not completed), keep it but be aware of the risk.
+By default, a consumed handoff file should be deleted. Stale handoff files left in the repository become **context rot** — a future session may read them, trust outdated claims, and make decisions based on obsolete state.
+
+**With the promotion model, deletion is always safe.** When permanent knowledge (decisions, dead ends, gotchas) has been promoted to durable homes during generation, the handoff contains only transient session state. Deleting it loses nothing of lasting value — the PROMOTED section's references are useful during consumption but unnecessary afterward.
+
+**Consumption verifies promotion.** Following KCS (Knowledge-Centered Service) principles: "reuse is review." When the resuming session follows PROMOTED references to load decisions and dead ends from their permanent locations, it implicitly verifies that those items were actually written and are still accurate. This is a natural quality check that requires no extra effort.
+
+If the handoff uses the legacy format (no PROMOTED section), deletion carries more risk — permanent knowledge embedded in the handoff body will be lost. In this case, consider promoting items before deleting, or keep the file with awareness of the context rot risk.
+
+### Promotion Targets
+
+When promoting permanent knowledge from a handoff to durable homes, use the target that matches the item's scope and audience:
+
+| Item type | Durable home | Format |
+|-----------|-------------|--------|
+| Decision reflected in config/code | Inline comment above the relevant line | `# Decision: <what> — <why>` |
+| Decision with architectural rationale | ADR in `docs/decisions/` (if it exists, using Nygard format: context, decision, consequences) | Numbered ADR file |
+| Decision about project setup or workflow | CLAUDE.md or AGENTS.md | Bullet in relevant section |
+| Dead end revealing a reusable pattern | BPAP antipattern in `docs/bpap-*` | Named antipattern: AP-N with temptation, consequences, alternative |
+| Dead end revealing a system constraint | AGENTS.md or code comment near the chosen approach | Bullet or inline comment |
+| Gotcha about system/infra behavior | AGENTS.md (gotchas section) | Bullet with explanation |
+| Gotcha about build/deploy/setup | CLAUDE.md or README (prerequisites) | Bullet or section |
+| Gotcha in specific code | Inline comment near the trap | `# Gotcha: <what to watch for>` |
+
+**Dead ends that generalize are antipatterns.** The heuristic: "Could someone on a different project hit this same trap?" If yes → promote as a named BPAP antipattern, not just a code comment. If no → code comment or AGENTS.md is sufficient.
+
+**Promotion requires user confirmation.** Present a triage table showing each item, its type, and proposed destination. The user approves, adjusts, or skips promotion. This is the human-curated step that distinguishes the handoff spell from fully automatic memory systems.
 
 ## Context Failure Modes
 

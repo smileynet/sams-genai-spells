@@ -101,8 +101,13 @@ Before writing the handoff, verify you have material for each required section:
 | Gotchas | |
 | Open questions | |
 
-If critical gaps exist — especially decisions or dead ends that you observed during the session but can't fully reconstruct:
-Ask the user to fill gaps — especially decisions, dead ends, and gotchas that may not be visible in the code.
+If critical gaps exist — especially decisions or dead ends observed during the session but not fully reconstructable — note them in the handoff output rather than interrupting the user:
+
+```
+Gaps: Could not reconstruct [decisions | dead ends | gotchas] from session context or git state.
+```
+
+This surfaces what's missing without adding friction. The user can fill gaps by editing the handoff file directly.
 
 If a section is genuinely empty (e.g., no dead ends were encountered), note "None identified" — don't omit the section. A missing section looks like an oversight; an empty one shows you checked.
 
@@ -116,7 +121,7 @@ Scan the decisions, dead ends, and gotchas gathered in A2–A3. Apply the **6-mo
 
 Search for existing documentation targets: CLAUDE.md, AGENTS.md, docs/decisions/, docs/bpap-*, README.md.
 
-If no existing targets are found, default to CLAUDE.md (creating a section if needed) or inline code comments. Do not create new documentation structures (ADR directories, BPAP files) without user confirmation — offer it as an option in the triage table.
+If no existing targets are found, default to CLAUDE.md (creating a section if needed) or inline code comments. Do not create new documentation structures (ADR directories, BPAP files) automatically — only promote to targets that already exist, and note in the triage log if an item's natural home doesn't exist yet.
 
 **Classify each item using the promotion target heuristics:**
 
@@ -141,11 +146,20 @@ Consequences: <what goes wrong>
 Instead: <what to do instead>
 ```
 
-**Present the triage to the user:**
+**Auto-promote and log the triage table:**
 
-Present the triage table showing each permanent item and its proposed destination. Ask the user to confirm: promote all, review individually, or skip promotion.
+Promote all items that pass the 6-month heuristic to their proposed locations automatically. Output the triage table to the conversation so the user can see what was promoted:
 
-**Write confirmed items to their durable homes** using the appropriate format for that file type (inline comment, ADR section, BPAP antipattern entry, AGENTS.md bullet, etc.).
+```
+PERMANENCE TRIAGE (auto-promoted)
+| Item | Type | Promoted to |
+|------|------|------------|
+| <item summary> | Decision | <target file (section)> |
+| <item summary> | Dead end | <target file or BPAP> |
+| <item summary> | Gotcha | <target file (section)> |
+```
+
+**Write promoted items to their durable homes** using the appropriate format for that file type (inline comment, ADR section, BPAP antipattern entry, AGENTS.md bullet, etc.).
 
 Track what was promoted — the list feeds the PROMOTED section in the handoff.
 
@@ -203,11 +217,7 @@ N decisions, N dead ends, N gotchas written to durable locations:
 (or "No permanent items identified — all context is session-specific")
 ```
 
-If the user chose "Skip promotion" in A4, use the legacy eight-section format instead (STATUS, DECISIONS MADE, DEAD ENDS, CURRENT STATE, NEXT STEPS, KEY FILES, GOTCHAS, OPEN QUESTIONS).
-
-### A6: Write to File and Offer Next Actions
-
-Write the handoff to `HANDOFF.md` in the repository root. Do not commit or push it — it is a transient artifact consumed and deleted by the next session. Then ask the user: done, or adjust scope.
+Write the handoff to `HANDOFF.md` in the repository root. Do not commit or push it — it is a transient artifact consumed and deleted by the next session.
 
 ---
 
@@ -351,9 +361,9 @@ Promoted reference issues (if any):
 Source: <path> | Status: consumed, pending deletion
 ```
 
-### B6: Offer to Begin
+### B6: Delete and Begin
 
-Delete the handoff file unless `--keep` was specified. With legacy format, warn the user that embedded permanent knowledge will be lost and offer to promote first. Then ask how to proceed: start P1 work, review the plan, load key files, or resolve open questions first.
+Delete the handoff file unless `--keep` was specified. With legacy format, warn the user that embedded permanent knowledge will be lost and offer to promote first. Then begin Priority 1 work immediately — the action plan already shows what to do next.
 
 ---
 

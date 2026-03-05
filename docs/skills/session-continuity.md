@@ -24,7 +24,7 @@ A handoff captures two fundamentally different kinds of information:
 
 **Permanent (system knowledge):** Decisions, dead ends, gotchas — these are properties of the system, not the session. In practice, the majority of items in these categories are permanent system knowledge that outlives any individual session.
 
-The handoff is the right *moment* to capture both — context is richest during or just after the work. But it's not the right *home* for permanent knowledge. The layered taxonomy: **episodic** (raw session events) → **working** (structured handoff) → **procedural** (permanent rules/docs). The handoff is the "working" layer — capture everything here, then promote permanent items to their final homes before closing.
+The handoff is the right *moment* to capture both — context is richest during or just after the work. But it's not the right *home* for permanent knowledge. The layered taxonomy maps the progression: **episodic** (raw session events) → **working** (structured handoff) → **procedural** (permanent rules/docs). The handoff sits at the "working" layer — capture everything here, then promote permanent items to their final homes before closing.
 
 The **6-month heuristic** distinguishes the two: "Would a developer joining this project in 6 months need to know this?" If yes → permanent, promote to a durable location. If it only matters for the next session → transient, keep in the handoff.
 
@@ -202,7 +202,7 @@ When promoting permanent knowledge from a handoff to durable homes, use the targ
 
 **Dead ends that generalize are antipatterns.** Heuristic: "Could someone on a different project hit this same trap?" If yes → promote as a named BPAP antipattern, not just a code comment. If no → code comment or AGENTS.md is sufficient.
 
-**Promotion requires user confirmation.** Present a triage table showing each item, its type, and proposed destination. The user approves, adjusts, or skips. This human-curated step distinguishes the handoff spell from fully automatic memory systems.
+**Promotion is automatic with logged output.** Items that pass the 6-month heuristic are promoted to their durable homes without asking. The triage table is output to the conversation so the user can see what was promoted and where — but the process is non-interactive to minimize friction.
 
 ## Context Failure Modes
 

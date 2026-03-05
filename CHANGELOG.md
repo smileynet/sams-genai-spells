@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+- **handoff** spell is now non-interactive — promotion auto-executes with a logged triage table, gaps are noted in the output instead of asking, and resume auto-starts Priority 1 work immediately. Only two questions remain: scope (when git state is ambiguous) and file selection (when multiple handoff candidates exist)
+
 ## [0.8.1] - 2026-03-04
 ### Fixed
 - **handoff** spell now writes to `HANDOFF.md` by default and auto-deletes the file on resume — handoff files are transient session bridges, not repository artifacts (`--keep` to preserve)

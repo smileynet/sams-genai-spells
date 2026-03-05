@@ -344,7 +344,7 @@ Promoted reference issues (if any):
 - [item referenced at <file:section> — file exists but section not found]
 - [item referenced at <file:line> — file modified since handoff date]
 
-Source: <path> | Status: consumed
+Source: <path> | Status: consumed, pending deletion
 ```
 
 ### B6: Offer to Begin

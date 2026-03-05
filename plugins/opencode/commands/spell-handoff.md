@@ -7,7 +7,7 @@ description: Write or resume from a structured handoff document
 **Write a structured handoff document, or resume from one.** Two modes:
 
 - **Generate** (default): Capture session state and promote permanent knowledge (decisions, dead ends, gotchas) to durable homes — everything the next session (or developer) needs to continue without losing ground.
-- **Resume**: Consume a handoff file — verify its claims against current state, build a prioritized action plan, and offer to clean up the file.
+- **Resume**: Consume a handoff file — verify its claims against current state, build a prioritized action plan, and delete the file (use `--keep` to preserve it).
 
 **Arguments:** `$ARGUMENTS` (optional)
 - Empty or task/feature description → Generate mode
@@ -223,7 +223,7 @@ Search for `HANDOFF.md` in the repository root, then `*.handoff.md`, then common
 
 If no handoff file is found, inform the user and exit.
 
-Check for the `--keep` flag in `$ARGUMENTS`. If present, skip offering deletion in the final step.
+Check for the `--keep` flag in `$ARGUMENTS`. If present, skip deletion of the handoff file in the final step.
 
 ### B2: Consume the Handoff
 

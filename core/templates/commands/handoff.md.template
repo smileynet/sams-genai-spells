@@ -436,16 +436,17 @@ New commits since handoff: <count, or "none">
 
 CONTEXT LOADED
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-From permanent homes (if PROMOTED section present):
-- <N> items loaded from <M> files
+(Include only the subsection matching the handoff format)
+
+Promoted format:
+- <N> items loaded from <M> permanent homes
 - <K> items missing or changed (see DISCREPANCIES)
 
-From handoff body (legacy sections, if any):
+Legacy format:
 - <N> decisions loaded
 - <N> dead ends loaded (DO NOT REVISIT)
 - <N> gotchas noted
 
-Always:
 - <N> key files verified (<M> still exist, <K> missing)
 - <N> open questions pending
 

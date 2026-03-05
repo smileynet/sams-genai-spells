@@ -22,7 +22,7 @@ A handoff captures two fundamentally different kinds of information:
 
 **Transient (session bridge):** Status, current state, next steps, key files, open questions — these expire naturally when the work continues. They answer "where are we right now?" and lose value as soon as the session resumes.
 
-**Permanent (system knowledge):** Decisions, dead ends, gotchas — these are properties of the system, not the session. Evidence from real handoff documents shows 76–100% of items in these categories are permanent system knowledge that outlives any individual session.
+**Permanent (system knowledge):** Decisions, dead ends, gotchas — these are properties of the system, not the session. In practice, the majority of items in these categories are permanent system knowledge that outlives any individual session.
 
 The handoff is the right *moment* to capture both — context is richest during or just after the work. But it's not the right *home* for permanent knowledge. The layered taxonomy: **episodic** (raw session events) → **working** (structured handoff) → **procedural** (permanent rules/docs). The handoff is the "working" layer — capture everything here, then promote permanent items to their final homes before closing.
 

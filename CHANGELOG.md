@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- **handoff** spell now writes to `HANDOFF.md` by default and auto-deletes the file on resume — handoff files are transient session bridges, not repository artifacts (`--keep` to preserve)
+
 ## [0.8.0] - 2026-03-04
 ### Added
 - **doc-audit** spell — analyze existing docs for gaps, mixed concerns, and structural issues using Diataxis, progressive disclosure, and ROT analysis

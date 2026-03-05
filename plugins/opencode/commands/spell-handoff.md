@@ -13,7 +13,7 @@ description: Write or resume from a structured handoff document
 - Empty or task/feature description → Generate mode
 - `resume [path] [--keep]` → Resume mode
 
-**Output:** Structured handoff document or action plan output directly to the conversation (Write is available if the user requests the output be saved to a file)
+**Output:** Structured handoff document written to `HANDOFF.md` (or user-specified path). Resume mode outputs action plan to the conversation.
 
 ---
 
@@ -205,9 +205,9 @@ N decisions, N dead ends, N gotchas written to durable locations:
 
 If the user chose "Skip promotion" in A4, use the legacy eight-section format instead (STATUS, DECISIONS MADE, DEAD ENDS, CURRENT STATE, NEXT STEPS, KEY FILES, GOTCHAS, OPEN QUESTIONS).
 
-### A6: Offer Next Actions
+### A6: Write to File and Offer Next Actions
 
-Ask the user what to do with the handoff: save to file, commit and push, just review, or adjust scope.
+Write the handoff to `HANDOFF.md` in the repository root. Then ask the user what to do next: commit and push, done, or adjust scope.
 
 ---
 

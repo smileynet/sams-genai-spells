@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+## [0.8.2] - 2026-03-04
 ### Changed
 - **handoff** spell is now non-interactive — promotion auto-executes with a logged triage table, gaps are noted in the output instead of asking, and resume auto-starts Priority 1 work immediately. Only two questions remain: scope (when git state is ambiguous) and file selection (when multiple handoff candidates exist)
 
@@ -105,7 +106,8 @@ First release. Sam finally stopped re-typing the same prompting tricks and made 
 - Local Claude Code install script (`dev/install-claude-code.sh`)
 - Tutorial docs for all five concepts (`docs/tutorials/`)
 
-[Unreleased]: https://github.com/smileynet/sams-genai-spells/compare/v0.8.1...HEAD
+[Unreleased]: https://github.com/smileynet/sams-genai-spells/compare/v0.8.2...HEAD
+[0.8.2]: https://github.com/smileynet/sams-genai-spells/compare/v0.8.1...v0.8.2
 [0.8.1]: https://github.com/smileynet/sams-genai-spells/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/smileynet/sams-genai-spells/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/smileynet/sams-genai-spells/compare/v0.6.0...v0.7.0

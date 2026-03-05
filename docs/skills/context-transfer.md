@@ -63,7 +63,7 @@ When a session ends or work transfers between people, these categories of contex
 | BPAP | Domain/topic | Yes (as antipatterns) | Yes (as best practices) | Yes |
 | Session handoff | Work session | Yes (promotes to above) | Yes (promotes to above) | Yes |
 
-A handoff document fills the gap that other formats leave — it captures the full context of a work session at the moment of richest context, including dead ends, gotchas, and in-progress state. The handoff also serves as a **promotion bridge**: permanent knowledge captured during a session (decisions, dead ends, gotchas) is written to its durable home (ADRs, BPAPs, AGENTS.md, code comments) during handoff generation, then referenced in the PROMOTED section. This preserves the handoff's role as a capture moment while ensuring permanent knowledge survives the handoff's natural deletion.
+A handoff document fills the gap that other formats leave — it captures the full context of a work session when context is richest, including dead ends, gotchas, and in-progress state. The handoff also serves as a **promotion bridge**: permanent knowledge is written to its durable home (ADRs, BPAPs, AGENTS.md, code comments) during generation, then referenced in the PROMOTED section. This ensures permanent knowledge survives the handoff's natural deletion.
 
 ## Completeness Criteria
 
@@ -71,14 +71,14 @@ A handoff document is complete when a reader with **zero prior context** can:
 
 1. **Understand what the work is** without asking "what are you working on?"
 2. **Continue where you left off** without re-discovering the current state
-3. **Avoid your dead ends** without re-trying failed approaches — dead ends are captured during generation and promoted to permanent locations (AGENTS.md, code comments, BPAPs); the PROMOTED section references where to find them
-4. **Understand your decisions** without reversing them unknowingly — decisions are captured and promoted to permanent locations (ADRs, CLAUDE.md, inline comments); the PROMOTED section references where to find them
+3. **Avoid your dead ends** without re-trying failed approaches — promoted to permanent locations (AGENTS.md, code comments, BPAPs) and referenced in the PROMOTED section
+4. **Understand your decisions** without reversing them unknowingly — promoted to permanent locations (ADRs, CLAUDE.md, inline comments) and referenced in the PROMOTED section
 5. **Know the next steps** without figuring out what to do first
 6. **Find the relevant files** without searching the whole codebase
-7. **Avoid known traps** without falling into them first — gotchas are captured and promoted to permanent locations (AGENTS.md, README, inline comments); the PROMOTED section references where to find them
+7. **Avoid known traps** without falling into them first — promoted to permanent locations (AGENTS.md, README, inline comments) and referenced in the PROMOTED section
 8. **Escalate open questions** without making unauthorized assumptions
 
-If any of these eight criteria aren't met, the handoff has a gap. With the promoted format, criteria 3, 4, and 7 are met by verifying items appear in their durable homes and are referenced in the PROMOTED section. With the legacy format, these criteria are met by the items appearing directly in the handoff body (DECISIONS MADE, DEAD ENDS, GOTCHAS sections).
+If any of these eight criteria aren't met, the handoff has a gap. With the promoted format, criteria 3, 4, and 7 are met by verifying items exist in their durable homes and are referenced in the PROMOTED section. With the legacy format, these items appear directly in the handoff body (DECISIONS MADE, DEAD ENDS, GOTCHAS sections).
 
 ## Quality Signals
 
@@ -90,7 +90,7 @@ If any of these eight criteria aren't met, the handoff has a gap. With the promo
 
 **Bad handoff indicators:**
 - "Continue working on the feature" (vague next steps)
-- Missing dead-ends section (looks like nothing was tried)
+- Missing dead ends section (looks like nothing was tried)
 - Decisions without rationale ("Using PostgreSQL" — but why?)
 - Assumes reader context ("as we discussed" — discussed where?)
 

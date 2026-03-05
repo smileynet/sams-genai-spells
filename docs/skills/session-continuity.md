@@ -24,7 +24,7 @@ A handoff captures two fundamentally different kinds of information:
 
 **Permanent (system knowledge):** Decisions, dead ends, gotchas — these are properties of the system, not the session. Evidence from real handoff documents shows 76–100% of items in these categories are permanent system knowledge that outlives any individual session.
 
-The handoff is the right *moment* to capture both — context is richest during or just after the work. But it's not the right *home* for permanent knowledge. The layered taxonomy that tools in this space converge on: **episodic** (raw session events) → **working** (structured handoff) → **procedural** (permanent rules/docs). The handoff is the "working" layer — capture everything here, then promote permanent items to their final homes before closing.
+The handoff is the right *moment* to capture both — context is richest during or just after the work. But it's not the right *home* for permanent knowledge. The layered taxonomy: **episodic** (raw session events) → **working** (structured handoff) → **procedural** (permanent rules/docs). The handoff is the "working" layer — capture everything here, then promote permanent items to their final homes before closing.
 
 The **6-month heuristic** distinguishes the two: "Would a developer joining this project in 6 months need to know this?" If yes → permanent, promote to a durable location. If it only matters for the next session → transient, keep in the handoff.
 
@@ -179,9 +179,9 @@ Silent reversal — changing a decision without acknowledging or understanding t
 
 By default, a consumed handoff file should be deleted. Stale handoff files left in the repository become **context rot** — a future session may read them, trust outdated claims, and make decisions based on obsolete state.
 
-**With the promotion model, deletion is always safe.** When permanent knowledge (decisions, dead ends, gotchas) has been promoted to durable homes during generation, the handoff contains only transient session state. Deleting it loses nothing of lasting value — the PROMOTED section's references are useful during consumption but unnecessary afterward.
+**With the promotion model, deletion is always safe.** When permanent knowledge has been promoted to durable homes during generation, the handoff contains only transient session state. Deleting it loses nothing of lasting value — the PROMOTED section's references are useful during consumption but unnecessary afterward.
 
-**Consumption verifies promotion.** Following KCS (Knowledge-Centered Service) principles: "reuse is review." When the resuming session follows PROMOTED references to load decisions and dead ends from their permanent locations, it implicitly verifies that those items were actually written and are still accurate. This is a natural quality check that requires no extra effort.
+**Consumption verifies promotion.** Per KCS (Knowledge-Centered Service): "reuse is review." When the resuming session follows PROMOTED references, it implicitly verifies that those items were actually written and are still accurate — a natural quality check that requires no extra effort.
 
 If the handoff uses the legacy format (no PROMOTED section), deletion carries more risk — permanent knowledge embedded in the handoff body will be lost. In this case, consider promoting items before deleting, or keep the file with awareness of the context rot risk.
 
@@ -200,17 +200,17 @@ When promoting permanent knowledge from a handoff to durable homes, use the targ
 | Gotcha about build/deploy/setup | CLAUDE.md or README (prerequisites) | Bullet or section |
 | Gotcha in specific code | Inline comment near the trap | `# Gotcha: <what to watch for>` |
 
-**Dead ends that generalize are antipatterns.** The heuristic: "Could someone on a different project hit this same trap?" If yes → promote as a named BPAP antipattern, not just a code comment. If no → code comment or AGENTS.md is sufficient.
+**Dead ends that generalize are antipatterns.** Heuristic: "Could someone on a different project hit this same trap?" If yes → promote as a named BPAP antipattern, not just a code comment. If no → code comment or AGENTS.md is sufficient.
 
-**Promotion requires user confirmation.** Present a triage table showing each item, its type, and proposed destination. The user approves, adjusts, or skips promotion. This is the human-curated step that distinguishes the handoff spell from fully automatic memory systems.
+**Promotion requires user confirmation.** Present a triage table showing each item, its type, and proposed destination. The user approves, adjusts, or skips. This human-curated step distinguishes the handoff spell from fully automatic memory systems.
 
 ## Context Failure Modes
 
 These failure modes are specific to context transfer across session boundaries. They're especially dangerous in AI-to-AI handoffs because the receiving agent has no independent memory to cross-reference against.
 
 ### Context Poisoning
-- **Pattern:** An error or hallucination in the handoff (wrong file path, incorrect claim about behavior, misremembered decision) gets loaded into the new session and treated as ground truth.
-- **Why it's dangerous:** The receiving agent has no reason to doubt structured input. One bad claim can cascade through an entire action plan.
+- **Pattern:** An error in the handoff (wrong file path, incorrect claim about behavior, misremembered decision) gets loaded into the new session and treated as ground truth.
+- **Why it's dangerous:** The receiving agent has no reason to doubt structured input. One bad claim cascades through the entire action plan.
 - **Mitigation:** Verify handoff claims against git state and actual file contents. Trust evidence over assertions.
 
 ### Context Rot
@@ -234,6 +234,6 @@ These failure modes are specific to context transfer across session boundaries. 
 - **Mitigation:** Compare the handoff date to the most recent commits. If significant work has happened since, treat the handoff as partial context, not complete truth.
 
 ### Decision Reversal Without Audit
-- **Pattern:** The new session overrides a decision from the handoff without understanding why it was made. "Using PostgreSQL" gets changed to "using SQLite" because it seems simpler — without realizing the decision was made for concurrent write support.
+- **Pattern:** The new session overrides a decision without understanding why it was made. "Using PostgreSQL" gets changed to "using SQLite" because it seems simpler — without realizing the decision was driven by concurrent write support.
 - **Why it's dangerous:** The original constraint still exists. The reversal reintroduces the problem the decision was designed to solve.
 - **Mitigation:** Never reverse a documented decision without first reading its rationale and confirming the constraint no longer applies.

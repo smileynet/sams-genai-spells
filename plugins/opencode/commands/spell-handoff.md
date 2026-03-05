@@ -106,17 +106,17 @@ Ask the user to fill gaps — especially decisions, dead ends, and gotchas that 
 
 If a section is genuinely empty (e.g., no dead ends were encountered), note "None identified" — don't omit the section. A missing section looks like an oversight; an empty one shows you checked.
 
-Note: Decisions, dead ends, and gotchas will be triaged in A4 — they may be promoted to permanent locations rather than appearing as handoff sections. The check here ensures the information was *gathered*, not that it will appear in the handoff body.
+Note: Decisions, dead ends, and gotchas may be promoted to permanent locations in A4 rather than appearing in the handoff body. This check ensures the information was *gathered*, not that it stays here.
 
 ### A4: Promote Permanent Knowledge
 
-Scan the decisions, dead ends, and gotchas gathered in A2–A3. Apply the **6-month heuristic**: "Would a developer joining this project in 6 months need to know this?" If yes → permanent knowledge that belongs in a durable home, not the handoff. If it only matters for the next session → transient, stays in the handoff.
+Scan the decisions, dead ends, and gotchas gathered in A2–A3. Apply the **6-month heuristic**: "Would a developer joining this project in 6 months need to know this?" If yes → promote to a durable home. If it only matters for the next session → keep in the handoff.
 
 **Discover project documentation structure:**
 
 Search for existing documentation targets: CLAUDE.md, AGENTS.md, docs/decisions/, docs/bpap-*, README.md.
 
-If no existing documentation targets are found, default permanent items to CLAUDE.md (creating a section if needed) or inline code comments. Do not create new documentation structures (ADR directories, BPAP files) without user confirmation — offer it as an option in the triage table.
+If no existing targets are found, default to CLAUDE.md (creating a section if needed) or inline code comments. Do not create new documentation structures (ADR directories, BPAP files) without user confirmation — offer it as an option in the triage table.
 
 **Classify each item using the promotion target heuristics:**
 
@@ -145,13 +145,13 @@ Instead: <what to do instead>
 
 Present the triage table showing each permanent item and its proposed destination. Ask the user to confirm: promote all, review individually, or skip promotion.
 
-**Write confirmed items to their durable homes.** For each promoted item, write it to the confirmed location using the appropriate format for that file type (inline comment, ADR section, BPAP antipattern entry, AGENTS.md bullet, etc.).
+**Write confirmed items to their durable homes** using the appropriate format for that file type (inline comment, ADR section, BPAP antipattern entry, AGENTS.md bullet, etc.).
 
 Track what was promoted — the list feeds the PROMOTED section in the handoff.
 
 ### A5: Write the Handoff
 
-Output the structured handoff document. The handoff captures **transient session state** — where you are, what's next, what's unresolved. Permanent knowledge (decisions, dead ends, gotchas) has already been written to durable homes in A4 and is referenced in the PROMOTED section.
+Output the structured handoff document. The handoff captures **transient session state** — where you are, what's next, what's unresolved. Permanent knowledge has already been written to durable homes in A4 and is referenced in the PROMOTED section.
 
 ```
 HANDOFF: <SUBJECT>
@@ -360,10 +360,10 @@ Ask the user how to proceed: start P1 work, review the plan, load key files, res
 
 ### Generate (Mode A)
 
-- **The handoff is a session bridge, not a knowledge base.** Decisions, dead ends, and gotchas are permanent system knowledge — they belong in durable locations (code comments, CLAUDE.md, AGENTS.md, ADRs, BPAPs). The handoff captures transient session state: where you are, what's next, what's unresolved. Write permanent items to their final homes during generation; the handoff references them in the PROMOTED section.
+- **The handoff is a session bridge, not a knowledge base.** Decisions, dead ends, and gotchas are permanent system knowledge — they belong in durable locations (code comments, CLAUDE.md, AGENTS.md, ADRs, BPAPs). The handoff captures transient session state: where you are, what's next, what's unresolved. Promote permanent items during generation; reference them in the PROMOTED section.
 - **The 6-month test.** Would a developer joining the project in 6 months need to know this? If yes, it's permanent — promote it. If it only matters for the next session, it belongs in the handoff.
-- **Dead ends that generalize are antipatterns.** If a dead end could trap someone on a different project ("Tried X, failed because Y" where Y is a general property, not a project-specific constraint), it's a candidate for BPAP promotion as a named antipattern — not just a code comment.
-- **Dead ends are the highest-value discovery.** Without them, the next session will waste time re-trying approaches that already failed. Document the approach, why it was tried, and specifically why it was abandoned — then promote them to a durable home so they survive beyond this handoff.
+- **Dead ends that generalize are antipatterns.** If a dead end could trap someone on a different project (Y is a general property, not a project-specific constraint), promote it as a named BPAP antipattern — not just a code comment.
+- **Dead ends are the highest-value discovery.** Without them, the next session re-tries approaches that already failed. Document the approach, why it was tried, and why it was abandoned — then promote to a durable home so they survive beyond this handoff.
 - **Decisions need rationale, not just the choice.** "Used PostgreSQL" is useless. "Used PostgreSQL over SQLite — Reason: need concurrent writes from multiple workers, SQLite locks on write" lets the next person understand whether the decision still applies.
 - **Next steps must be specific and actionable.** "Continue working on the API" is worthless. "Add input validation to POST /users using the schema in src/types/user.ts — the endpoint currently accepts any body" gives the next session a clear starting point.
 - **The document must stand alone.** The reader has zero prior context — no access to this conversation, no memory of decisions, no awareness of what was tried. Write as if the reader is starting from scratch.
@@ -372,11 +372,11 @@ Ask the user how to proceed: start P1 work, review the plan, load key files, res
 
 ### Resume (Mode B)
 
-- **Follow PROMOTED references.** Load decisions, dead ends, and gotchas from their permanent locations. If a referenced file has changed since the handoff was written, flag the discrepancy — the promoted item may have been updated or superseded.
+- **Follow PROMOTED references.** Load decisions, dead ends, and gotchas from their permanent locations. If a referenced file changed since the handoff was written, flag it — the promoted item may have been updated or superseded.
 - **Resume consumes context, not just text.** Understand the handoff's intent and build an action plan — don't just reformat the content.
-- **Dead ends are sacred on resume.** Never suggest a documented dead end as an approach. If the handoff says "Tried X, abandoned because Y," X is off the table unless Y has demonstrably changed. This applies whether dead ends are in the handoff body (legacy) or in permanent locations (promoted).
+- **Dead ends are sacred on resume.** Never suggest a documented dead end as an approach. If "Tried X, abandoned because Y," then X is off the table unless Y has demonstrably changed. This applies whether dead ends are in the handoff body (legacy) or in permanent locations (promoted).
 - **Verify before assuming.** The handoff may be stale. Check every claim against current git state before building on it.
-- **Deletion is safe with promoted format.** When the handoff has a PROMOTED section, all permanent knowledge lives in durable homes — the handoff file only contains transient session state. Recommend deletion confidently. For legacy-format handoffs, warn that deletion loses permanent knowledge.
+- **Deletion is safe with promoted format.** When the handoff has a PROMOTED section, all permanent knowledge lives in durable homes — the file only contains transient state. Recommend deletion confidently. For legacy-format handoffs, warn that deletion loses permanent knowledge.
 - **Watch for context poisoning.** If a handoff claim doesn't match git evidence, flag the discrepancy. Don't silently trust the handoff over observable reality.
 
 ### Both Modes

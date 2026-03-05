@@ -245,10 +245,9 @@ If the user chose "Skip promotion" in A4, use the legacy eight-section format in
 
 ### A6: Write to File and Offer Next Actions
 
-**Write the handoff to a file.** Use **Write** to save to `HANDOFF.md` in the repository root (or a path based on project conventions if one is evident from existing files).
+**Write the handoff to a file.** Use **Write** to save to `HANDOFF.md` in the repository root (or a path based on project conventions if one is evident from existing files). Do **not** commit or push the handoff file — it is a transient artifact that will be consumed and deleted by the next session.
 
 Then use **AskUserQuestion** to ask what to do next:
-- **Commit and push** — Stage, commit, and push so it's available on the branch
 - **Done** — File is written, no further action needed
 - **Adjust scope** — Go back and add or remove sections
 
@@ -405,16 +404,13 @@ Source: <path> | Status: consumed
 
 ### B6: Offer to Begin
 
+**Delete the handoff file** unless `--keep` was specified in `$ARGUMENTS`. The handoff is a transient artifact — once consumed, it should not linger. With the promoted format, permanent knowledge already lives in durable homes. With legacy format, warn the user before deleting that decisions, dead ends, and gotchas embedded in the handoff body will be lost, and offer to promote them first.
+
 Use **AskUserQuestion** to ask how to proceed:
 - **Start Priority 1** — Begin working on the top in-progress item immediately
 - **Review the plan** — Walk through the action plan in detail before starting
 - **Load key files** — Read the key files into context before deciding
 - **Resolve open questions first** — Address open questions before starting work
-- **Delete the handoff file** — Remove the consumed handoff file (recommended — with promoted format, permanent knowledge already lives in durable homes, so deletion is always safe)
-
-If `--keep` was specified in `$ARGUMENTS`, omit the "Delete the handoff file" option.
-
-If the handoff used the legacy format (no PROMOTED section), warn that deletion will lose decisions, dead ends, and gotchas embedded in the handoff body.
 
 ---
 

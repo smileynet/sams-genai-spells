@@ -203,7 +203,7 @@ If the user chose "Skip promotion" in A4, use the legacy eight-section format in
 
 ### A6: Write to File and Offer Next Actions
 
-Write the handoff to `HANDOFF.md` in the repository root. Then ask the user what to do next: commit and push, done, or adjust scope.
+Write the handoff to `HANDOFF.md` in the repository root. Do not commit or push it — it is a transient artifact consumed and deleted by the next session. Then ask the user: done, or adjust scope.
 
 ---
 
@@ -349,7 +349,7 @@ Source: <path> | Status: consumed
 
 ### B6: Offer to Begin
 
-Ask the user how to proceed: start P1 work, review the plan, load key files, resolve open questions first, or delete the handoff file (recommended — with promoted format, deletion is always safe since permanent knowledge lives in durable homes). If `--keep` was specified, omit the deletion option. If the handoff used legacy format, warn that deletion will lose embedded permanent knowledge.
+Delete the handoff file unless `--keep` was specified. With legacy format, warn the user that embedded permanent knowledge will be lost and offer to promote first. Then ask how to proceed: start P1 work, review the plan, load key files, or resolve open questions first.
 
 ---
 

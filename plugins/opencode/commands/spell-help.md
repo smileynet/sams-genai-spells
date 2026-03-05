@@ -131,7 +131,7 @@ Run /spell-help for overview.
 
 | Spell | Type | Description |
 |-------|------|-------------|
-| `/spell-idiomatic` | Modifier | Set session constraints to use canonical, documented patterns for a tool or language |
+| `/spell-idiomatic` | Modifier | Set and persist canonical pattern constraints for a tool or language |
 | `/spell-socratic` | Modifier | Shift the AI into Socratic teaching mode — questions instead of answers |
 | `/spell-bpap` | Workflow | Research and produce a structured best-practices and antipatterns document for a topic |
 | `/spell-doc-audit` | Workflow | Analyze existing docs for gaps, mixed concerns, and structural issues |

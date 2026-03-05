@@ -2,9 +2,9 @@
 
 **Research a topic and produce a structured best-practices and antipatterns document.** Combines web research, codebase analysis, and structured output into a practical guide with numbered best practices (BP) and named antipatterns (AP).
 
-**Arguments:** `$ARGUMENTS` (required) - Topic for best-practices and antipatterns research
+**Arguments:** `$ARGUMENTS` (required) - Topic for best-practices and antipatterns research. Optional flag: `--no-save` (output to conversation only, don't write file)
 
-**Output:** Structured best-practices and antipatterns document output directly to the conversation. If the user wants a file, suggest saving to `docs/bpap-<topic-slug>.md`.
+**Output:** Structured best-practices and antipatterns document output to the conversation and saved to `docs/bpap-<topic-slug>.md` by default. Use `--no-save` to output to conversation only.
 
 ---
 
@@ -19,6 +19,8 @@ Ask the user: "What topic should I research best practices and antipatterns for?
 
 **Otherwise:**
 - Extract the topic from `$ARGUMENTS`
+- Parse optional flag: `--no-save` — output to conversation only, don't write file
+- Generate a slug from the topic: lowercase, spaces and special characters replaced with hyphens (e.g., "Git commit messages" -> "git-commit-messages")
 - Determine scope: **narrow** (1-3 concerns) or **broad** (3+ distinct subtopics)
 
 **Step 2: Research**
@@ -34,6 +36,9 @@ Search the web for current best practices, antipatterns, common mistakes, and st
 
 **Scan for existing bpap files:**
 - Search `docs/` for `bpap-*.md` or `*bpap*.md` files — note related topics for the Cross-References section
+
+**Scan for existing idiomatic files:**
+- Search for any idiomatic constraint files related to the topic for cross-referencing
 
 **Graceful degradation:** If web search is unavailable, rely on built-in knowledge and codebase analysis. Note at the top that results are based on training knowledge, not live research.
 
@@ -69,21 +74,39 @@ Before presenting the document, verify against this quality rubric:
 - [ ] "When to Break These Rules" has 2-3 specific items (not blanket disclaimers)
 - [ ] Sources section exists (even if "Based on training knowledge")
 - [ ] Advice is specific, not truistic ("use `const`" not "use appropriate declarations")
+- [ ] Freshness metadata present (date, source, review-after)
+- [ ] AI Rules Distillation appendix included
+- [ ] Idiomatic cross-references added (if files exist)
 
 Fix any issues before presenting the output.
+
+**Step 6: Save**
+
+**Default behavior (no `--no-save` flag):**
+- Use the slug generated in Step 1
+- Write the document to `docs/bpap-<topic-slug>.md`
+- If the file already exists: warn the user, note what changed, and overwrite (recoverable via git)
+- Confirm: "Saved to `docs/bpap-<topic-slug>.md`"
+
+**If `--no-save` flag present:**
+- Output to conversation only
+- Note: "Not saved. Run again without `--no-save` to persist for cross-referencing."
 
 ---
 
 ## Output Format
 
-Use standard markdown only. Do not use Unicode box-drawing characters (═, ━, ┌, ─, etc.). Do not add explanatory text outside the structured sections. Only use headers and sections specified in this format.
+Use standard markdown only. Do not use Unicode box-drawing characters. Do not add explanatory text outside the structured sections. Only use headers and sections specified in this format.
 
 ### Flat structure (narrow topics)
 
 ```markdown
 # Best Practices and Antipatterns: <Topic>
 
-<1-2 sentence scope statement. Note whether based on web research or training knowledge, and date.>
+<1-2 sentence scope statement.>
+
+**Generated:** <YYYY-MM-DD> | **Source:** <web research | training knowledge>
+**Review after:** <+6 months from generation>
 
 ---
 
@@ -109,16 +132,33 @@ Instead: <The better approach.>
 
 ## When to Break These Rules
 
-- **BP-1** — <Specific condition when breaking it is correct>
-- **AP-1** — <Specific context where this pattern is actually appropriate>
+- **BP-1** -- <Specific condition when breaking it is correct>
+- **AP-1** -- <Specific context where this pattern is actually appropriate>
 
 ## Cross-References
 
-- [Related doc title (BP-X.Y)](./bpap-related.md) — <relevance>
+- [Related doc title (BP-X.Y)](./bpap-related.md) -- <relevance>
+<Include idiomatic cross-reference only if .claude/rules/idiomatic-*.md files exist:>
+- [Idiomatic <tool> constraints](.claude/rules/idiomatic-<tool>.md) -- auto-loading AI constraints
 
 ## Sources
 
-- [Title](URL) — <what this source contributed>
+- [Title](URL) -- <what this source contributed>
+
+## AI Rules Distillation
+
+> Terse constraint block for AI rules files (.claude/rules/, AGENTS.md).
+> Not a replacement for the full guide.
+
+```
+USE:
+- <terse pattern from BP-1>
+- <terse pattern from BP-2>
+
+AVOID:
+- <terse anti-pattern from AP-1>
+- <terse anti-pattern from AP-2>
+```
 ```
 
 ### Sectioned structure (broad topics)
@@ -126,7 +166,10 @@ Instead: <The better approach.>
 ```markdown
 # Best Practices and Antipatterns: <Topic>
 
-<1-2 sentence scope statement. Note whether based on web research or training knowledge, and date.>
+<1-2 sentence scope statement.>
+
+**Generated:** <YYYY-MM-DD> | **Source:** <web research | training knowledge>
+**Review after:** <+6 months from generation>
 
 ---
 
@@ -156,16 +199,33 @@ Instead: <The better approach.>
 
 ## When to Break These Rules
 
-- **BP-1.1** — <Specific condition when breaking it is correct>
-- **AP-2.1** — <Specific context where this pattern is actually appropriate>
+- **BP-1.1** -- <Specific condition when breaking it is correct>
+- **AP-2.1** -- <Specific context where this pattern is actually appropriate>
 
 ## Cross-References
 
-- [Related doc title (BP-X.Y)](./bpap-related.md) — <relevance>
+- [Related doc title (BP-X.Y)](./bpap-related.md) -- <relevance>
+<Include idiomatic cross-reference only if .claude/rules/idiomatic-*.md files exist:>
+- [Idiomatic <tool> constraints](.claude/rules/idiomatic-<tool>.md) -- auto-loading AI constraints
 
 ## Sources
 
-- [Title](URL) — <what this source contributed>
+- [Title](URL) -- <what this source contributed>
+
+## AI Rules Distillation
+
+> Terse constraint block for AI rules files (.claude/rules/, AGENTS.md).
+> Not a replacement for the full guide.
+
+```
+USE:
+- <terse pattern from BP-1.1>
+- <terse pattern from BP-2.1>
+
+AVOID:
+- <terse anti-pattern from AP-1.1>
+- <terse anti-pattern from AP-2.1>
+```
 ```
 
 ---
@@ -177,7 +237,10 @@ Instead: <The better approach.>
 ```markdown
 # Best Practices and Antipatterns: Git Commit Messages
 
-Conventions for writing useful commit messages. Based on web research and established style guides (March 2025).
+Conventions for writing useful commit messages. Based on web research and established style guides.
+
+**Generated:** 2025-03-15 | **Source:** web research
+**Review after:** 2025-09-15
 
 ---
 
@@ -213,17 +276,34 @@ Instead: Use `git add -p` to stage related hunks. One logical change per commit.
 
 ## When to Break These Rules
 
-- **BP-1** — Automated commits (changelogs, version bumps) often use past tense by convention
-- **BP-2** — Monorepo scope prefixes (`packages/auth: `) may push past 50 chars; 72 is the hard limit
+- **BP-1** -- Automated commits (changelogs, version bumps) often use past tense by convention
+- **BP-2** -- Monorepo scope prefixes (`packages/auth: `) may push past 50 chars; 72 is the hard limit
 
 ## Cross-References
 
-None — standalone guide.
+None -- standalone guide.
 
 ## Sources
 
-- [How to Write a Git Commit Message](https://cbea.ms/git-commit/) — Chris Beams' canonical guide
-- [Git documentation](https://git-scm.com/docs/git-commit) — Official format specification
+- [How to Write a Git Commit Message](https://cbea.ms/git-commit/) -- Chris Beams' canonical guide
+- [Git documentation](https://git-scm.com/docs/git-commit) -- Official format specification
+
+## AI Rules Distillation
+
+> Terse constraint block for AI rules files (.claude/rules/, AGENTS.md).
+> Not a replacement for the full guide.
+
+```
+USE:
+- Imperative mood in commit subjects ("Add feature" not "Added feature")
+- 50-char subject limit, 72-char hard limit
+- Blank line between subject and body
+- One logical change per commit
+
+AVOID:
+- Narrative commit messages (put the journey in PRs/ADRs, not commits)
+- Multi-concern commits touching unrelated files (use `git add -p`)
+```
 ```
 
 ### Sectioned example (abbreviated): React Component Architecture
@@ -231,7 +311,10 @@ None — standalone guide.
 ```markdown
 # Best Practices and Antipatterns: React Component Architecture
 
-Patterns for structuring React components in production applications. Based on web research and React documentation (March 2025).
+Patterns for structuring React components in production applications. Based on web research and React documentation.
+
+**Generated:** 2025-03-15 | **Source:** web research
+**Review after:** 2025-09-15
 
 ---
 
@@ -251,7 +334,7 @@ Choosing how to split UI into components and how they communicate.
 
 Why it's tempting: Extracting components feels like premature abstraction when you're building fast.
 Consequences: Impossible to test individual concerns. Every change risks regressions across unrelated behavior.
-Instead: Extract when a component has more than one reason to change — that's the single responsibility signal.
+Instead: Extract when a component has more than one reason to change -- that's the single responsibility signal.
 
 ## 2. State Management
 
@@ -261,15 +344,31 @@ Instead: Extract when a component has more than one reason to change — that's 
 
 ## When to Break These Rules
 
-- **BP-1.1** — One level of prop passing is fine; composition overhead isn't worth it for parent→child
+- **BP-1.1** -- One level of prop passing is fine; composition overhead isn't worth it for parent->child
 
 ## Cross-References
 
-- [Testing best practices (BP-3)](./bpap-testing.md) — component testability patterns
+- [Testing best practices (BP-3)](./bpap-testing.md) -- component testability patterns
 
 ## Sources
 
-- [React documentation: Composition vs Inheritance](https://react.dev/learn/passing-data-deeply-with-context) — Official guidance
+- [React documentation: Composition vs Inheritance](https://react.dev/learn/passing-data-deeply-with-context) -- Official guidance
+
+## AI Rules Distillation
+
+> Terse constraint block for AI rules files (.claude/rules/, AGENTS.md).
+> Not a replacement for the full guide.
+
+```
+USE:
+- Composition over prop drilling (children, render props)
+- Single responsibility per component
+- Colocate state with the components that use it
+
+AVOID:
+- Mega-Components (500+ line files mixing concerns)
+- Deep prop drilling through intermediate components
+```
 ```
 
 ---
@@ -283,6 +382,8 @@ Instead: Extract when a component has more than one reason to change — that's 
 - **Prioritize:** Put the highest-impact practices first
 - **Name antipatterns:** Use established names when they exist (God Object, Golden Hammer). Coin descriptive names for domain-specific ones.
 - **Explain the trap:** "Why it's tempting" is what distinguishes an antipattern from a simple don't. If you can't explain the temptation, it's a don't — fold it into a best practice.
+- **Save for cross-referencing:** The document is most useful as a file that other spells can discover. Conversation-only is for exploration.
+- **AI Rules Distillation is compressed, not authoritative:** It exists for copy-pasting into rules files. The full guide with rationale is the source of truth.
 
 ---
 
@@ -292,5 +393,5 @@ Instead: Extract when a component has more than one reason to change — that's 
 @spell-bpap Git commit messages
 @spell-bpap React component testing
 @spell-bpap REST API design
-@spell-bpap TypeScript error handling
+@spell-bpap TypeScript error handling --no-save
 ```

@@ -17,6 +17,8 @@ Every programming language community converges on patterns — canonical ways of
 
 Constraining to documented patterns also dramatically reduces AI hallucination. When the AI is told "be idiomatic for Python 3.12," it stops making up methods and starts referencing what actually exists in the 3.12 documentation.
 
+The spell also checks what your existing linters already enforce, so it doesn't waste constraint budget repeating what `ruff` or `eslint` already catches. Instead, it focuses on the patterns that *aren't* covered by tooling — the ones where AI guidance adds the most value. And if a related BPAP guide exists in `docs/`, the spell incorporates those best practices too, referencing them by their stable BP/AP IDs.
+
 ## Why It Works
 
 The value of idiomatic code isn't aesthetic — it's practical:
@@ -40,10 +42,14 @@ The `/spell:idiomatic <tool>` command applies this concept by:
 
 1. Detecting the tool version from the codebase (package.json, pyproject.toml, etc.)
 2. Researching current idiomatic patterns via web search
-3. Outputting session constraints — "use this, avoid that"
-4. Staying active as a behavioral guardrail for the session
+3. Checking for linter/formatter configs to see what's already enforced by tooling
+4. Scanning for related BPAP guides to incorporate cross-referenced best practices
+5. Outputting session constraints — "use this, avoid that"
+6. On Claude Code, saving constraints to `.claude/rules/idiomatic-<tool>.md` so they **auto-load in every future session** without re-invocation
 
-Set it once at the start of a session, then work normally. If the AI drifts, say "be idiomatic" and it self-corrects.
+The `--no-save` flag keeps constraints session-only — useful for one-off scripts in languages you rarely use. The `--refresh` flag forces fresh research even if a rules file already exists, updating it with current patterns while preserving any local overrides you've added.
+
+Set it once at the start of a session, then work normally. If the AI drifts, say "be idiomatic" and it self-corrects. On Claude Code, you only need to run it once per tool — after that, the rules file does the work for you.
 
 ## Background
 

@@ -58,9 +58,11 @@ The decision rule is mechanical: an antipattern has a **name**, a **temptation**
 
 The `/spell:bpap <topic>` command applies this concept in three phases:
 
-1. **Extract** — Research the topic via web search (with graceful fallback to built-in knowledge), scan the codebase for existing patterns, and look for related bpap files to cross-reference
-2. **Compose** — Choose a structure based on topic scope (flat for narrow topics, sectioned for broad ones), apply BP-X.Y/AP-X.Y numbering, and write the document in standard markdown
+1. **Extract** — Research the topic via web search (with graceful fallback to built-in knowledge), scan the codebase for existing patterns, look for related bpap files to cross-reference, and check `.claude/rules/` for idiomatic constraint files on the same topic
+2. **Compose** — Choose a structure based on topic scope (flat for narrow topics, sectioned for broad ones), apply BP-X.Y/AP-X.Y numbering, and write the document in standard markdown. Each document includes freshness metadata (generation date, source, review-after date) and an AI Rules Distillation appendix
 3. **Verify** — Self-check the output against a quality rubric before presenting it: does every BP have rationale? Does every AP have trap analysis? Are there specific "when to break" items instead of blanket disclaimers?
+
+By default, the output is saved to `docs/bpap-<topic-slug>.md` — this is what makes cross-referencing work. Other spells (including `/spell:idiomatic`) discover and incorporate bpap files during their research phase. Use `--no-save` for exploratory runs where you're not ready to commit to a file.
 
 The output adapts to the topic. A narrow topic like "Git commit messages" gets a **flat** structure — one Best Practices section, one Antipatterns section, numbered `BP-1`, `AP-1`. A broad topic like "React application architecture" gets a **sectioned** structure — multiple sections with their own BPs and APs, numbered `BP-1.1`, `AP-2.3`. The decision rule is simple: if the topic has 3+ distinct subtopics, use sectioned.
 
@@ -71,6 +73,10 @@ The output is standard markdown — no Unicode box-drawing characters, no custom
 ## Cross-Referencing
 
 Once you have more than one bpap document, they start referencing each other. "Don't inline SVG without optimization" in a logo design guide points at "Use SVGO before committing" in an SVG guide. The BP-X.Y numbering system gives these references stable anchors.
+
+Each document also includes an **AI Rules Distillation** appendix — a terse USE/AVOID block designed for copy-pasting into AI rules files (`.claude/rules/`, `AGENTS.md`). This isn't a replacement for the full guide; it's a compressed version for contexts where brevity matters more than rationale. The full guide with its reasoning and trap analysis remains the source of truth.
+
+Documents include **freshness metadata** — a generation date, source (web research vs. training knowledge), and a review-after date six months out. When other spells discover a bpap file during research, this metadata tells them whether the advice is current or potentially stale.
 
 Cross-references go in a dedicated section at the end of each document, before Sources:
 

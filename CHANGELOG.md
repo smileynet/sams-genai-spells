@@ -6,16 +6,16 @@
 - **doc-audit** spell — analyze existing docs for gaps, mixed concerns, and structural issues using Diataxis, progressive disclosure, and ROT analysis
 - **doc-restructure** spell — reorganize existing docs by purpose (Diataxis quadrants) and detail level (progressive disclosure) using incremental strangler fig approach
 - **doc-generate** spell — research a topic and create structured documentation with audience analysis, quadrant-specific writing rules, and quality gates
-- Skill reference: `docs/skills/diataxis-framework.md` — four-quadrant classification framework
-- Skill reference: `docs/skills/progressive-disclosure-framework.md` — depth layering framework
+- **ritual** command — orchestrate multi-spell sequences where each spell runs at full strength with context bridges between them. Eight rituals: landscape, architect, investigate, doc-structure, challenge, survey, full-landscape, risk-map
 
 ### Changed
-- **doc-structure ritual** updated: now sequences `doc-audit → doc-restructure` (was `diataxis → progressive-disclosure`), now plan-mode compatible
-- **progressive-disclosure** and **diataxis** demoted from spells to skill references — their frameworks now inform the three new doc spells
+- **handoff** spell now separates transient session state from permanent knowledge — decisions, dead ends, and gotchas are promoted to durable homes (CLAUDE.md, AGENTS.md, ADRs, BPAPs, code comments) during generation, so nothing permanent is lost when the handoff file is deleted
+- All spells now work in plan mode — output goes to the conversation by default, with file saves available on request
+- **doc-structure ritual** updated: now sequences `doc-audit → doc-restructure` (was `diataxis → progressive-disclosure`)
 
 ### Removed
-- **progressive-disclosure** spell — replaced by doc-audit, doc-restructure, and doc-generate
-- **diataxis** spell — replaced by doc-audit, doc-restructure, and doc-generate
+- **progressive-disclosure** spell — replaced by doc-audit, doc-restructure, and doc-generate (framework preserved as skill reference)
+- **diataxis** spell — replaced by doc-audit, doc-restructure, and doc-generate (framework preserved as skill reference)
 
 ## [0.7.0] - 2026-03-03
 ### Added
